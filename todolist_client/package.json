@@ -23,6 +23,17 @@
       "react-app/jest"
     ]
   },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "eslint",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "node_modules/"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
