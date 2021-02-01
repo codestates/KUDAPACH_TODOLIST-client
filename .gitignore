@@ -8,6 +8,7 @@
 # production
 /build
 /.env
+
 # misc
 .DS_Store
 .env.local
@@ -15,6 +16,8 @@
 .env.test.local
 .env.production.local
 .idea
+.vscode
+
 # testing
 /coverage
 
@@ -24,5 +27,5 @@ yarn-error.log*
 
 package-lock.json
 yarn.lock
-
+.eslintcache
 *.pem
