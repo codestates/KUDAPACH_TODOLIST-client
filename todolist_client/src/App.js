@@ -2,8 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  console.log('check esLint');
-  const test = 'test';
   return (
     <div className="App">
       <header className="App-header">

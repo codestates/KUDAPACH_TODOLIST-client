@@ -39,6 +39,8 @@
     "babel-eslint": "^10.1.0"
   },
   "husky": {
-    "pre-commit": "num run lint"
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
