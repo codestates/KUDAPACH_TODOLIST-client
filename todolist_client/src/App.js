@@ -1,7 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-let a = 'sss';
-console.log('sss')
 
 function App() {
   return (
