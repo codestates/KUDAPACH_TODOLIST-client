@@ -1,3 +1,4 @@
+/*eslint-disable*/
 module.exports = {
   extends: [
     'react-app', // react를 넣어 import등 error로 안잡히도록
