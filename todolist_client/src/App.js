@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
+import logo from './logo.svg';
+import './App.css';
+let a = 'sss';
+console.log('sss')
 
 function App() {
-  console.log('eslintcheck')
   return (
     <div className="App">
       <header className="App-header">
