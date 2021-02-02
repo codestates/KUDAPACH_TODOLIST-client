@@ -2,7 +2,7 @@
 name: Task Card
 about: Task 카드 생성시 사용되는 template 입니다.
 title: ''
-labels: ''
+labels: bug, client, database, delete, feature, server
 assignees: ''
 
 ---
