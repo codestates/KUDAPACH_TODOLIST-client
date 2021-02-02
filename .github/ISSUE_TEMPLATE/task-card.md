@@ -12,7 +12,7 @@ Group: `client`, `server`, `database`
 Type: `bug`, `feature`, `delete`
 Detail: 
 
-## TODO
+## Difficulty
 * [ ] Job1
 * [ ] Job2
 * [ ] Job3
