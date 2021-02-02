@@ -13,6 +13,11 @@ Type: `bug`, `feature`, `delete`
 Detail: 
 
 ## Difficulty
+* [ ] low
+* [ ] middle  
+* [ ] high
+
+## Todo
 * [ ] Job1
 * [ ] Job2
 * [ ] Job3
