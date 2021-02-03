@@ -7,7 +7,7 @@ class Login extends React.Component {
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <div className="logo">Logo</div>
+            <div className="logo" />
             <div className="comment">
               <div className="mainName">TODO LIST</div>
               <div className="mainText">

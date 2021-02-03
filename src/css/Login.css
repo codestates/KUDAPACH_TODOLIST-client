@@ -25,7 +25,7 @@
 .logo {
   width: 96px;
   height:96px;
-  border: 1px white solid;
+  background-image: url(../asset/img/project_logo.png);
 }
 
 .comment {
