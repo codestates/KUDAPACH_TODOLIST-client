@@ -1,0 +1,78 @@
+.allLoginPage {
+  width: 100%;
+  display: flex;
+}
+
+.leftSide {
+  flex: 4 1 50px;
+  height: 1080px;
+  opacity: 0.9;
+  background-image: radial-gradient(circle at 50% 0, #333086, #4a63d9 33%, #83a2fd 62%, #c2667b 94%);
+  display: grid;
+  place-items: center;
+}
+
+.leftMiddle {
+  width: 315px;
+  height: 360px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  width: 96px;
+  height:96px;
+  background-image: url(../asset/img/project_logo.png);
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 195px;
+  width: 100%;
+}
+
+.mainName {
+  font-family: Roboto;
+  font-size: 64px;
+  font-weight: 300;
+  text-align: center;
+  color: #ffffff;
+}
+
+.mainText {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+}
+
+.lastWord {
+  display: flex;
+  justify-content: center;
+}
+
+.lastWord > span {
+  margin: 0 2px;
+  color: #3f1d1d;
+  font-family: Roboto;
+  font-size: 16px;
+}
+
+.lastWord > a {
+  text-decoration: none;
+  color: #3f1d1d;
+}
+
+.rightSide {
+  flex: 6 1 auto;
+  height: 1080px;
+  border: 1px red solid;
+}
+
+
