@@ -16,7 +16,7 @@ class Login extends React.Component {
               </div>
               <div className="lastWord">
                 <span>Not a member?</span>
-                <a href="#">
+                <a href="#" target="_blank" title="go to Sign up">
                   <span>Sign up now</span>
                 </a>
               </div>
