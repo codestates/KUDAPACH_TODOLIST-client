@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 .allLoginPage {
   width: 100%;
   display: flex;
@@ -33,7 +34,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 210px;
+  height: 200px;
   width: 100%;
 }
 
@@ -43,10 +44,6 @@
   font-weight: 300;
   text-align: center;
   color: #ffffff;
-}
-
-.mainText {
-
 }
 
 .mainText > div {
@@ -87,7 +84,7 @@
 
 .rightMainWrapper {
   width: 385px;
-  height: 450px;
+  height: 470px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -118,7 +115,7 @@
 }
 
 .passwordInput {
-  margin: 10px 0 0 0;
+  margin: 15px 0 0 0;
 }
 
 .connectBtn {
@@ -133,7 +130,7 @@
 }
 
 .findPassword {
-  margin-top: 10px;
+  margin-top: 15px;
   text-align: right;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -170,7 +167,7 @@
 }
 
 .kakaoBtn {
-  margin: 10px 0 0 0;
+  margin: 15px 0 0 0;
   background-color: #3f1d1d;
 }
 
