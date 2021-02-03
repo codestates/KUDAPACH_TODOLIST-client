@@ -15,11 +15,11 @@
 
 .leftMiddle {
   width: 315px;
-  height: 360px;
+  height: 350px;
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 195px;
+  height: 210px;
   width: 100%;
 }
 
@@ -46,11 +46,16 @@
 }
 
 .mainText {
+
+}
+
+.mainText > div {
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   color: #ffffff;
+  margin: 5px 0 0 0;
 }
 
 .lastWord {
@@ -59,7 +64,7 @@
 }
 
 .lastWord > span {
-  margin: 0 2px;
+  margin: 0 5px;
   color: #3f1d1d;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -67,8 +72,10 @@
 
 
 .lastWord > a {
+  margin: 0 0 0 2px;
   text-decoration: none;
-  color: #3f1d1d;
+  font-weight: 900;
+  color: #572d7f;
 }
 
 .rightSide {
@@ -88,7 +95,7 @@
 
 .headText {
   color: #0d0c22;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 24px;
   font-weight: 900;
 }
@@ -101,12 +108,12 @@
   border: solid 1px #c9c9c9;
   padding: 0 0 0 15px;
   font-size: 18px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 
 .emailInput::placeholder,
 .passwordInput::placeholder {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
 
@@ -119,7 +126,7 @@
   height: 48px;
   border-radius: 5px;
   background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 900;
   color: #ffffff;
@@ -128,7 +135,7 @@
 .findPassword {
   margin-top: 10px;
   text-align: right;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 900;
   color: #572d7f;
@@ -156,7 +163,7 @@
   height: 48px;
   border-radius: 5px;
   background-color: #4285f4;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 900;
   color: #ffffff;
