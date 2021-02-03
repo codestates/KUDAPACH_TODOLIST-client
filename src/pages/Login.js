@@ -16,7 +16,7 @@ class Login extends React.Component {
               </div>
               <div className="lastWord">
                 <span>Not a member?</span>
-                <a href="#" target="_blank" title="go to Sign up">
+                <a href="#" title="go to Sign up">
                   <span>Sign up now</span>
                 </a>
               </div>
@@ -36,7 +36,15 @@ class Login extends React.Component {
             </div>
             <div className="connectArea">
               <button className="connectBtn">CONNECT</button>
-              <div className="findPassword">Forgot password?</div>
+              <div className="connectText">
+                <a href="#" title="go to Guest Sign in">
+                  <span className="guestSignIn">Guest Sign in</span>
+                </a>
+                <span> ‧ </span>
+                <a href="#" title="Let's find password">
+                  <span className="findPassword">Forgot password?</span>
+                </a>
+              </div>
             </div>
             <div className="middleLine">
               <span className="line" />

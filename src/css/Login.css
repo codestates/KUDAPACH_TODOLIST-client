@@ -147,13 +147,23 @@ button:focus {
   transform: translateY(3px);
 }
 
-.findPassword {
-  margin-top: 15px;
+.connectText {
+  margin: 15px 0 0 0;
   text-align: right;
+}
+
+.connectText > span {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 900;
   color: #572d7f;
+}
+
+.connectText > a {
+  text-decoration: none;
+  color: #572d7f;
+  font-size: 14px;
+  font-weight: 900;
 }
 
 .middleLine {
