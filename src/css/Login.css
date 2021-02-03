@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+input:focus {
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+
 .allLoginPage {
   width: 100%;
   display: flex;
@@ -127,6 +134,17 @@
   font-size: 16px;
   font-weight: 900;
   color: #ffffff;
+  transition: 0.3s;
+  opacity: 0.8
+}
+
+.connectBtn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.connectBtn:active {
+  box-shadow: 0 1px #666;
+  transform: translateY(3px);
 }
 
 .findPassword {
@@ -164,11 +182,24 @@
   font-size: 16px;
   font-weight: 900;
   color: #ffffff;
+  transition: 0.3s;
+  opacity: 0.8;
 }
 
 .kakaoBtn {
   margin: 15px 0 0 0;
   background-color: #3f1d1d;
+}
+
+.googleBtn:hover,
+.kakaoBtn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.googleBtn:active,
+.kakaoBtn:active {
+  box-shadow: 0 1px #666;
+  transform: translateY(3px);
 }
 
 
