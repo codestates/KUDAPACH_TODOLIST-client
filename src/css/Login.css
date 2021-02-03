@@ -72,7 +72,97 @@
 .rightSide {
   flex: 6 1 auto;
   height: 100vh;
-  border: 1px red solid;
+  display: grid;
+  place-items: center;
+}
+
+.rightMainWrapper {
+  width: 385px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.headText {
+  color: #0d0c22;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.emailInput,
+.passwordInput {
+  width: 365px;
+  height: 48px;
+  border-radius: 5px;
+  border: solid 1px #c9c9c9;
+  padding: 0 0 0 15px;
+  font-size: 18px;
+  font-family: Roboto;
+}
+
+.emailInput::placeholder,
+.passwordInput::placeholder {
+  font-family: Roboto;
+  font-size: 14px;
+}
+
+.passwordInput {
+  margin: 10px 0 0 0;
+}
+
+.connectBtn {
+  width: 384px;
+  height: 48px;
+  border-radius: 5px;
+  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.findPassword {
+  margin-top: 10px;
+  text-align: right;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 900;
+  color: #572d7f;
+}
+
+.middleLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.or {
+  color: #817d7d;
+  margin: 0 20px;
+}
+.line {
+  width: 160px;
+  height: 1px;
+  background-color: #ecebeb;
+}
+
+.googleBtn,
+.kakaoBtn {
+  width: 384px;
+  height: 48px;
+  border-radius: 5px;
+  background-color: #4285f4;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.kakaoBtn {
+  margin: 10px 0 0 0;
+  background-color: #3f1d1d;
 }
 
 

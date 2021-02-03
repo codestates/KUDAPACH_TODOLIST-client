@@ -23,7 +23,32 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        <div className="rightSide">rightSide</div>
+        <div className="rightSide">
+          <div className="rightMainWrapper">
+            <div className="headText">Sign in to TODO LIST</div>
+            <div className="inputArea">
+              <input type="text" className="emailInput" placeholder="E-mail" />
+              <input
+                type="text"
+                className="passwordInput"
+                placeholder="Password"
+              />
+            </div>
+            <div className="connectArea">
+              <button className="connectBtn">CONNECT</button>
+              <div className="findPassword">Forgot password?</div>
+            </div>
+            <div className="middleLine">
+              <span className="line"></span>
+              <span className="or">Or</span>
+              <span className="line"></span>
+            </div>
+            <div className="oauthArea">
+              <button className="googleBtn">Sign in with Google</button>
+              <button className="kakaoBtn">Sign in with Kakao</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
