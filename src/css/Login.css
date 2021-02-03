@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 .allLoginPage {
   width: 100%;
   display: flex;
@@ -37,7 +38,7 @@
 }
 
 .mainName {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 64px;
   font-weight: 300;
   text-align: center;
@@ -45,7 +46,7 @@
 }
 
 .mainText {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 24px;
   font-weight: 500;
   text-align: center;
@@ -60,9 +61,10 @@
 .lastWord > span {
   margin: 0 2px;
   color: #3f1d1d;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
+
 
 .lastWord > a {
   text-decoration: none;

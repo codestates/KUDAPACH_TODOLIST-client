@@ -39,9 +39,9 @@ class Login extends React.Component {
               <div className="findPassword">Forgot password?</div>
             </div>
             <div className="middleLine">
-              <span className="line"></span>
+              <span className="line" />
               <span className="or">Or</span>
-              <span className="line"></span>
+              <span className="line" />
             </div>
             <div className="oauthArea">
               <button className="googleBtn">Sign in with Google</button>
