@@ -1,7 +1,12 @@
 import React from 'react';
-import '../css/MyTodo.css';
+import SingleUserNav from './SingleUserNav';
+
 function MyTodo() {
-  return <div className="body__container"></div>;
+  return (
+    <div>
+      <SingleUserNav />
+    </div>
+  );
 }
 
 export default MyTodo;

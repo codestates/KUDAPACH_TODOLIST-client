@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="todo---main" transform="translate(-1764.000000, -20.000000)" fill-rule="nonzero">
+            <g id="Group" transform="translate(1764.000000, 20.000000)">
+                <path d="M20,0 C8.96,0 0,8.96 0,20 C0,31.04 8.96,40 20,40 C31.04,40 40,31.04 40,20 C40,8.96 31.04,0 20,0 Z" id="Path" fill="#572D7F"></path>
+                <path d="M20,8 C23.86,8 27,11.14 27,15 C27,18.86 23.86,22 20,22 C16.14,22 13,18.86 13,15 C13,11.14 16.14,8 20,8 Z" id="Path" fill="#FFFFFF"></path>
+                <path d="M20,36 C15.94,36 11.14,34.36 7.72,30.24 C11.1,27.6 15.36,26 20,26 C24.64,26 28.9,27.6 32.28,30.24 C28.86,34.36 24.06,36 20,36 Z" id="Path" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -20,7 +20,7 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route path="/login" render={() => <Login />} />
-          <Route exact path="/mytodo" render={() => <MyTodo />} />
+          <Route path="/mytodo" render={() => <MyTodo />} />
           <Route
             path="/"
             render={() => {
