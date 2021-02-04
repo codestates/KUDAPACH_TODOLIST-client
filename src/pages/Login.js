@@ -7,7 +7,9 @@ class Login extends React.Component {
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <div className="logo" />
+            <a href="#" title="go to Sign in">
+              <div className="logo" />
+            </a>
             <div className="comment">
               <div className="mainName">TODO LIST</div>
               <div className="mainText">
