@@ -4,13 +4,30 @@ import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
 class Signin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.handleInputValue = this.handleInputValue.bind(this);
+    this.handleSignin = this.handleSignin.bind(this);
+  }
+  handleInputValue = (key) => (e) => {
+    this.setState({ [key]: e.target.value });
+  };
+  handleSignin = () => {
+    if (!this.state.email || !this.state.password) {
+      swal({
+        title: 'Wrong infomation',
+        text: 'Check your email & password',
+        icon: 'warning',
+        button: 'confirm',
+      });
+    }
+  };
+
   render() {
-    swal({
-      title: 'Good job!',
-      text: 'You clicked the button!',
-      icon: 'success',
-      button: 'Aww yiss!',
-    });
     return (
       <div className="allLoginPage">
         <div className="leftSide">
@@ -35,15 +52,23 @@ class Signin extends React.Component {
           <div className="rightMainWrapper">
             <div className="headText">Sign in to TODO LIST</div>
             <div className="inputArea">
-              <input type="text" className="emailInput" placeholder="E-mail" />
+              <input
+                type="text"
+                className="emailInput"
+                placeholder="E-mail"
+                onChange={this.handleInputValue('email')}
+              />
               <input
                 type="text"
                 className="passwordInput"
                 placeholder="Password"
+                onChange={this.handleInputValue('password')}
               />
             </div>
             <div className="connectArea">
-              <button className="connectBtn">CONNECT</button>
+              <button className="connectBtn" onClick={this.handleSignin}>
+                CONNECT
+              </button>
               <div className="connectText">
                 <a href="#" title="go to Guest Sign in">
                   <span className="guestSignIn">Guest Sign in</span>
