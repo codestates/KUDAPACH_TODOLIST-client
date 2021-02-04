@@ -2,33 +2,34 @@ import React from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
 
-import Login from './pages/Login';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
 import MyTodo from './pages/MyTodo';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: true,
+      isSignin: false,
     };
   }
 
   render() {
-    const { isLogin } = this.state;
+    const { isSignin } = this.state;
 
     return (
       <div>
         <Switch>
-          <Route path="/login" render={() => <Login />} />
+          <Route path="/Signin" render={() => <Signin />} />
+          <Route exact path="/signup" render={() => <Signup />} />
           <Route path="/mytodo" render={() => <MyTodo />} />
           <Route
             path="/"
             render={() => {
-              if (isLogin) {
-                // return <div>didn't make page yet</div>;
+              if (isSignin) {
                 return <Redirect to="/mytodo" />;
               }
-              return <Redirect to="/login" />;
+              return <Redirect to="/Signin" />;
             }}
           />
         </Switch>

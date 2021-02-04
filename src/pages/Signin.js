@@ -1,15 +1,16 @@
 import React from 'react';
 import '../css/Login.css';
+import { withRouter, Link } from 'react-router-dom';
 
-class Login extends React.Component {
+class Signin extends React.Component {
   render() {
     return (
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <a href="#" title="go to Sign in">
+            <Link to="/Signin">
               <div className="logo" />
-            </a>
+            </Link>
             <div className="comment">
               <div className="mainName">TODO LIST</div>
               <div className="mainText">
@@ -18,9 +19,7 @@ class Login extends React.Component {
               </div>
               <div className="lastWord">
                 <span>Not a member?</span>
-                <a href="#" title="go to Sign up">
-                  <span>Sign up now</span>
-                </a>
+                <Link to="/signup">Sign up now</Link>
               </div>
             </div>
           </div>
@@ -64,4 +63,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Signin);
