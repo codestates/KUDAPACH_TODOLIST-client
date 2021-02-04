@@ -4,7 +4,7 @@ import './App.css';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import MyTodo from './pages/MyTodo';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,11 +21,13 @@ class App extends React.Component {
         <Switch>
           <Route path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <Signup />} />
+          <Route path="/mytodo" render={() => <MyTodo />} />
           <Route
             path="/"
             render={() => {
               if (isLogin) {
-                return <div>didn't make page yet</div>;
+                // return <div>didn't make page yet</div>;
+                return <Redirect to="/mytodo" />;
               }
               return <Redirect to="/login" />;
             }}
