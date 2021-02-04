@@ -2,13 +2,13 @@ import React from 'react';
 import '../css/Login.css';
 import { withRouter, Link } from 'react-router-dom';
 
-class Login extends React.Component {
+class Signin extends React.Component {
   render() {
     return (
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <Link to="/login">
+            <Link to="/Signin">
               <div className="logo" />
             </Link>
             <div className="comment">
@@ -63,4 +63,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(Signin);
