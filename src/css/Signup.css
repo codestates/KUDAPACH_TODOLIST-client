@@ -1,0 +1,108 @@
+.allLoginPage {
+  width: 100%;
+  display: flex;
+}
+
+.leftSide {
+  flex: 4 1 50px;
+  height: 100vh;
+  opacity: 0.9;
+  background-image: radial-gradient(circle at 50% 0, #333086, #4a63d9 33%, #83a2fd 62%, #c2667b 94%);
+  display: grid;
+  place-items: center;
+}
+
+.leftMiddle {
+  width: 315px;
+  height: 350px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 96px;
+  height:96px;
+  background-image: url(../asset/img/project_logo.png);
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 200px;
+  width: 100%;
+}
+
+.mainName {
+  font-size: 64px;
+  font-weight: 300;
+  text-align: center;
+  color: #ffffff;
+}
+
+.mainText > div {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  margin: 5px 0 0 0;
+}
+
+.rightSide {
+  flex: 6 1 auto;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.rightWrapper {
+  width: 385px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.signUpText {
+  flex: 1 1 5px;
+  color: #0d0c22;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.inputWrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper > input {
+  margin: 6px 0;
+  width: 365px;
+  height: 48px;
+  border-radius: 5px;
+  border: solid 1px #c9c9c9;
+  padding: 0 0 0 15px;
+  font-size: 18px;
+}
+
+.createBtn {
+  margin: 6px 0 0 0;
+  width: 384px;
+  height: 48px;
+  border: 0;
+  border-radius: 5px;
+  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffff;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.createBtn:hover {
+  opacity: 0.8;
+}
