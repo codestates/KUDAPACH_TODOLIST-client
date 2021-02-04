@@ -29,24 +29,24 @@ class Signup extends React.Component {
       !this.state.phoneNumber
     ) {
       swal({
-        title: 'Something is empty',
-        text: 'All things have to exist',
+        title: 'A field is empty',
+        text: 'Please fill out all required fields',
         icon: 'warning',
         button: 'confirm',
       });
     } else {
       if (emailValidation(this.state.email) === false) {
         swal({
-          title: 'Wrong email',
-          text: 'Check your email',
+          title: 'Email is incorrect',
+          text: 'Please make sure to provide the correct email format',
           icon: 'warning',
           button: 'confirm',
         });
       }
       if (this.state.password.length < 8) {
         swal({
-          title: 'Wrong password',
-          text: 'password need atleast 8 words',
+          title: 'Incorrect Password Format',
+          text: 'The password needs to be at least 8 characters',
           icon: 'warning',
           button: 'confirm',
         });
@@ -61,8 +61,8 @@ class Signup extends React.Component {
       }
       if (phoneNumValidation(this.state.phoneNumber) === false) {
         swal({
-          title: 'Wrong phone number',
-          text: 'Input just numbers',
+          title: 'Incorrect number format',
+          text: 'The phone number must be numbers only',
           icon: 'warning',
           button: 'confirm',
         });
