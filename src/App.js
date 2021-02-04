@@ -3,12 +3,13 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
 
 import Login from './pages/Login';
+import MyTodo from './pages/MyTodo';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false,
+      isLogin: true,
     };
   }
 
@@ -19,11 +20,13 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route path="/login" render={() => <Login />} />
+          <Route path="/mytodo" render={() => <MyTodo />} />
           <Route
             path="/"
             render={() => {
               if (isLogin) {
-                return <div>didn't make page yet</div>;
+                // return <div>didn't make page yet</div>;
+                return <Redirect to="/mytodo" />;
               }
               return <Redirect to="/login" />;
             }}
