@@ -1,9 +1,16 @@
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Signin extends React.Component {
   render() {
+    swal({
+      title: 'Good job!',
+      text: 'You clicked the button!',
+      icon: 'success',
+      button: 'Aww yiss!',
+    });
     return (
       <div className="allLoginPage">
         <div className="leftSide">
