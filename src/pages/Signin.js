@@ -13,9 +13,11 @@ class Signin extends React.Component {
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleSignin = this.handleSignin.bind(this);
   }
+  // input value를 가져오는 함수
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+  // Signin을 실행하는 함수
   handleSignin = () => {
     if (!this.state.email || !this.state.password) {
       swal({
