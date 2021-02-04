@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
 
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route path="/login" render={() => <Login />} />
+          <Route exact path="/signup" render={() => <Signup />} />
           <Route
             path="/"
             render={() => {
