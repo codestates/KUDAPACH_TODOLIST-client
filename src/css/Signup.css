@@ -67,7 +67,8 @@
 }
 
 .signUpText {
-  flex: 1 1 5px;
+  margin: 15px 0 0 0;
+  flex: 1 1 20px;
   color: #0d0c22;
   font-size: 24px;
   font-weight: 900;
@@ -80,7 +81,7 @@
 }
 
 .inputWrapper > input {
-  margin: 6px 0;
+  margin: 7px 0;
   width: 365px;
   height: 48px;
   border-radius: 5px;

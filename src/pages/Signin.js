@@ -1,8 +1,34 @@
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Signin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.handleInputValue = this.handleInputValue.bind(this);
+    this.handleSignin = this.handleSignin.bind(this);
+  }
+  // input value를 가져오는 함수
+  handleInputValue = (key) => (e) => {
+    this.setState({ [key]: e.target.value });
+  };
+  // Signin을 실행하는 함수
+  handleSignin = () => {
+    if (!this.state.email || !this.state.password) {
+      swal({
+        title: 'Wrong infomation',
+        text: 'Check your email & password',
+        icon: 'warning',
+        button: 'confirm',
+      });
+    }
+  };
+
   render() {
     return (
       <div className="allLoginPage">
@@ -28,15 +54,23 @@ class Signin extends React.Component {
           <div className="rightMainWrapper">
             <div className="headText">Sign in to TODO LIST</div>
             <div className="inputArea">
-              <input type="text" className="emailInput" placeholder="E-mail" />
+              <input
+                type="text"
+                className="emailInput"
+                placeholder="E-mail"
+                onChange={this.handleInputValue('email')}
+              />
               <input
                 type="text"
                 className="passwordInput"
                 placeholder="Password"
+                onChange={this.handleInputValue('password')}
               />
             </div>
             <div className="connectArea">
-              <button className="connectBtn">CONNECT</button>
+              <button className="connectBtn" onClick={this.handleSignin}>
+                CONNECT
+              </button>
               <div className="connectText">
                 <a href="#" title="go to Guest Sign in">
                   <span className="guestSignIn">Guest Sign in</span>
