@@ -10,6 +10,7 @@ class Signup extends React.Component {
     this.state = {
       email: '',
       password: '',
+      passwordConfirm: '',
       userName: '',
       phoneNumber: '',
     };
@@ -108,7 +109,7 @@ class Signup extends React.Component {
                 type="password"
                 className="checkPassword"
                 placeholder="Password Confirm"
-                onChange={this.handleNewInput('password')}
+                onChange={this.handleNewInput('passwordConfirm')}
               />
               <input
                 type="text"
