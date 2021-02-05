@@ -105,6 +105,12 @@ class Signup extends React.Component {
                 onChange={this.handleNewInput('password')}
               />
               <input
+                type="password"
+                className="checkPassword"
+                placeholder="Password Confirm"
+                onChange={this.handleNewInput('password')}
+              />
+              <input
                 type="text"
                 className="newUsername"
                 placeholder="Username"
