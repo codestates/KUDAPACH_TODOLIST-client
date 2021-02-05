@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/LoadingSignup.css';
 import { withRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-import Signup from './Signup';
+import Signin from './Signin';
 
 class LoadingSignup extends React.Component {
   constructor(props) {
@@ -57,12 +57,12 @@ class LoadingSignup extends React.Component {
             <div className="notBoldLine">Please check your email</div>
           </div>
           <Switch>
-            <Route path="/Signup" render={() => <Signup />} />
+            <Route path="/signin" render={() => <Signin />} />
             <Route
               path="/"
               render={() => {
                 if (count === 0) {
-                  return <Redirect to="/Signup" />;
+                  return <Redirect to="/Signin" />;
                 }
               }}
             />
