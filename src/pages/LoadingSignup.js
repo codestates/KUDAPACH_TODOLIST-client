@@ -6,7 +6,7 @@ class LoadingSignup extends React.Component {
   render() {
     return (
       <div className="allLoginPage">
-        <div className="leftSide">
+        <div className="loadingLeftSide">
           <div className="leftMiddle">
             <Link to="/Signin">
               <div className="logo" />
