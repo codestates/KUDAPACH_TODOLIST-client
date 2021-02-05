@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import { emailValidation, phoneNumValidation } from '../pages/ValidationFun';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -38,12 +40,18 @@ class Signup extends React.Component {
         button: 'confirm',
       });
     } else {
-      axios.post('https://kudapach.com/signup', {
-        email: this.state.email,
-        password: this.state.password,
-        username: this.state.username,
-        mobile: this.state.mobile,
-      });
+      axios
+        .post('https://server.kudapach.com/signup', {
+          email: this.state.email,
+          password: this.state.password,
+          username: this.state.username,
+          mobile: this.state.mobile,
+        })
+        .then((res) => {
+          if (res) {
+            this.props.history.push('/');
+          }
+        });
     }
   };
 
