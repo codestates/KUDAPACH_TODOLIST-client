@@ -10,6 +10,7 @@ class Signup extends React.Component {
     this.state = {
       email: '',
       password: '',
+      passwordConfirm: '',
       userName: '',
       phoneNumber: '',
     };
@@ -25,6 +26,7 @@ class Signup extends React.Component {
     if (
       !this.state.email ||
       !this.state.password ||
+      !this.state.passwordConfirm ||
       !this.state.userName ||
       !this.state.phoneNumber
     ) {
@@ -34,39 +36,6 @@ class Signup extends React.Component {
         icon: 'warning',
         button: 'confirm',
       });
-    } else {
-      if (emailValidation(this.state.email) === false) {
-        swal({
-          title: 'Email is incorrect',
-          text: 'Please make sure to provide the correct email format',
-          icon: 'warning',
-          button: 'confirm',
-        });
-      }
-      if (this.state.password.length < 8) {
-        swal({
-          title: 'Incorrect Password Format',
-          text: 'The password needs to be at least 8 characters',
-          icon: 'warning',
-          button: 'confirm',
-        });
-      }
-      if (!this.state.userName) {
-        swal({
-          title: 'Username is empty',
-          text: 'Please input username',
-          icon: 'warning',
-          button: 'confirm',
-        });
-      }
-      if (phoneNumValidation(this.state.phoneNumber) === false) {
-        swal({
-          title: 'Incorrect number format',
-          text: 'The phone number must be numbers only',
-          icon: 'warning',
-          button: 'confirm',
-        });
-      }
     }
   };
 
@@ -94,25 +63,61 @@ class Signup extends React.Component {
             <div className="inputWrapper">
               <input
                 type="text"
-                className="newMail"
+                className={
+                  this.state.email.length === 0
+                    ? ''
+                    : !emailValidation(this.state.email)
+                    ? 'tryAgain'
+                    : 'allGood'
+                }
                 placeholder="E-mail"
                 onChange={this.handleNewInput('email')}
               />
               <input
                 type="password"
-                className="newPassword"
+                className={
+                  this.state.password.length === 0
+                    ? ''
+                    : this.state.password.length < 8
+                    ? 'tryAgain'
+                    : 'allGood'
+                }
                 placeholder="Password"
                 onChange={this.handleNewInput('password')}
               />
               <input
+                type="password"
+                className={
+                  this.state.passwordConfirm.length === 0
+                    ? ''
+                    : this.state.password !== this.state.passwordConfirm
+                    ? 'tryAgain'
+                    : 'allGood'
+                }
+                placeholder="Password Confirm"
+                onChange={this.handleNewInput('passwordConfirm')}
+              />
+              <input
                 type="text"
-                className="newUsername"
+                className={
+                  this.state.userName.length === 0
+                    ? ''
+                    : !this.state.userName
+                    ? 'tryAgain'
+                    : 'allGood'
+                }
                 placeholder="Username"
                 onChange={this.handleNewInput('userName')}
               />
               <input
                 type="text"
-                className="newPhoneNumber"
+                className={
+                  this.state.phoneNumber.length === 0
+                    ? ''
+                    : !phoneNumValidation(this.state.phoneNumber)
+                    ? 'tryAgain'
+                    : 'allGood'
+                }
                 placeholder="Phone Number"
                 onChange={this.handleNewInput('phoneNumber')}
               />

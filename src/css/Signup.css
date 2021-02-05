@@ -1,3 +1,7 @@
+input:focus {
+  outline: none;
+}
+
 .allLoginPage {
   width: 100%;
   display: flex;
@@ -60,14 +64,14 @@
 
 .rightWrapper {
   width: 385px;
-  height: 400px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .signUpText {
-  margin: 15px 0 0 0;
+  margin: 5px 0 0 0;
   flex: 1 1 20px;
   color: #0d0c22;
   font-size: 24px;
@@ -88,6 +92,14 @@
   border: solid 1px #c9c9c9;
   padding: 0 0 0 15px;
   font-size: 18px;
+}
+
+.inputWrapper .allGood {
+  border: 1px #24C774 solid;
+}
+
+.inputWrapper .tryAgain {
+  border: 1px #FF5656 solid;
 }
 
 .createBtn {

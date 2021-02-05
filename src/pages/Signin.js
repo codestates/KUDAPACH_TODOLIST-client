@@ -21,7 +21,7 @@ class Signin extends React.Component {
   handleSignin = () => {
     if (!this.state.email || !this.state.password) {
       swal({
-        title: 'Wrong infomation',
+        title: 'Wrong information',
         text: 'Check your email & password',
         icon: 'warning',
         button: 'confirm',
