@@ -95,13 +95,11 @@ class Signup extends React.Component {
             <div className="inputWrapper">
               <input
                 type="text"
-                className="newMail"
                 placeholder="E-mail"
                 onChange={this.handleNewInput('email')}
               />
               <input
                 type="password"
-                className="newPassword"
                 placeholder="Password"
                 onChange={this.handleNewInput('password')}
               />
@@ -113,13 +111,11 @@ class Signup extends React.Component {
               />
               <input
                 type="text"
-                className="newUsername"
                 placeholder="Username"
                 onChange={this.handleNewInput('userName')}
               />
               <input
                 type="text"
-                className="newPhoneNumber"
                 placeholder="Phone Number"
                 onChange={this.handleNewInput('phoneNumber')}
               />
