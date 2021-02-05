@@ -1,0 +1,56 @@
+.Box__container{
+    margin-top: 55px;
+    margin-left: 60px;
+    display: inline-flex;
+    flex-flow: wrap;
+}
+
+.CreateButton{
+    width: 340px;
+    height: 340px;
+    position: relative;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    font-weight: 700;
+}
+
+.pluse_icon{
+    width: 40px;
+    height: 40px;
+    margin-top: 207px;
+    margin-left: 268px
+}
+
+.create_text{
+    width: 145px;
+    height: 64px;
+    font-size: 24px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #9292a7;
+    margin-top: 8px;
+    margin-left: 164px;
+}
+
+
+
+.CreateButton:hover{
+    background-color: #572d7f;
+}
+
+
+.CreateButton:hover svg {
+    fill:white;
+}
+
+.CreateButton:hover .create_text{
+    color:white;
+}
+
