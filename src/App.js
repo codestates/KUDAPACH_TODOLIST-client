@@ -5,6 +5,7 @@ import './App.css';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import MyTodo from './pages/MyTodo';
+import LoadingSignup from './pages/LoadingSignup';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/Signin" render={() => <Signin />} />
+          <Route path="/signin" render={() => <Signin />} />
+          <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route path="/mytodo" render={() => <MyTodo />} />
           <Route
@@ -29,7 +31,7 @@ class App extends React.Component {
               if (isSignin) {
                 return <Redirect to="/mytodo" />;
               }
-              return <Redirect to="/Signin" />;
+              return <Redirect to="/signin" />;
             }}
           />
         </Switch>

@@ -1,0 +1,14 @@
+#firstBoldLine {
+  margin-top: 0;
+}
+
+.boldLine {
+  margin-top: 9px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.notBoldLine {
+  margin-top: 12px;
+  font-size: 16px;
+}
