@@ -1,9 +1,10 @@
 import React from 'react';
 import '../css/Signup.css';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { emailValidation, phoneNumValidation } from '../pages/ValidationFun';
 import axios from 'axios';
+import LoadingSignup from './LoadingSignup';
 
 axios.defaults.withCredentials = true;
 
@@ -16,6 +17,7 @@ class Signup extends React.Component {
       passwordConfirm: '',
       username: '',
       mobile: '',
+      isSignup: false,
     };
     this.handleNewInput = this.handleNewInput.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
@@ -40,22 +42,25 @@ class Signup extends React.Component {
         button: 'confirm',
       });
     } else {
-      axios
-        .post('https://server.kudapach.com/signup', {
-          email: this.state.email,
-          password: this.state.password,
-          username: this.state.username,
-          mobile: this.state.mobile,
-        })
-        .then((res) => {
-          if (res) {
-            this.props.history.push('/');
-          }
-        });
+      this.setState({ isSignup: true });
+      // axios
+      //   .post('https://server.kudapach.com/signup', {
+      //     email: this.state.email,
+      //     password: this.state.password,
+      //     username: this.state.username,
+      //     mobile: this.state.mobile,
+      //   })
+      //   .then((res) => {
+      //     if (res) {
+      //       this.setState({ isSignup: true });
+      //     }
+      //   });
     }
   };
 
   render() {
+    const { isSignup } = this.state;
+
     return (
       <div className="allLoginPage">
         <div className="leftSide">
@@ -140,6 +145,18 @@ class Signup extends React.Component {
               <button className="createBtn" onClick={this.handleSignup}>
                 CREATE ACCOUNT
               </button>
+              <Switch>
+                <Route path="/loadingSignup" render={() => <LoadingSignup />} />
+                <Route
+                  path="/"
+                  render={() => {
+                    if (isSignup) {
+                      return <Redirect to="/loadingSignup" />;
+                    }
+                  }}
+                />
+                ;
+              </Switch>
             </div>
           </div>
         </div>
