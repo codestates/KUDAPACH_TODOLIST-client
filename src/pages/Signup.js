@@ -3,6 +3,9 @@ import '../css/Signup.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { emailValidation, phoneNumValidation } from '../pages/ValidationFun';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 class Signup extends React.Component {
   constructor(props) {
@@ -11,8 +14,8 @@ class Signup extends React.Component {
       email: '',
       password: '',
       passwordConfirm: '',
-      userName: '',
-      phoneNumber: '',
+      username: '',
+      mobile: '',
     };
     this.handleNewInput = this.handleNewInput.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
@@ -27,8 +30,8 @@ class Signup extends React.Component {
       !this.state.email ||
       !this.state.password ||
       !this.state.passwordConfirm ||
-      !this.state.userName ||
-      !this.state.phoneNumber
+      !this.state.username ||
+      !this.state.mobile
     ) {
       swal({
         title: 'A field is empty',
@@ -36,6 +39,19 @@ class Signup extends React.Component {
         icon: 'warning',
         button: 'confirm',
       });
+    } else {
+      axios
+        .post('https://server.kudapach.com/signup', {
+          email: this.state.email,
+          password: this.state.password,
+          username: this.state.username,
+          mobile: this.state.mobile,
+        })
+        .then((res) => {
+          if (res) {
+            this.props.history.push('/');
+          }
+        });
     }
   };
 
@@ -100,26 +116,26 @@ class Signup extends React.Component {
               <input
                 type="text"
                 className={
-                  this.state.userName.length === 0
+                  this.state.username.length === 0
                     ? ''
-                    : !this.state.userName
+                    : !this.state.username
                     ? 'tryAgain'
                     : 'allGood'
                 }
-                placeholder="Username"
-                onChange={this.handleNewInput('userName')}
+                placeholder="username"
+                onChange={this.handleNewInput('username')}
               />
               <input
                 type="text"
                 className={
-                  this.state.phoneNumber.length === 0
+                  this.state.mobile.length === 0
                     ? ''
-                    : !phoneNumValidation(this.state.phoneNumber)
+                    : !phoneNumValidation(this.state.mobile)
                     ? 'tryAgain'
                     : 'allGood'
                 }
                 placeholder="Phone Number"
-                onChange={this.handleNewInput('phoneNumber')}
+                onChange={this.handleNewInput('mobile')}
               />
               <button className="createBtn" onClick={this.handleSignup}>
                 CREATE ACCOUNT
