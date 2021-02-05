@@ -25,9 +25,6 @@ class LoadingSignup extends React.Component {
   // this.state.count를 -1하는 함수
   timer = () => {
     this.setState({ count: this.state.count - 1 });
-    if (this.state.count < 0) {
-      this.timer();
-    }
   };
 
   render() {
