@@ -1,3 +1,7 @@
+input:focus {
+  outline: none;
+}
+
 .allLoginPage {
   width: 100%;
   display: flex;
@@ -88,6 +92,14 @@
   border: solid 1px #c9c9c9;
   padding: 0 0 0 15px;
   font-size: 18px;
+}
+
+.inputWrapper .allGood {
+  border: 1px #24C774 solid;
+}
+
+.inputWrapper .tryAgain {
+  border: 1px #FF5656 solid;
 }
 
 .createBtn {
