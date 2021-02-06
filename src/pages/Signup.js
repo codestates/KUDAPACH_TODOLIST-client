@@ -50,7 +50,7 @@ class Signup extends React.Component {
     } else {
       axios
         .post(
-          'http://localhost:5000/signup',
+          'https://server.kudapach.com/signup',
           {
             email: this.state.email,
             password: this.state.password,

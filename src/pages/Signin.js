@@ -1,10 +1,8 @@
-/*eslint-disable*/
-
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import axios from 'axios'
+import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
@@ -32,32 +30,36 @@ class Signin extends React.Component {
         button: 'confirm',
       });
     } else {
-      this.props.handleResponseSuccess();
-
-      // axios
-      //   .post(
-      //     'https://localhost:5000/signin',
-      //     {
-      //       email: this.state.email,
-      //       password: this.state.password,
-      //     },
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //     },
-      //   )
-      //   .then(() => { this.props.handleResponseSuccess() })
-        // .catch(err => {
-        //   if (err.response.status === 401) {
-        //     swal({
-        //       title: 'Invalid email or wrong password',
-        //       text: 'Please check your email or password',
-        //       icon: 'warning',
-        //       button: 'confirm',
-        //     });
-        //   }
-        // })
+      axios
+        .post(
+          'https://server.kudapach.com/signin',
+          {
+            email: this.state.email,
+            password: this.state.password,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then(() => {
+          this.props.handleResponseSuccess();
+        })
+        .catch((err) => {
+          if (err.response.status === 401) {
+            this.setState({
+              email: '',
+              password: '',
+            });
+            swal({
+              title: 'Invalid email or wrong password',
+              text: 'Please check your email or password',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     }
   };
 
