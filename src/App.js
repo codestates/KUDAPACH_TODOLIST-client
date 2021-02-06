@@ -6,25 +6,43 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import MyTodo from './pages/MyTodo';
 import LoadingSignup from './pages/LoadingSignup';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isSignin: false,
+      userinfo: null,
     };
+    this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+  }
+
+  handleResponseSuccess() {
+    axios.get('https://server.kudapach.com/user/info').then((res) => {
+      this.setState({
+        isSignin: true,
+        userinfo: res.data,
+      });
+      this.props.history.push('/');
+    });
   }
 
   render() {
-    const { isSignin } = this.state;
+    const { isSignin, userinfo } = this.state;
 
     return (
       <div>
         <Switch>
-          <Route path="/signin" render={() => <Signin />} />
+          <Route
+            path="/signin"
+            render={() => (
+              <Signin handleResponseSuccess={this.handleResponseSuccess} />
+            )}
+          />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
-          <Route path="/mytodo" render={() => <MyTodo />} />
+          <Route path="/mytodo" render={() => <MyTodo userinfo={userinfo} />} />
           <Route
             path="/"
             render={() => {

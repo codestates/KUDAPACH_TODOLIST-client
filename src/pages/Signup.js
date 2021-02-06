@@ -21,10 +21,16 @@ class Signup extends React.Component {
     };
     this.handleNewInput = this.handleNewInput.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+    this.handleDuplicateEmail = this.handleDuplicateEmail.bind(this);
   }
   // input value를 가져오는 함수
   handleNewInput = (key) => (e) => {
     this.setState({ [key]: e.target.value });
+  };
+  // duplicateEmail border-color 변경함수
+  handleDuplicateEmail = () => {
+    let emailInput = document.querySelector('#emailInput');
+    emailInput.classList.add('""');
   };
   // SignupBtn 실행 함수
   handleSignup = () => {
@@ -42,24 +48,52 @@ class Signup extends React.Component {
         button: 'confirm',
       });
     } else {
-      this.setState({ isSignup: true });
-      // axios
-      //   .post('https://server.kudapach.com/signup', {
-      //     email: this.state.email,
-      //     password: this.state.password,
-      //     username: this.state.username,
-      //     mobile: this.state.mobile,
-      //   })
-      //   .then((res) => {
-      //     if (res) {
-      //       this.setState({ isSignup: true });
-      //     }
-      //   });
+      axios
+        .post(
+          'https://server.kudapach.com/signup',
+          {
+            email: this.state.email,
+            password: this.state.password,
+            username: this.state.username,
+            mobile: this.state.mobile,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            this.setState({ isSignup: true });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 409) {
+            // inputBox의 border를 빨갛게
+            let emailInput = document.querySelector('#emailInput');
+            emailInput.classList.add('tryAgain');
+
+            swal({
+              title: 'Duplicate email exists',
+              text: 'Please use another email',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     }
   };
 
   render() {
-    const { isSignup } = this.state;
+    const {
+      email,
+      password,
+      passwordConfirm,
+      username,
+      mobile,
+      isSignup,
+    } = this.state;
 
     return (
       <div className="allLoginPage">
@@ -84,22 +118,24 @@ class Signup extends React.Component {
             <div className="inputWrapper">
               <input
                 type="text"
+                id="emailInput"
                 className={
-                  this.state.email.length === 0
+                  email.length === 0
                     ? ''
-                    : !emailValidation(this.state.email)
+                    : !emailValidation(email)
                     ? 'tryAgain'
                     : 'allGood'
                 }
                 placeholder="E-mail"
                 onChange={this.handleNewInput('email')}
+                onClick={this.handleDuplicateEmail}
               />
               <input
                 type="password"
                 className={
-                  this.state.password.length === 0
+                  password.length === 0
                     ? ''
-                    : this.state.password.length < 8
+                    : password.length < 8
                     ? 'tryAgain'
                     : 'allGood'
                 }
@@ -109,9 +145,9 @@ class Signup extends React.Component {
               <input
                 type="password"
                 className={
-                  this.state.passwordConfirm.length === 0
+                  passwordConfirm.length === 0
                     ? ''
-                    : this.state.password !== this.state.passwordConfirm
+                    : password !== passwordConfirm
                     ? 'tryAgain'
                     : 'allGood'
                 }
@@ -121,9 +157,9 @@ class Signup extends React.Component {
               <input
                 type="text"
                 className={
-                  this.state.username.length === 0
+                  username.length === 0
                     ? ''
-                    : !this.state.username
+                    : !username
                     ? 'tryAgain'
                     : 'allGood'
                 }
@@ -133,9 +169,9 @@ class Signup extends React.Component {
               <input
                 type="text"
                 className={
-                  this.state.mobile.length === 0
+                  mobile.length === 0
                     ? ''
-                    : !phoneNumValidation(this.state.mobile)
+                    : !phoneNumValidation(mobile)
                     ? 'tryAgain'
                     : 'allGood'
                 }
@@ -150,7 +186,7 @@ class Signup extends React.Component {
                 <Route
                   path="/"
                   render={() => {
-                    if (isSignup) {
+                    if (isSignup === true) {
                       return <Redirect to="/loadingSignup" />;
                     }
                   }}

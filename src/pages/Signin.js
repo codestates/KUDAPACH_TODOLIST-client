@@ -2,6 +2,9 @@ import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 class Signin extends React.Component {
   constructor(props) {
@@ -26,6 +29,37 @@ class Signin extends React.Component {
         icon: 'warning',
         button: 'confirm',
       });
+    } else {
+      axios
+        .post(
+          'https://server.kudapach.com/signin',
+          {
+            email: this.state.email,
+            password: this.state.password,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then(() => {
+          this.props.handleResponseSuccess();
+        })
+        .catch((err) => {
+          if (err.response.status === 401) {
+            this.setState({
+              email: '',
+              password: '',
+            });
+            swal({
+              title: 'Invalid email or wrong password',
+              text: 'Please check your email or password',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     }
   };
 
@@ -61,7 +95,7 @@ class Signin extends React.Component {
                 onChange={this.handleInputValue('email')}
               />
               <input
-                type="text"
+                type="password"
                 className="passwordInput"
                 placeholder="Password"
                 onChange={this.handleInputValue('password')}
@@ -74,10 +108,6 @@ class Signin extends React.Component {
               <div className="connectText">
                 <a href="#" title="go to Guest Sign in">
                   <span className="guestSignIn">Guest Sign in</span>
-                </a>
-                <span> ‧ </span>
-                <a href="#" title="Let's find password">
-                  <span className="findPassword">Forgot password?</span>
                 </a>
               </div>
             </div>
