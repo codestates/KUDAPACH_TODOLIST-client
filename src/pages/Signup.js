@@ -1,5 +1,3 @@
-// /*eslint-disable*/
-
 import React from 'react';
 import '../css/Signup.css';
 import { withRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
