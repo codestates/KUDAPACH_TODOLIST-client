@@ -1,3 +1,5 @@
+// /*eslint-disable*/
+
 import React from 'react';
 import '../css/Signup.css';
 import { withRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
@@ -42,19 +44,36 @@ class Signup extends React.Component {
         button: 'confirm',
       });
     } else {
-      this.setState({ isSignup: true });
-      // axios
-      //   .post('https://server.kudapach.com/signup', {
-      //     email: this.state.email,
-      //     password: this.state.password,
-      //     username: this.state.username,
-      //     mobile: this.state.mobile,
-      //   })
-      //   .then((res) => {
-      //     if (res) {
-      //       this.setState({ isSignup: true });
-      //     }
-      //   });
+      axios
+        .post(
+          'http://localhost:5000/signup',
+          {
+            email: this.state.email,
+            password: this.state.password,
+            username: this.state.username,
+            mobile: this.state.mobile,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            this.setState({ isSignup: true });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 409) {
+            swal({
+              title: 'Duplicate email exists',
+              text: 'Please use another email',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     }
   };
 
@@ -150,7 +169,7 @@ class Signup extends React.Component {
                 <Route
                   path="/"
                   render={() => {
-                    if (isSignup) {
+                    if (isSignup === true) {
                       return <Redirect to="/loadingSignup" />;
                     }
                   }}
