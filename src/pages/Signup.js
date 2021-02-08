@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React from 'react';
 import '../css/Signup.css';
 import { withRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
@@ -5,6 +7,7 @@ import swal from 'sweetalert';
 import { emailValidation, phoneNumValidation } from '../pages/ValidationFun';
 import axios from 'axios';
 import LoadingSignup from './LoadingSignup';
+const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
 
@@ -48,40 +51,40 @@ class Signup extends React.Component {
         button: 'confirm',
       });
     } else {
-      axios
-        .post(
-          'https://server.kudapach.com/signup',
-          {
-            email: this.state.email,
-            password: this.state.password,
-            username: this.state.username,
-            mobile: this.state.mobile,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        .then((res) => {
-          if (res.status === 200) {
+      // axios
+      //   .post(
+      //     'https://server.kudapach.com/signup',
+      //     {
+      //       email: this.state.email,
+      //       password: this.state.password,
+      //       username: this.state.username,
+      //       mobile: this.state.mobile,
+      //     },
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //     },
+      //   )
+      //   .then((res) => {
+      //     if (res.status === 200) {
             this.setState({ isSignup: true });
-          }
-        })
-        .catch((err) => {
-          if (err.response.status === 409) {
-            // inputBox의 border를 빨갛게
-            let emailInput = document.querySelector('#emailInput');
-            emailInput.classList.add('tryAgain');
-
-            swal({
-              title: 'Duplicate email exists',
-              text: 'Please use another email',
-              icon: 'warning',
-              button: 'confirm',
-            });
-          }
-        });
+        //   }
+        // })
+        // .catch((err) => {
+        //   if (err.response.status === 409) {
+        //     // inputBox의 border를 빨갛게
+        //     let emailInput = document.querySelector('#emailInput');
+        //     emailInput.classList.add('tryAgain');
+        //
+        //     swal({
+        //       title: 'Duplicate email exists',
+        //       text: 'Please use another email',
+        //       icon: 'warning',
+        //       button: 'confirm',
+        //     });
+        //   }
+        // });
     }
   };
 
