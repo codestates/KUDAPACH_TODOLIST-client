@@ -69,6 +69,7 @@ class Signup extends React.Component {
       //   .then((res) => {
       //     if (res.status === 200) {
             this.setState({ isSignup: true });
+            console.log(saltedSha256(this.state.password));
         //   }
         // })
         // .catch((err) => {

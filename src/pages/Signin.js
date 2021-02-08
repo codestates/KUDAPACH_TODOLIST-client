@@ -1,8 +1,11 @@
+/*eslint-disable*/
+
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
+const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
 
@@ -30,36 +33,37 @@ class Signin extends React.Component {
         button: 'confirm',
       });
     } else {
-      axios
-        .post(
-          'https://server.kudapach.com/signin',
-          {
-            email: this.state.email,
-            password: this.state.password,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        .then(() => {
+      // axios
+      //   .post(
+      //     'https://server.kudapach.com/signin',
+      //     {
+      //       email: this.state.email,
+      //       password: this.state.password,
+      //     },
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //     },
+      //   )
+      //   .then(() => {
+          console.log(saltedSha256(this.state.password));
           this.props.handleResponseSuccess();
-        })
-        .catch((err) => {
-          if (err.response.status === 401) {
-            this.setState({
-              email: '',
-              password: '',
-            });
-            swal({
-              title: 'Invalid email or wrong password',
-              text: 'Please check your email or password',
-              icon: 'warning',
-              button: 'confirm',
-            });
-          }
-        });
+        // })
+        // .catch((err) => {
+        //   if (err.response.status === 401) {
+        //     this.setState({
+        //       email: '',
+        //       password: '',
+        //     });
+        //     swal({
+        //       title: 'Invalid email or wrong password',
+        //       text: 'Please check your email or password',
+        //       icon: 'warning',
+        //       button: 'confirm',
+        //     });
+        //   }
+        // });
     }
   };
 
