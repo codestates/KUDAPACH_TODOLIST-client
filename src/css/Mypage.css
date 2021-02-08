@@ -1,0 +1,71 @@
+.mainSide {
+  height: 90vh;
+  display: grid;
+  place-items: center;
+}
+
+.mypageMainWrapper {
+  width: 360px;
+}
+
+.userInfoWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.changePasswordWrapper {
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mypageText {
+  margin: 0 0 16px 0;
+  color: #0d0c22;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.useremailText {
+  border: 1px #c9c9c9 solid;
+  border-radius: 5px;
+  color: #757575;
+  background-color: #f3f3f4;
+  height: 33px;
+  padding: 15px 0 0 15px;
+  font-size: 18px;
+  margin: 7px 0;
+}
+
+.userInfoWrapper > input,
+.changePasswordWrapper > input,
+.changePasswordWrapper > button {
+  border: 1px #c9c9c9 solid;
+  border-radius: 5px;
+  height: 48px;
+  margin: 7px 0;
+}
+
+.userInfoWrapper > input,
+.changePasswordWrapper > input {
+  padding: 0 0 0 15px;
+  font-size: 18px;
+}
+
+.changePasswordWrapper > button {
+  margin: 25px 0 0 0;
+  font-size: 16px;
+  font-weight: 900;
+  border: none;
+  color: #c3c3c3;
+  background-color: #f3f3f4;
+}
+
+/*.infoConfirm {*/
+/*  margin: 25px 0 0 0;*/
+/*  font-size: 16px;*/
+/*  font-weight: 900;*/
+/*  border: none;*/
+/*  color: #ffffff;*/
+/*  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);*/
+/*}*/
