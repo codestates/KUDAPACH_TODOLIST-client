@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { emailValidation, phoneNumValidation } from '../pages/ValidationFun';
 import axios from 'axios';
 import LoadingSignup from './LoadingSignup';
+const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
 
@@ -53,7 +54,7 @@ class Signup extends React.Component {
           'https://server.kudapach.com/signup',
           {
             email: this.state.email,
-            password: this.state.password,
+            password: saltedSha256(this.state.password),
             username: this.state.username,
             mobile: this.state.mobile,
           },

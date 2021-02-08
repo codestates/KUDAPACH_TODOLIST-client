@@ -3,6 +3,7 @@ import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
+const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
 
@@ -35,7 +36,7 @@ class Signin extends React.Component {
           'https://server.kudapach.com/signin',
           {
             email: this.state.email,
-            password: this.state.password,
+            password: saltedSha256(this.state.password),
           },
           {
             headers: {

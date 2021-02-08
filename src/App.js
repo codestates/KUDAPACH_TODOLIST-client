@@ -22,7 +22,7 @@ class App extends React.Component {
     axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data,
+        userinfo: res.data, // 추후 이렇게 넘기는게 맞는지 확인필요
       });
       this.props.history.push('/');
     });
