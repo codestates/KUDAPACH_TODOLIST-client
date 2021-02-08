@@ -1,10 +1,9 @@
-// /*eslint-disable*/
-
 import React from 'react';
 import SingleUserNav from './SingleUserNav';
 import '../css/Mypage.css';
 import { phoneNumValidation } from '../pages/ValidationFun';
 import swal from 'sweetalert';
+// const saltedSha256 = require('salted-sha256');
 
 class Mypage extends React.Component {
   constructor(props) {
@@ -41,7 +40,7 @@ class Mypage extends React.Component {
     // 비밀번호를 변경한 경우 true
     if (
       username &&
-      mobile &&
+      phoneNumValidation(mobile) &&
       password &&
       currentPassword === prevPassword &&
       password === passwordConfirm
@@ -51,7 +50,7 @@ class Mypage extends React.Component {
     // username, mobile만 변경한 경우 true
     if (
       username &&
-      mobile &&
+      phoneNumValidation(mobile) &&
       !currentPassword &&
       !password &&
       !passwordConfirm
