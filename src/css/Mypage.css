@@ -52,7 +52,7 @@
   font-size: 18px;
 }
 
-.changePasswordWrapper > button {
+.notConfirm {
   margin: 25px 0 0 0;
   font-size: 16px;
   font-weight: 900;
@@ -61,11 +61,21 @@
   background-color: #f3f3f4;
 }
 
-/*.infoConfirm {*/
-/*  margin: 25px 0 0 0;*/
-/*  font-size: 16px;*/
-/*  font-weight: 900;*/
-/*  border: none;*/
-/*  color: #ffffff;*/
-/*  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);*/
-/*}*/
+.userInfoWrapper .allGood,
+.changePasswordWrapper .allGood {
+  border: 1px #24C774 solid;
+}
+
+.userInfoWrapper .tryAgain,
+.changePasswordWrapper .tryAgain {
+  border: 1px #FF5656 solid;
+}
+
+.infoConfirm {
+  margin: 25px 0 0 0;
+  font-size: 16px;
+  font-weight: 900;
+  border: none;
+  color: #ffffff;
+  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
+}
