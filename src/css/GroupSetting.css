@@ -1,0 +1,31 @@
+.backgroundGray {
+  position: absolute;
+  display: grid;
+  top: 0vh;
+  place-items: center;
+  z-index: 1;
+  height: 103vh;
+  width: 100%;
+  opacity: 0.46;
+  background-color: #000000;
+  border: 1px blue solid;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 93vh;
+  width: 100%;
+}
+
+.groupSetWrapper {
+  position: relative;
+  top: 100px;
+  z-index: 2;
+  width: 450px;
+  height: 530px;
+  background-color: white;
+  opacity: 1;
+  margin: 0;
+}
