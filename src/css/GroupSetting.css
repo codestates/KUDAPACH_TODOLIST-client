@@ -13,17 +13,19 @@
 
 .backgroundWrapper {
   position: absolute;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
   height: 93vh;
   width: 100%;
 }
 
 .groupSetWrapper {
+  position: relative;
+  top: 100px;
   z-index: 2;
   width: 450px;
-  height: 480px;
+  height: 530px;
   background-color: white;
-  /*border: 1px red solid;*/
   opacity: 1;
+  margin: 0;
 }

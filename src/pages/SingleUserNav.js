@@ -33,6 +33,14 @@ function SingleUserNav() {
   // GroupSetting 모달창에 대한 state hook과 function들 ---- 시작
   const [groupModal, setGroupModal] = useState(false);
   const toggleGroupModal = () => {
+    if (groupModal === false) {
+      setGroupModal(true);
+    }
+    if (groupModal === true) {
+      setGroupModal(false);
+    }
+  };
+  const toggleGroupModalWithSetting = () => {
     toggleModalSetting(); // 세팅창을 닫아주도록
     if (groupModal === false) {
       setGroupModal(true);
@@ -75,14 +83,18 @@ function SingleUserNav() {
       </header>
       {settingModal === true ? (
         <ModalSetting
-          toggleGroupModal={toggleGroupModal}
+          toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
         />
       ) : (
         <div />
       )}
       {calendarModal === true ? <ModalCalendar /> : <div />}
-      {groupModal === true ? <GroupSetting /> : <div />}
+      {groupModal === true ? (
+        <GroupSetting toggleGroupModal={toggleGroupModal} />
+      ) : (
+        <div />
+      )}
     </div>
   );
 }
