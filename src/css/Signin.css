@@ -167,6 +167,18 @@
   background-color: #ecebeb;
 }
 
+.googleBtn{
+  width: 100%;
+  height: 48px;
+  justify-content: center;
+  transition: 0.3s;
+  margin-bottom: 15px;
+}
+
+.googleBtn:hover {
+  opacity: 0.8;
+}
+
 .kakaoBtn{
   background-color: #fee500;
   color: #ffffff00;

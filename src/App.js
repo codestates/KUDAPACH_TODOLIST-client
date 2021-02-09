@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import MyTodo from './pages/MyTodo';
 import LoadingSignup from './pages/LoadingSignup';
 import axios from 'axios';
+import Mypage from './pages/Mypage';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class App extends React.Component {
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route path="/mytodo" render={() => <MyTodo userinfo={userinfo} />} />
+          <Route path="/mypage" render={() => <Mypage />} />
           <Route
             path="/"
             render={() => {

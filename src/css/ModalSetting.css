@@ -1,0 +1,90 @@
+.settingWrapper {
+  position: absolute;
+  z-index: 2;
+  left: 81.8%;
+  width: 287px;
+  height: 241px;
+  border-radius: 5px;
+  box-shadow: 0 0 18px 0 rgba(87, 45, 127, 0.47);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.accountText,
+.userBox,
+.mypagesetText,
+.groupsetText,
+.signoutText {
+  /*border: 1px red solid;*/
+  flex: 20 1 auto;
+}
+
+.accountText {
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userBox {
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.userLogo {
+  width: 40px;
+  height: 40px;
+  margin: 0 15px 0 0;
+  background: url("../asset/img/MyTodo/user.svg");
+}
+
+.userInfo {
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 900;
+  color: #572d7f
+}
+
+.userEmail {
+  font-size: 14px;
+  color: #9292a7;
+}
+
+.hrBox {
+  margin: 0 16px;
+  flex: 1 1 auto;
+  background-color: #e4e4e4;
+}
+
+.mypagesetText,
+.groupsetText,
+.signoutText{
+  padding-left: 16px;
+  font-size: 18px;
+  color: #9292a7;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.mypagesetText:hover,
+.groupsetText:hover,
+.signoutText:hover {
+  color: #572d7f;
+  background-color: #e4e4e4;
+}
+
+
