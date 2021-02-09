@@ -167,8 +167,8 @@
   background-color: #ecebeb;
 }
 
-.googleBtn{
-  width: 100%;
+.googleBtn {
+  width: 384px;
   height: 48px;
   justify-content: center;
   transition: 0.3s;
@@ -179,13 +179,18 @@
   opacity: 0.8;
 }
 
-.kakaoBtn{
+.kakaoBtn {
   background-color: #fee500;
   color: #ffffff00;
   border: none;
-  border-radius:6px;
+  border-radius: 2px;
   width: 384px;
   height: 48px;
-  background-image: url('/Users/sanghyuk/MyFile/Coding/firstProject/dev/KUDAPACH_TODOLIST-client/src/asset/img/kakao-logo.png')
-  /* justify-content: center */
+  background-image: url('/Users/sanghyuk/MyFile/Coding/firstProject/dev/KUDAPACH_TODOLIST-client/src/asset/img/MyTodo/kakologo.svg');
+  transition: 0.3s;
+  box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+}
+
+.kakaoBtn:hover {
+  opacity: 0.8;
 }

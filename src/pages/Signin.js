@@ -142,6 +142,7 @@ class Signin extends React.Component {
                 onSuccess={this.onSuccess}
                 onFailure={this.onFailure}
                 cookiePolicy={'single_host_origin'}
+                style={{borderRadius:'6px'}}
               />
               <KaKaoLogin
                 className="kakaoBtn"
