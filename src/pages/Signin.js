@@ -1,8 +1,10 @@
+/*eslint-disable*/
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
+import GoogleLogin from 'react-google-login';
 const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
@@ -16,7 +18,10 @@ class Signin extends React.Component {
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleSignin = this.handleSignin.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
+    this.onFailure= this.onFailure.bind(this);
   }
+
   // input value를 가져오는 함수
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
@@ -62,6 +67,15 @@ class Signin extends React.Component {
           }
         });
     }
+  };
+
+  onSuccess = (res) => {
+    console.log(res);
+    console.log('[Login Success] currentUser:', res.profileObj);
+  };
+
+  onFailure = (res) => {
+    console.log('[Login failed] res:', res);
   };
 
   render() {
@@ -118,7 +132,13 @@ class Signin extends React.Component {
               <span className="line" />
             </div>
             <div className="oauthArea">
-              <button className="googleBtn">Sign in with Google</button>
+              <GoogleLogin
+                clientId={'620537129878-as1es65697f5g5n8olntfls9j5ea0v4g.apps.googleusercontent.com'}
+                className="googleBtn"
+                onSuccess={this.onSuccess}
+                onFailure={this.onFailure}
+                cookiePolicy={'single_host_origin'}
+              />
               <button className="kakaoBtn">Sign in with Kakao</button>
             </div>
           </div>
