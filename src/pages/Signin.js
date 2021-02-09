@@ -7,8 +7,6 @@ import axios from 'axios';
 import GoogleLogin from 'react-google-login';
 import KaKaoLogin from 'react-kakao-login';
 
-const saltedSha256 = require('salted-sha256');
-
 axios.defaults.withCredentials = true;
 
 class Signin extends React.Component {
@@ -43,7 +41,7 @@ class Signin extends React.Component {
           'https://server.kudapach.com/signin',
           {
             email: this.state.email,
-            password: saltedSha256(this.state.password),
+            password: this.state.password,
           },
           {
             headers: {
@@ -74,6 +72,7 @@ class Signin extends React.Component {
   onSuccess = (res) => {
     console.log(res);
     console.log('[Login Success] currentUser:', res.profileObj);
+
   };
 
   onFailure = (res) => {
@@ -135,14 +134,16 @@ class Signin extends React.Component {
             </div>
             <div className="oauthArea">
               <GoogleLogin
+                className="googleBtn"
                 clientId={
                   '620537129878-as1es65697f5g5n8olntfls9j5ea0v4g.apps.googleusercontent.com'
                 }
-                className="googleBtn"
                 onSuccess={this.onSuccess}
                 onFailure={this.onFailure}
+                approvalPrompt="force"
+                prompt='consent'
                 cookiePolicy={'single_host_origin'}
-                style={{borderRadius:'6px'}}
+                isSignedIn={true}
               />
               <KaKaoLogin
                 className="kakaoBtn"
