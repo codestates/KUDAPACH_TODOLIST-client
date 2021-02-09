@@ -8,6 +8,7 @@ class ChangeGroup extends React.Component {
       <>
         <div className="bgPage"></div>
         <div className="wholePage">
+          <div className="changexBtn" onClick={handleGroupToggle} />
           <input
             type="text"
             placeholder="New Groupname"

@@ -1,8 +1,10 @@
-/*eslint-disable*/
-
 import React from 'react';
 import '../../css/ManageGroup.css';
 import ChangeGroup from './ChangeGroup';
+import ChangeUserMail1 from './ChangeUserMail1';
+import ChangeUserMail2 from './ChangeUserMail2';
+import ChangeUserMail3 from './ChangeUserMail3';
+import ChangeUserMail4 from './ChangeUserMail4';
 
 class ManageGroup extends React.Component {
   constructor(props) {
@@ -17,6 +19,12 @@ class ManageGroup extends React.Component {
       newGroupname: 'KUDAPACH Group',
       userEmail1: 'test1@gmail.com',
       userNewEmail1: 'test1@gmail.com',
+      userEmail2: 'test2@gmail.com',
+      userNewEmail2: 'test2@gmail.com',
+      userEmail3: 'test3@gmail.com',
+      userNewEmail3: 'test3@gmail.com',
+      userEmail4: 'test4@gmail.com',
+      userNewEmail4: 'test4@gmail.com',
     };
     this.handleGroupToggle = this.handleGroupToggle.bind(this);
     this.handleEmail1Toggle = this.handleEmail1Toggle.bind(this);
@@ -37,48 +45,63 @@ class ManageGroup extends React.Component {
     } else {
       this.setState({ isGroupChange: false });
     }
-    this.setState({ newGroupname: groupname});
+    this.setState({ newGroupname: groupname });
   }
 
   handleEmail1Toggle() {
-    const { isEmail1Change } = this.state;
+    const { isEmail1Change, userEmail1 } = this.state;
     if (isEmail1Change === false) {
       this.setState({ isEmail1Change: true });
     } else {
       this.setState({ isEmail1Change: false });
     }
+    this.setState({ userNewEmail1: userEmail1 });
   }
 
   handleEmail2Toggle() {
-    const { isEmail2Change } = this.state;
+    const { isEmail2Change, userEmail2 } = this.state;
     if (isEmail2Change === false) {
       this.setState({ isEmail2Change: true });
     } else {
       this.setState({ isEmail2Change: false });
     }
+    this.setState({ userNewEmail2: userEmail2 });
   }
 
   handleEmail3Toggle() {
-    const { isEmail3Change } = this.state;
+    const { isEmail3Change, userEmail3 } = this.state;
     if (isEmail3Change === false) {
       this.setState({ isEmail3Change: true });
     } else {
       this.setState({ isEmail3Change: false });
     }
+    this.setState({ userNewEmail3: userEmail3 });
   }
 
   handleEmail4Toggle() {
-    const { isEmail4Change } = this.state;
+    const { isEmail4Change, userEmail4 } = this.state;
     if (isEmail4Change === false) {
       this.setState({ isEmail4Change: true });
     } else {
       this.setState({ isEmail4Change: false });
     }
+    this.setState({ userNewEmail4: userEmail4 });
   }
 
   render() {
     const { toggleGroupModal } = this.props;
-    const { isGroupChange, newGroupname } = this.state;
+    const {
+      isGroupChange,
+      newGroupname,
+      isEmail1Change,
+      userNewEmail1,
+      isEmail2Change,
+      userNewEmail2,
+      isEmail3Change,
+      userNewEmail3,
+      isEmail4Change,
+      userNewEmail4,
+    } = this.state;
     return (
       <div className="makeGroupWrapper">
         <div className="xBtn" onClick={toggleGroupModal} />
@@ -93,30 +116,30 @@ class ManageGroup extends React.Component {
         <div className="hrBox2"></div>
         <div className="useremailWrapper">
           <div className="useremailInput">
-            <div className="groupUserEmail">test1@gmail.com</div>
+            <div className="groupUserEmail">{userNewEmail1}</div>
             <div className="updateDeleteWrapperInMail">
-              <div className="pencil"></div>
+              <div className="pencil" onClick={this.handleEmail1Toggle}></div>
               <div className="trash"></div>
             </div>
           </div>
           <div className="useremailInput">
-            <div className="groupUserEmail">test2@gmail.com</div>
+            <div className="groupUserEmail">{userNewEmail2}</div>
             <div className="updateDeleteWrapperInMail">
-              <div className="pencil"></div>
+              <div className="pencil" onClick={this.handleEmail2Toggle}></div>
               <div className="trash"></div>
             </div>
           </div>
           <div className="useremailInput">
-            <div className="groupUserEmail">test3@gmail.com</div>
+            <div className="groupUserEmail">{userNewEmail3}</div>
             <div className="updateDeleteWrapperInMail">
-              <div className="pencil"></div>
+              <div className="pencil" onClick={this.handleEmail3Toggle}></div>
               <div className="trash"></div>
             </div>
           </div>
           <div className="useremailInput">
-            <div className="groupUserEmail">test4@gmail.com</div>
+            <div className="groupUserEmail">{userNewEmail4}</div>
             <div className="updateDeleteWrapperInMail">
-              <div className="pencil"></div>
+              <div className="pencil" onClick={this.handleEmail4Toggle}></div>
               <div className="trash"></div>
             </div>
           </div>
@@ -125,6 +148,38 @@ class ManageGroup extends React.Component {
         {isGroupChange ? (
           <ChangeGroup
             handleGroupToggle={this.handleGroupToggle}
+            handleChangeInput={this.handleChangeInput}
+          />
+        ) : (
+          <div />
+        )}
+        {isEmail1Change ? (
+          <ChangeUserMail1
+            handleEmail1Toggle={this.handleEmail1Toggle}
+            handleChangeInput={this.handleChangeInput}
+          />
+        ) : (
+          <div />
+        )}
+        {isEmail2Change ? (
+          <ChangeUserMail2
+            handleEmail2Toggle={this.handleEmail2Toggle}
+            handleChangeInput={this.handleChangeInput}
+          />
+        ) : (
+          <div />
+        )}
+        {isEmail3Change ? (
+          <ChangeUserMail3
+            handleEmail3Toggle={this.handleEmail3Toggle}
+            handleChangeInput={this.handleChangeInput}
+          />
+        ) : (
+          <div />
+        )}
+        {isEmail4Change ? (
+          <ChangeUserMail4
+            handleEmail4Toggle={this.handleEmail4Toggle}
             handleChangeInput={this.handleChangeInput}
           />
         ) : (
