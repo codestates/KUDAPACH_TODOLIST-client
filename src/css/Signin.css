@@ -7,7 +7,13 @@
   flex: 4 1 50px;
   height: 100vh;
   opacity: 0.9;
-  background-image: radial-gradient(circle at 50% 0, #333086, #4a63d9 33%, #83a2fd 62%, #c2667b 94%);
+  background-image: radial-gradient(
+    circle at 50% 0,
+    #333086,
+    #4a63d9 33%,
+    #83a2fd 62%,
+    #c2667b 94%
+  );
   display: grid;
   place-items: center;
 }
@@ -24,7 +30,7 @@
 
 .logo {
   width: 96px;
-  height:96px;
+  height: 96px;
   background-image: url(../asset/img/project_logo.png);
 }
 
@@ -61,7 +67,6 @@
   color: #3f1d1d;
   font-size: 16px;
 }
-
 
 .lastWord > a {
   margin: 0 0 0 2px;
@@ -110,7 +115,13 @@
   height: 48px;
   border: 0;
   border-radius: 5px;
-  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
+  background-image: radial-gradient(
+    circle at 10% 50%,
+    #333086,
+    #4a63d9 22%,
+    #83a2fd 64%,
+    #c2667b 114%
+  );
   font-size: 16px;
   font-weight: 900;
   color: #ffffff;
@@ -156,27 +167,13 @@
   background-color: #ecebeb;
 }
 
-.googleBtn,
-.kakaoBtn {
+.kakaoBtn{
+  background-color: #fee500;
+  color: #ffffff00;
+  border: none;
+  border-radius:6px;
   width: 384px;
   height: 48px;
-  border: 0;
-  border-radius: 5px;
-  background-color: #4285f4;
-  font-size: 16px;
-  font-weight: 900;
-  color: #ffffff;
-  transition: 0.3s;
-  opacity: 1;
+  background-image: url('/Users/sanghyuk/MyFile/Coding/firstProject/dev/KUDAPACH_TODOLIST-client/src/asset/img/kakao-logo.png')
+  /* justify-content: center */
 }
-
-.kakaoBtn {
-  margin: 15px 0 0 0;
-  background-color: #3f1d1d;
-}
-
-.googleBtn:hover,
-.kakaoBtn:hover {
-  opacity: 0.8;
-}
-

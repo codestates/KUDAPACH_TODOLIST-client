@@ -1,8 +1,11 @@
+/*eslint-disable*/
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
+import KaKaoLogin from 'react-kakao-login';
+import kakaoimage from '../asset/img/kakao-logo.png';
 const saltedSha256 = require('salted-sha256');
 
 axios.defaults.withCredentials = true;
@@ -119,7 +122,14 @@ class Signin extends React.Component {
             </div>
             <div className="oauthArea">
               <button className="googleBtn">Sign in with Google</button>
-              <button className="kakaoBtn">Sign in with Kakao</button>
+              <KaKaoLogin
+                className="kakaoBtn"
+                token={'d70c5c740eddb6109ed33a6fecbb1fd3'}
+                onSuccess={console.log}
+                onFail={console.error}
+                onLogout={console.info}
+                style={{}}
+              />
             </div>
           </div>
         </div>
