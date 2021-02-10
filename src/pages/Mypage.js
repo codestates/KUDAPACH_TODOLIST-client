@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React from 'react';
 import SingleUserNav from './SingleUserNav';
 import '../css/Mypage.css';
@@ -8,11 +10,10 @@ import swal from 'sweetalert';
 class Mypage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      email: 'test@test.com',
-      username: 'kudapach',
-      mobile: '01012345678',
+      email: this.props.groupinfo.data.email,
+      username: this.props.groupinfo.data.username,
+      mobile: this.props.groupinfo.data.mobile,
       prevPassword: '11111111',
       currentPassword: '',
       password: '',
@@ -82,6 +83,8 @@ class Mypage extends React.Component {
   }
 
   render() {
+    const { groupinfo } = this.props;
+    console.log(groupinfo);
     const {
       email,
       username,
@@ -94,7 +97,7 @@ class Mypage extends React.Component {
 
     return (
       <div>
-        <SingleUserNav />
+        <SingleUserNav groupinfo={groupinfo}/>
         <div className="mainSide">
           <div className="mypageMainWrapper">
             <div className="userInfoWrapper">

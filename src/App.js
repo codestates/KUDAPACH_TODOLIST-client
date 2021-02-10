@@ -82,7 +82,10 @@ class App extends React.Component {
             path="/mytodo"
             render={() => <MyTodo userinfo={userinfo} groupinfo={groupinfo} />}
           />
-          <Route path="/mypage" render={() => <Mypage />} />
+          <Route
+            path="/mypage"
+            render={() => <Mypage groupinfo={groupinfo} />}
+          />
           <Route
             path="/"
             render={() => {

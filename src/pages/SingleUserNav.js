@@ -97,6 +97,7 @@ function SingleUserNav({ groupinfo }) {
       </header>
       {settingModal === true ? (
         <ModalSetting
+          groupinfo={groupinfo}
           toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
         />
