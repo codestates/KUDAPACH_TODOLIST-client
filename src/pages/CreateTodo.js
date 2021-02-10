@@ -32,8 +32,6 @@ class CreateTodo extends Component {
       <>
         <div className="CreateButton" onClick={this.handleSubmit}>
           <form onSubmit={this.handleSubmit}>
-            {/*<input value={text} name="text" placeholder="..입력" onChange={this.handleChange}></input>*/}
-            {/*<button type="submit">추가</button>*/}
             <div className="pluse_icon">
               <GroupSvg className="svg" fill="#9292A7" />
             </div>
