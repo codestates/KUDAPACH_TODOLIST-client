@@ -14,7 +14,6 @@ class Mypage extends React.Component {
       email: this.props.groupinfo.data.email,
       username: this.props.groupinfo.data.username,
       mobile: this.props.groupinfo.data.mobile,
-      prevPassword: '11111111',
       currentPassword: '',
       password: '',
       passwordConfirm: '',
@@ -33,7 +32,6 @@ class Mypage extends React.Component {
     const {
       username,
       mobile,
-      prevPassword,
       currentPassword,
       password,
       passwordConfirm,
@@ -43,7 +41,7 @@ class Mypage extends React.Component {
       username &&
       phoneNumValidation(mobile) &&
       password &&
-      currentPassword === prevPassword &&
+      currentPassword &&
       password === passwordConfirm
     ) {
       return true;
