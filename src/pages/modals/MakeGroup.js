@@ -81,6 +81,7 @@ class MakeGroup extends React.Component {
   };
 
   handleGroupSave = () => {
+    const { toggleGroupModal, groupTrueHandler } = this.props;
     const {
       groupname,
       usermail1,
@@ -101,6 +102,9 @@ class MakeGroup extends React.Component {
         text: 'Group is made',
         icon: 'success',
         button: 'confirm',
+      }).then(() => {
+        groupTrueHandler();
+        toggleGroupModal();
       });
     } else {
       swal({

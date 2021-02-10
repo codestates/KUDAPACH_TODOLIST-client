@@ -5,6 +5,7 @@ import ChangeUserMail1 from './ChangeUserMail1';
 import ChangeUserMail2 from './ChangeUserMail2';
 import ChangeUserMail3 from './ChangeUserMail3';
 import ChangeUserMail4 from './ChangeUserMail4';
+import swal from 'sweetalert';
 
 class ManageGroup extends React.Component {
   constructor(props) {
@@ -32,11 +33,25 @@ class ManageGroup extends React.Component {
     this.handleEmail3Toggle = this.handleEmail3Toggle.bind(this);
     this.handleEmail4Toggle = this.handleEmail4Toggle.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleGroupDelete = this.handleGroupDelete.bind(this);
   }
 
   handleChangeInput = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
+  handleGroupDelete() {
+    const { toggleGroupModal, groupFalseHandler } = this.props;
+    swal({
+      title: 'Delete complete',
+      text: 'Group delete is completed',
+      icon: 'success',
+      button: 'confirm',
+    }).then(() => {
+      groupFalseHandler();
+      toggleGroupModal();
+    });
+  }
 
   handleGroupToggle() {
     const { isGroupChange, groupname } = this.state;
@@ -109,7 +124,7 @@ class ManageGroup extends React.Component {
           <div className="addText">{newGroupname}</div>
           <div className="updateDeleteWrapper">
             <div className="pencil" onClick={this.handleGroupToggle}></div>
-            <div className="trash"></div>
+            <div className="trash" onClick={this.handleGroupDelete}></div>
           </div>
           <button className="addBtn">Add User</button>
         </div>
