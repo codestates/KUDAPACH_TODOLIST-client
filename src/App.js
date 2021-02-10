@@ -98,7 +98,12 @@ class App extends React.Component {
           />
           <Route
             path="/mypage"
-            render={() => <Mypage groupinfo={groupinfo} />}
+            render={() => (
+              <Mypage
+                groupinfo={groupinfo}
+                handleSignOut={this.handleSignOut}
+              />
+            )}
           />
           <Route
             path="/"

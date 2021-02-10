@@ -115,7 +115,7 @@ class Mypage extends React.Component {
             id: id,
             username: username,
             mobile: mobile,
-            currentPassword: currentPassword,
+            currentPassword: currentPassword, // 현재비번 여기서 확인
             password: password,
           },
           {
@@ -148,7 +148,7 @@ class Mypage extends React.Component {
   }
 
   render() {
-    const { groupinfo } = this.props;
+    const { groupinfo, handleSignOut } = this.props;
     const {
       email,
       username,
@@ -161,7 +161,7 @@ class Mypage extends React.Component {
 
     return (
       <div>
-        <SingleUserNav groupinfo={groupinfo} />
+        <SingleUserNav groupinfo={groupinfo} handleSignOut={handleSignOut} />
         <div className="mainSide">
           <div className="mypageMainWrapper">
             <div className="userInfoWrapper">
