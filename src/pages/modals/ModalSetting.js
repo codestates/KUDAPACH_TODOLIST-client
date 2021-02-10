@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 
 class ModalSetting extends React.Component {
   render() {
-    const { toggleGroupModalWithSetting, handleSignOut } = this.props;
+    const {
+      toggleGroupModalWithSetting,
+      handleSignOut,
+      groupinfo,
+    } = this.props;
     return (
       <div className="settingWrapper">
         <div className="accountText">Account</div>
@@ -12,8 +16,8 @@ class ModalSetting extends React.Component {
         <div className="userBox">
           <div className="userLogo" src="user.svg" alt="user logo img" />
           <div className="userInfo">
-            <div className="userName">kudapach</div>
-            <div className="userEmail">kudapach@gmail.com</div>
+            <div className="userName">{groupinfo.data.username}</div>
+            <div className="userEmail">{groupinfo.data.email}</div>
           </div>
         </div>
         <div className="hrBox"></div>

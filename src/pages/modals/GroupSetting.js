@@ -7,19 +7,23 @@ class GroupSetting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isGroup: true,
-      // 그룹 유무를 RDS에서 받아와야 함
+      isGroup: 0,
+      // 0이면 그룹이 없는 상태 (그룹 갯수)
     };
     this.groupFalseHandler = this.groupFalseHandler.bind(this);
     this.groupTrueHandler = this.groupTrueHandler.bind(this);
   }
 
   groupFalseHandler() {
-    this.setState({ isGroup: false });
+    const { isGroup } = this.state;
+    if (isGroup > 0) {
+      this.setState({ isGroup: isGroup - 1 });
+    }
   }
 
   groupTrueHandler() {
-    this.setState({ isGroup: true });
+    const { isGroup } = this.state;
+    this.setState({ isGroup: isGroup + 1 });
   }
 
   render() {
@@ -29,8 +33,8 @@ class GroupSetting extends React.Component {
       <>
         <div className="backgroundGray" />
         <div className="backgroundWrapper">
-          <div className={isGroup ? 'groupMgWrapper' : 'groupSetWrapper'}>
-            {isGroup ? (
+          <div className={isGroup !== 0 ? 'groupMgWrapper' : 'groupSetWrapper'}>
+            {isGroup !== 0 ? (
               <ManageGroup
                 groupFalseHandler={this.groupFalseHandler}
                 toggleGroupModal={toggleGroupModal}

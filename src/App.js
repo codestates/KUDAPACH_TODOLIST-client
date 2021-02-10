@@ -23,7 +23,7 @@ class App extends React.Component {
           email: 'hello@email.com',
           username: 'sanghyuk',
           mobile: '0100100101',
-          group: true,
+          group: 3,
         },
         groups: [
           {
