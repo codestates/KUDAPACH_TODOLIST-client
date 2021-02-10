@@ -42,6 +42,7 @@ class ManageGroup extends React.Component {
     this.handleEmail2Delete = this.handleEmail2Delete.bind(this);
     this.handleEmail3Delete = this.handleEmail3Delete.bind(this);
     this.handleEmail4Delete = this.handleEmail4Delete.bind(this);
+    this.handleGroupSave = this.handleGroupSave.bind(this);
   }
 
   handleChangeInput = (key) => (e) => {
@@ -70,6 +71,18 @@ class ManageGroup extends React.Component {
       button: 'confirm',
     }).then(() => {
       groupFalseHandler();
+      toggleGroupModal();
+    });
+  }
+
+  handleGroupSave() {
+    const { toggleGroupModal } = this.props;
+    swal({
+      title: 'Cool!',
+      text: 'All thing is saved',
+      icon: 'success',
+      button: 'confirm',
+    }).then(() => {
       toggleGroupModal();
     });
   }
@@ -151,7 +164,7 @@ class ManageGroup extends React.Component {
             <div className="pencil" onClick={this.handleGroupToggle}></div>
             <div className="trash" onClick={this.handleGroupDelete}></div>
           </div>
-          <button className="addBtn">Add User</button>
+          <button className="confirmAddBtn">Add User</button>
         </div>
         <div className="hrBox2"></div>
         <div className="useremailWrapper">
@@ -199,7 +212,9 @@ class ManageGroup extends React.Component {
           ) : (
             <div className="blankDiv2" />
           )}
-          <button className="saveBtn">SAVE</button>
+          <button className="confirmSaveBtn" onClick={this.handleGroupSave}>
+            SAVE
+          </button>
         </div>
         {isGroupChange ? (
           <ChangeGroup
