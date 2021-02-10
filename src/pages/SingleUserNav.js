@@ -4,6 +4,7 @@ import ModalSetting from './modals/ModalSetting';
 import ModalCalendar from 'react-calendar';
 import '../css/Calendar.css';
 import GroupSetting from './modals/GroupSetting';
+import ModalGroup from './modals/ModalGroup';
 
 function SingleUserNav() {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
@@ -51,6 +52,18 @@ function SingleUserNav() {
   };
   // GroupSetting 모달창에 대한 state hook과 function들 ---- 끝
 
+  // setting 모달창에 대한 state hook과 function들 ---- 시작
+  const [onGroup, setOnGroup] = useState(false);
+  const toggleOnGroup = () => {
+    if (onGroup === false) {
+      setOnGroup(true);
+    }
+    if (onGroup === true) {
+      setOnGroup(false);
+    }
+  };
+  // setting 모달창에 대한 state hook과 function들 ---- 끝
+
   return (
     <div className="body__container">
       {/*nev 부분입니다.*/}
@@ -73,7 +86,9 @@ function SingleUserNav() {
               >
                 Search Calendar
               </div>
-              <div className="user"> </div>
+              <div className="user" onClick={toggleOnGroup}>
+                {' '}
+              </div>
               <div className="setting" onClick={toggleModalSetting}>
                 {' '}
               </div>
@@ -92,6 +107,11 @@ function SingleUserNav() {
       {calendarModal === true ? <ModalCalendar /> : <div />}
       {groupModal === true ? (
         <GroupSetting toggleGroupModal={toggleGroupModal} />
+      ) : (
+        <div />
+      )}
+      {onGroup === true ? (
+        <ModalGroup toggleOnGroup={toggleOnGroup} />
       ) : (
         <div />
       )}
