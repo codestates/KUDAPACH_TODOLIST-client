@@ -6,7 +6,7 @@ import '../css/Calendar.css';
 import GroupSetting from './modals/GroupSetting';
 import ModalGroup from './modals/ModalGroup';
 
-function SingleUserNav({ groupinfo }) {
+function SingleUserNav({ groupinfo, handleSignOut }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
   const toggleModalSetting = () => {
@@ -100,6 +100,7 @@ function SingleUserNav({ groupinfo }) {
           groupinfo={groupinfo}
           toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
+          handleSignOut={handleSignOut}
         />
       ) : (
         <div />

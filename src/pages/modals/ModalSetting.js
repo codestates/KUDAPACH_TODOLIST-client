@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ModalSetting extends React.Component {
   render() {
-    const { toggleGroupModalWithSetting } = this.props;
+    const { toggleGroupModalWithSetting, handleSignOut } = this.props;
     return (
       <div className="settingWrapper">
         <div className="accountText">Account</div>
@@ -23,7 +23,9 @@ class ModalSetting extends React.Component {
         <div className="groupsetText" onClick={toggleGroupModalWithSetting}>
           Group Setting
         </div>
-        <div className="signoutText">Sign Out</div>
+        <div className="signoutText" onClick={handleSignOut}>
+          Sign Out
+        </div>
       </div>
     );
   }

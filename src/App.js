@@ -51,6 +51,7 @@ class App extends React.Component {
       // 여기까지 가짜데이터임!!!!!
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   handleResponseSuccess(signinData) {
@@ -62,6 +63,13 @@ class App extends React.Component {
       });
       this.props.history.push('/');
     });
+  }
+
+  handleSignOut() {
+    this.setState({ isSignin: false });
+    this.props.history.push('/');
+    // 토근 및 세션 등 인증된 부분 삭제기능 들거가야 함
+    // 부모state관리이므로 이 함수를 내려보내 사용
   }
 
   render() {
@@ -80,7 +88,13 @@ class App extends React.Component {
           <Route exact path="/signup" render={() => <Signup />} />
           <Route
             path="/mytodo"
-            render={() => <MyTodo userinfo={userinfo} groupinfo={groupinfo} />}
+            render={() => (
+              <MyTodo
+                userinfo={userinfo}
+                groupinfo={groupinfo}
+                handleSignOut={this.handleSignOut}
+              />
+            )}
           />
           <Route
             path="/mypage"

@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import React from 'react';
 import SingleUserNav from './SingleUserNav';
 import '../css/Mypage.css';
@@ -84,7 +82,6 @@ class Mypage extends React.Component {
 
   render() {
     const { groupinfo } = this.props;
-    console.log(groupinfo);
     const {
       email,
       username,
@@ -97,7 +94,7 @@ class Mypage extends React.Component {
 
     return (
       <div>
-        <SingleUserNav groupinfo={groupinfo}/>
+        <SingleUserNav groupinfo={groupinfo} />
         <div className="mainSide">
           <div className="mypageMainWrapper">
             <div className="userInfoWrapper">
