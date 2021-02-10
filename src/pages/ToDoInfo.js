@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MdDelete, MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit, MdExpandMore } from 'react-icons/md';
+import { CirclePicker } from 'react-color';
+/* eslint-disable */
 import '../css/TodoInfo.css';
 
 const Remove = styled.div`
@@ -81,17 +83,86 @@ const TodoItemBlock = styled.div`
     }
 `;
 
-// const Data = styled.div`
-//   position: absolute;
-//   display: inline-flex;
-//   top: 277px;
-//   margin-right: 0px;
-// `
+const ColorSeting = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  top: 15px;
+  left: 300px;
+  color: white;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  z-index: 5;
+`;
+
+class ToDoColorChange extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: false,
+      ... this.props.data
+    };
+  }
+
+
+
+  handleChangeComplete = (color) => {
+    this.setState({
+      color : color.hex,
+    },() => this.props.handleColorBox(this.state.color));
+
+  };
+
+
+  handleColorToggleChange = () => {
+    const { toggle } = this.state;
+    if (!toggle) {
+      this.setState({
+        toggle: true,
+      });
+    } else {
+      this.setState({
+        toggle: false,
+      });
+    }
+  };
+
+  render() {
+    const { toggle } = this.state;
+    return (
+
+      <div>
+        {toggle ? (
+
+          <div>
+            <div className="bg_color"> </div>
+          <CirclePicker onChange={this.handleChangeComplete} />
+          </div>
+        ) : (
+          <ColorSeting>
+            <MdExpandMore />
+          </ColorSeting>
+
+        )}
+        <ColorSeting onClick={this.handleColorToggleChange}>
+          <MdExpandMore />
+        </ColorSeting>
+      </div>
+    );
+  }
+}
 
 class ToDoInfo extends Component {
   state = {
     toggle: false,
     text: '',
+    color: this.props.data.color
   };
 
   handleChange = (e) => {
@@ -99,6 +170,7 @@ class ToDoInfo extends Component {
       [e.target.name]: e.target.value,
     });
   };
+
   handleToggleChange = () => {
     const { toggle, text } = this.state;
     const { data, onUpdate } = this.props;
@@ -121,20 +193,29 @@ class ToDoInfo extends Component {
     onRemove(data.id);
   };
 
+  handleColorBox = (color) => {
+    this.setState({
+      color
+    })
+  }
+
+
+
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
+    console.log(data.color)
     return (
       <div>
         <TodoItemBlock
           style={
-            // { backgroundColor: this.props.data.color }
-            { backgroundColor: '#c2667b' }
+            { backgroundColor: this.state.color }
+            // { backgroundColor: '#c2667b' }
           }
         >
           {toggle ? (
             <textarea
-              placeholder="텍스트를 입력해주세"
+              placeholder="텍스트를 입력해주세요"
               maxLength="140"
               onChange={this.handleChange}
               value={text}
@@ -144,7 +225,7 @@ class ToDoInfo extends Component {
           ) : (
             <div>
               <div className="card_box">{data.text}</div>
-              <div className="date">{data.date}</div>
+              <div className="date">{data.updatedAt}</div>
             </div>
           )}
           <Remove onClick={this.handleRemove}>
@@ -153,6 +234,7 @@ class ToDoInfo extends Component {
           <Edit onClick={this.handleToggleChange}>
             {toggle ? <MdEdit /> : <MdEdit />}
           </Edit>
+          <ToDoColorChange data={data} handleColorBox={this.handleColorBox}/>
         </TodoItemBlock>
       </div>
     );

@@ -49,12 +49,35 @@ class App extends React.Component {
         ],
       },
       // 여기까지 가짜데이터임!!!!!
+      todoData: [
+        {
+          id: 1,
+          text: 'learn Python',
+          color: '#646465',
+          createdAt: '2020.02.10',
+          updatedAt: '2020.03.10',
+        },
+        {
+          id: 2,
+          text: 'learn TypeScript',
+          color: '#808080',
+          createdAt: '2020.3.10',
+          updatedAt: '2020.03.10',
+        },
+      ],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   handleResponseSuccess(signinData) {
+    axios.get('https://server.kudapach.com/todo').then((res) => {
+      this.setState({
+        ...this.state,
+        todoData: res.data,
+      });
+    });
+    
     axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
@@ -68,12 +91,12 @@ class App extends React.Component {
   handleSignOut() {
     this.setState({ isSignin: false });
     this.props.history.push('/');
-    // 토근 및 세션 등 인증된 부분 삭제기능 들거가야 함
+    // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
     // 부모state관리이므로 이 함수를 내려보내 사용
   }
 
   render() {
-    const { isSignin, userinfo, groupinfo } = this.state;
+    const { isSignin, userinfo, groupinfo, todoData } = this.state;
 
     return (
       <div>
@@ -93,6 +116,7 @@ class App extends React.Component {
                 userinfo={userinfo}
                 groupinfo={groupinfo}
                 handleSignOut={this.handleSignOut}
+                todoData={todoData}
               />
             )}
           />

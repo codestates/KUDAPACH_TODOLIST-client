@@ -1,19 +1,21 @@
 .date {
     position: absolute;
     display: inline-flex;
+    font-weight: 700;
     top: 277px;
 }
 
 .card_box {
-    /*overflow-wrap: anywhere;*/
+
     width: 275px;
     height: 200px;
     word-break:break-all;
     position: absolute;
     white-space: pre-line;
     overflow: scroll;
-    /*display: inline-flex;*/
+    font-weight: bold;
     margin-right: 32px;
+
 }
 
 .textBox {
@@ -28,6 +30,21 @@
     background-color: transparent;
 }
 
+.bg_color{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.9;
+    background-color: black;
+    width: 340px;
+    height: 340px;
+    /*z-index: -1;*/
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
 .textBox:focus{
     border: none;
     outline: none;
@@ -37,3 +54,4 @@ textarea::placeholder {
     color: white;
     font-weight: normal;
 }
+
