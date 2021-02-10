@@ -43,6 +43,7 @@ class ManageGroup extends React.Component {
     this.handleEmail3Delete = this.handleEmail3Delete.bind(this);
     this.handleEmail4Delete = this.handleEmail4Delete.bind(this);
     this.handleGroupSave = this.handleGroupSave.bind(this);
+    this.handleAddMail = this.handleAddMail.bind(this);
   }
 
   handleChangeInput = (key) => (e) => {
@@ -77,14 +78,38 @@ class ManageGroup extends React.Component {
 
   handleGroupSave() {
     const { toggleGroupModal } = this.props;
-    swal({
-      title: 'Cool!',
-      text: 'All thing is saved',
-      icon: 'success',
-      button: 'confirm',
-    }).then(() => {
-      toggleGroupModal();
-    });
+    const {
+      userNewEmail1,
+      userNewEmail2,
+      userNewEmail3,
+      userNewEmail4,
+      user1check,
+      user2check,
+      user3check,
+      user4check,
+    } = this.state;
+    if (
+      (user1check && !userNewEmail1) ||
+      (user2check && !userNewEmail2) ||
+      (user3check && !userNewEmail3) ||
+      (user4check && !userNewEmail4)
+    ) {
+      swal({
+        title: 'A field is empty',
+        text: 'Please fill out all required fields',
+        icon: 'warning',
+        button: 'confirm',
+      });
+    } else {
+      swal({
+        title: 'Cool!',
+        text: 'All thing is saved',
+        icon: 'success',
+        button: 'confirm',
+      }).then(() => {
+        toggleGroupModal();
+      });
+    }
   }
 
   handleGroupToggle() {
@@ -137,6 +162,42 @@ class ManageGroup extends React.Component {
     this.setState({ userNewEmail4: userEmail4 });
   }
 
+  handleAddMail() {
+    const { user1check, user2check, user3check, user4check } = this.state;
+    if (user1check === false) {
+      this.setState({
+        userEmail1: '',
+        userNewEmail1: '',
+        user1check: true,
+      });
+    } else if (user2check === false) {
+      this.setState({
+        userEmail2: '',
+        userNewEmail2: '',
+        user2check: true,
+      });
+    } else if (user3check === false) {
+      this.setState({
+        userEmail3: '',
+        userNewEmail3: '',
+        user3check: true,
+      });
+    } else if (user4check === false) {
+      this.setState({
+        userEmail4: '',
+        userNewEmail4: '',
+        user4check: true,
+      });
+    } else {
+      swal({
+        title: 'Maximum is 4 users',
+        text: 'You cant add more users',
+        icon: 'warning',
+        button: 'confirm',
+      });
+    }
+  }
+
   render() {
     const { toggleGroupModal } = this.props;
     const {
@@ -164,7 +225,9 @@ class ManageGroup extends React.Component {
             <div className="pencil" onClick={this.handleGroupToggle}></div>
             <div className="trash" onClick={this.handleGroupDelete}></div>
           </div>
-          <button className="confirmAddBtn">Add User</button>
+          <button className="confirmAddBtn" onClick={this.handleAddMail}>
+            Add User
+          </button>
         </div>
         <div className="hrBox2"></div>
         <div className="useremailWrapper">
