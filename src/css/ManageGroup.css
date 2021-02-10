@@ -1,0 +1,59 @@
+.updateDeleteWrapper {
+  position: absolute;
+  left: 278px;
+  width: 35px;
+  display: flex;
+  justify-content: space-between
+}
+
+.pencil {
+  background-image: url("../asset/img/pencil.svg");
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.trash {
+  background-image: url("../asset/img/trash.svg");
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.pencil:hover,
+.trash:hover {
+  cursor: pointer;
+}
+
+.hrBox2 {
+  position: relative;
+  top: -6px;
+  width: 100%;
+  height: 1px;
+  background-color: #c9c9c9;
+  border-radius: 5px;
+  margin: 10px 0 12px 0;
+}
+
+.useremailInput {
+  display: flex;
+  align-items: center;
+}
+
+.groupUserEmail {
+  font-size: 16px;
+  color: #0d0c22;
+}
+
+.updateDeleteWrapperInMail {
+  position: absolute;
+  left: 373px;
+  width: 35px;
+  display: flex;
+  justify-content: space-between
+}
+
+.blankDiv2 {
+  height: 48px;
+  margin: 8px 0;
+}
