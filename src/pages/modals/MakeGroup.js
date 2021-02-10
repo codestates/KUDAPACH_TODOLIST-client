@@ -2,6 +2,7 @@ import React from 'react';
 import '../../css/MakeGroup.css';
 import { emailValidation } from '../../pages/ValidationFun';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 class MakeGroup extends React.Component {
   constructor(props) {
@@ -96,15 +97,47 @@ class MakeGroup extends React.Component {
       emailValidation(usermail4) ||
       usermail4
     ) {
-      swal({
-        title: 'Cool!',
-        text: 'Group is made',
-        icon: 'success',
-        button: 'confirm',
-      }).then(() => {
-        groupTrueHandler();
-        toggleGroupModal();
-      });
+      axios
+        .post('https://server.kudapach.com/groupsetting/create', {
+          groupname: groupname,
+          emails: [
+            {
+              email: usermail1,
+            },
+            {
+              email: usermail2,
+            },
+            {
+              email: usermail3,
+            },
+            {
+              email: usermail4,
+            },
+          ],
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            swal({
+              title: 'Cool!',
+              text: 'Group is made',
+              icon: 'success',
+              button: 'confirm',
+            }).then(() => {
+              groupTrueHandler();
+              toggleGroupModal();
+            });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 409) {
+            swal({
+              title: 'Invalid email exists',
+              text: 'Please check emails',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     } else {
       swal({
         title: 'A field is empty',
