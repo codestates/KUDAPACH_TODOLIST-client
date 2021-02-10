@@ -18,7 +18,7 @@ class ManageGroup extends React.Component {
       isEmail4Change: false,
       groupname: 'KUDAPACH Group',
       newGroupname: 'KUDAPACH Group',
-      userEmail1: 'test1@gmail.com',
+      userEmail1: this.props.groupinfo.groupnames[0].groupname,
       userNewEmail1: 'test1@gmail.com',
       userEmail2: 'test2@gmail.com',
       userNewEmail2: 'test2@gmail.com',

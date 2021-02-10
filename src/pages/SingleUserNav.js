@@ -107,7 +107,10 @@ function SingleUserNav({ groupinfo, handleSignOut }) {
       )}
       {calendarModal === true ? <ModalCalendar /> : <div />}
       {groupModal === true ? (
-        <GroupSetting toggleGroupModal={toggleGroupModal} />
+        <GroupSetting
+          toggleGroupModal={toggleGroupModal}
+          groupinfo={groupinfo}
+        />
       ) : (
         <div />
       )}
