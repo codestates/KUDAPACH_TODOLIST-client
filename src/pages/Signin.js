@@ -70,13 +70,41 @@ class Signin extends React.Component {
   };
 
   onSuccess = (res) => {
-    console.log(res);
-    console.log('[Login Success] currentUser:', res.profileObj);
-
-  };
+    if (res.profileObj) { // ? GOOGLE_OAUTH
+      axios.post('https://server.kudapach.com/oauth', {
+        email: res.profileObj.googleId,
+        username: res.profileObj.givenName,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },)
+        .then(() => {
+        this.props.handleResponseSuccess();
+      })
+    } else{ // ? KAKAO_OAUTH
+      axios.post('https://server.kudapach.com/oauth', {
+        email: res.profile.id,
+        username: res.profile.properties.nickname
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },)
+        .then(() => {
+          this.props.handleResponseSuccess();
+        })
+    }
+  }
 
   onFailure = (res) => {
     console.log('[Login failed] res:', res);
+    swal({
+      title: 'Unauthorized',
+      text: 'Please check your email or password',
+      icon: 'warning',
+      button: 'confirm',
+    })
   };
 
   render() {
@@ -140,17 +168,13 @@ class Signin extends React.Component {
                 }
                 onSuccess={this.onSuccess}
                 onFailure={this.onFailure}
-                approvalPrompt="force"
-                prompt='consent'
                 cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
               />
               <KaKaoLogin
                 className="kakaoBtn"
                 token={'d70c5c740eddb6109ed33a6fecbb1fd3'}
-                onSuccess={console.log}
-                onFail={console.error}
-                onLogout={console.info}
+                onSuccess={this.onSuccess}
+                onFail={this.onFailure}
                 style={{}}
               />
             </div>
