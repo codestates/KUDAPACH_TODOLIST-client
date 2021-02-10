@@ -85,6 +85,7 @@
 .signoutText:hover {
   color: #572d7f;
   background-color: #e4e4e4;
+  cursor: pointer;
 }
 
 
