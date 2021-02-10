@@ -128,8 +128,8 @@ class ToDoInfo extends Component {
       <div>
         <TodoItemBlock
           style={
-            // { backgroundColor: this.props.data.color }
-            { backgroundColor: '#c2667b' }
+            { backgroundColor: data.color }
+            // { backgroundColor: '#c2667b' }
           }
         >
           {toggle ? (

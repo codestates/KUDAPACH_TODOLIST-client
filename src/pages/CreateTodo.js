@@ -5,6 +5,8 @@ import GroupSvg from '../asset/img/MyTodo/GroupSvg';
 class CreateTodo extends Component {
   state = {
     text: '',
+    colors: ['#c2667b', '#83a2fd', '#6278e1', '#4d50a4'],
+    color: '',
   };
   handleChange = (e) => {
     this.setState({
@@ -13,12 +15,16 @@ class CreateTodo extends Component {
   };
 
   handleSubmit = (e) => {
+    const index = Math.round(Math.random() * 3);
     e.preventDefault();
-    this.props.onCreate(this.state);
-    this.setState({
-      text: '',
-      date: new Date().toISOString().substring(0, 10),
-    });
+    this.setState(
+      {
+        text: '',
+        color: this.state.colors[index],
+        date: new Date().toISOString().substring(0, 10),
+      },
+      () => this.props.onCreate(this.state),
+    );
   };
   render() {
     // const { text } = this.state;
