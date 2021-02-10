@@ -15,22 +15,25 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
+      // groupinfo: null,
+      groupinfo: ['group1', 'group2', 'group3'], // 추후 삭제 필요
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
   }
 
-  handleResponseSuccess() {
+  handleResponseSuccess(signinData) {
     axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data, // 추후 이렇게 넘기는게 맞는지 확인필요
+        userinfo: res.data, // id, email, username, mobile
+        groupinfo: signinData.groups,
       });
       this.props.history.push('/');
     });
   }
 
   render() {
-    const { isSignin, userinfo } = this.state;
+    const { isSignin, userinfo, groupinfo } = this.state;
 
     return (
       <div>
@@ -43,7 +46,10 @@ class App extends React.Component {
           />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
-          <Route path="/mytodo" render={() => <MyTodo userinfo={userinfo} />} />
+          <Route
+            path="/mytodo"
+            render={() => <MyTodo userinfo={userinfo} groupinfo={groupinfo} />}
+          />
           <Route path="/mypage" render={() => <Mypage />} />
           <Route
             path="/"

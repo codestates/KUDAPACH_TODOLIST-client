@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 import React, { Component } from 'react';
 import TodoList from './TodoList';
 import SingleUserNav from './SingleUserNav';
@@ -73,10 +76,11 @@ class MyTodo extends Component {
   };
 
   render() {
+    const { userinfo, groupinfo } = this.props;
     const { cardData } = this.state;
     return (
       <div>
-        <SingleUserNav />
+        <SingleUserNav userinfo={userinfo} groupinfo={groupinfo} />
         <div className="Box_container main_Box">
           <TodoList
             data={cardData}

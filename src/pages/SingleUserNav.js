@@ -6,7 +6,7 @@ import '../css/Calendar.css';
 import GroupSetting from './modals/GroupSetting';
 import ModalGroup from './modals/ModalGroup';
 
-function SingleUserNav() {
+function SingleUserNav({ groupinfo }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
   const toggleModalSetting = () => {
@@ -111,7 +111,7 @@ function SingleUserNav() {
         <div />
       )}
       {onGroup === true ? (
-        <ModalGroup toggleOnGroup={toggleOnGroup} />
+        <ModalGroup toggleOnGroup={toggleOnGroup} groupinfo={groupinfo} />
       ) : (
         <div />
       )}

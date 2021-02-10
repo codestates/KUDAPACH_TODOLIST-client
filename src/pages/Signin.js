@@ -49,8 +49,8 @@ class Signin extends React.Component {
             },
           },
         )
-        .then(() => {
-          this.props.handleResponseSuccess();
+        .then((res) => {
+          this.props.handleResponseSuccess(res);
         })
         .catch((err) => {
           if (err.response.status === 401) {
