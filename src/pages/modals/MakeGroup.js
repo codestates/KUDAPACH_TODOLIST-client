@@ -98,23 +98,31 @@ class MakeGroup extends React.Component {
       usermail4
     ) {
       axios
-        .post('https://server.kudapach.com/groupsetting/create', {
-          groupname: groupname,
-          emails: [
-            {
-              email: usermail1,
+        .post(
+          'https://server.kudapach.com/groupsetting/create',
+          {
+            groupname: groupname,
+            emails: [
+              {
+                email: usermail1,
+              },
+              {
+                email: usermail2,
+              },
+              {
+                email: usermail3,
+              },
+              {
+                email: usermail4,
+              },
+            ],
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
             },
-            {
-              email: usermail2,
-            },
-            {
-              email: usermail3,
-            },
-            {
-              email: usermail4,
-            },
-          ],
-        })
+          },
+        )
         .then((res) => {
           if (res.status === 200) {
             swal({
