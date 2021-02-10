@@ -10,26 +10,41 @@ class MyTodo extends Component {
       cardData: [
         {
           id: 1,
-          text: '1차 이거 랜더링 할꼬당 이새끼야',
+          text:
+            'Then beginning of\n' +
+            'screenless design:\n' +
+            'UI jobs to be taken\n' +
+            'over by Solution Architect',
           date: '2020-18-18',
           color: '#c2667b',
         },
         {
           id: 2,
-          text: '2차 이거 수정한다 이새끼야',
+          text:
+            'Then beginning of\n' +
+            'screenless design:\n' +
+            'UI jobs to be taken\n' +
+            'over by Solution Architect',
           date: '2020-18-18',
           color: '#83a2fd',
         },
         {
           id: 3,
-          text: '3차 이거 삭제한 이새끼야',
+          text:
+            'Then beginning of\n' +
+            'screenless design:\n' +
+            'UI jobs to be taken\n' +
+            'over by Solution Architect',
           date: '2020-18-18',
-          color: '#83a2fd',
+          color: '#6278e1',
         },
         {
           id: 4,
           text:
-            '4차 마지막으로 이거 텍스트박스 나오게 한꺼다 코드스테이트 개자식',
+            'Then beginning of\n' +
+            'screenless design:\n' +
+            'UI jobs to be taken\n' +
+            'over by Solution Architect',
           date: '2020-18-18',
           color: '#4d50a4',
         },
@@ -55,6 +70,7 @@ class MyTodo extends Component {
         if (cardData.id === id) {
           return {
             id,
+            color: cardData.color,
             date: cardData.date,
             ...data,
           };
@@ -85,7 +101,6 @@ class MyTodo extends Component {
             onCreate={this.handleCreate}
           />
         </div>
-        <div></div>
       </div>
     );
   }

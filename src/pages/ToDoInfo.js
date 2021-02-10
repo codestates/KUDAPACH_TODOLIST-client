@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MdDelete, MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit, MdExpandMore } from 'react-icons/md';
+import { CirclePicker } from 'react-color';
+/* eslint-disable */
 import '../css/TodoInfo.css';
 
 const Remove = styled.div`
@@ -81,12 +83,66 @@ const TodoItemBlock = styled.div`
     }
 `;
 
-// const Data = styled.div`
-//   position: absolute;
-//   display: inline-flex;
-//   top: 277px;
-//   margin-right: 0px;
-// `
+const ColorSeting = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  top: 15px;
+  left: 300px;
+  color: white;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+`;
+
+class ToDoColorChange extends Component {
+  state = {
+    toggle: false,
+    color: this.props.color,
+  };
+
+  handleChangeComplete = (color) => {
+    this.setState({
+      color: color.hex,
+    });
+  };
+
+  handleColorToggleChange = () => {
+    const { toggle } = this.state;
+    if (!toggle) {
+      this.setState({
+        toggle: true,
+      });
+    } else {
+      this.setState({
+        toggle: false,
+      });
+    }
+  };
+
+  render() {
+    const { toggle } = this.state;
+    return (
+      <div>
+        {toggle ? (
+          <CirclePicker onChange={this.handleChangeComplete} />
+        ) : (
+          <ColorSeting>
+            <MdExpandMore />
+          </ColorSeting>
+        )}
+        <ColorSeting onClick={this.handleColorToggleChange}>
+          <MdExpandMore />
+        </ColorSeting>
+      </div>
+    );
+  }
+}
 
 class ToDoInfo extends Component {
   state = {
@@ -99,6 +155,7 @@ class ToDoInfo extends Component {
       [e.target.name]: e.target.value,
     });
   };
+
   handleToggleChange = () => {
     const { toggle, text } = this.state;
     const { data, onUpdate } = this.props;
@@ -128,8 +185,8 @@ class ToDoInfo extends Component {
       <div>
         <TodoItemBlock
           style={
-            // { backgroundColor: this.props.data.color }
-            { backgroundColor: '#c2667b' }
+            { backgroundColor: data.color }
+            // { backgroundColor: '#c2667b' }
           }
         >
           {toggle ? (
@@ -147,6 +204,7 @@ class ToDoInfo extends Component {
               <div className="date">{data.date}</div>
             </div>
           )}
+          <ToDoColorChange data={data} />
           <Remove onClick={this.handleRemove}>
             <MdDelete />
           </Remove>
