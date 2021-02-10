@@ -1,6 +1,3 @@
-/* eslint-disable */
-
-
 import React, { Component } from 'react';
 import TodoList from './TodoList';
 import SingleUserNav from './SingleUserNav';

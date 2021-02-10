@@ -1,4 +1,5 @@
-/* eslint-disable */
+/*eslint-disable*/
+
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
@@ -70,32 +71,44 @@ class Signin extends React.Component {
   };
 
   onSuccess = (res) => {
-    if (res.profileObj) { // ? GOOGLE_OAUTH
-      axios.post('https://server.kudapach.com/oauth', {
-        email: res.profileObj.googleId,
-        username: res.profileObj.givenName,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },)
-        .then(() => {
-        this.props.handleResponseSuccess();
-      })
-    } else{ // ? KAKAO_OAUTH
-      axios.post('https://server.kudapach.com/oauth', {
-        email: res.profile.id,
-        username: res.profile.properties.nickname
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },)
-        .then(() => {
-          this.props.handleResponseSuccess();
-        })
+    if (res.profileObj) {
+      // ? GOOGLE_OAUTH
+      axios
+        .post(
+          'https://server.kudapach.com/oauth',
+          {
+            email: res.profileObj.googleId,
+            username: res.profileObj.givenName,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          this.props.handleResponseSuccess(res);
+        });
+    } else {
+      // ? KAKAO_OAUTH
+      axios
+        .post(
+          'https://server.kudapach.com/oauth',
+          {
+            email: res.profile.id,
+            username: res.profile.properties.nickname,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          this.props.handleResponseSuccess(res);
+        });
     }
-  }
+  };
 
   onFailure = (res) => {
     console.log('[Login failed] res:', res);
@@ -104,7 +117,7 @@ class Signin extends React.Component {
       text: 'Please check your email or password',
       icon: 'warning',
       button: 'confirm',
-    })
+    });
   };
 
   render() {

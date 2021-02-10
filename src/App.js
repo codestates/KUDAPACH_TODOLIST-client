@@ -16,7 +16,39 @@ class App extends React.Component {
       isSignin: false,
       userinfo: null,
       // groupinfo: null,
-      groupinfo: ['group1', 'group2', 'group3'], // 추후 삭제 필요
+      // 위가 진짜 데이터 아래는 통신 전 가짜데이터임!!!!!
+      groupinfo: {
+        data: {
+          id: 1,
+          email: 'hello@email.com',
+          username: 'sanghyuk',
+          mobile: '0100100101',
+          group: true,
+        },
+        groups: [
+          {
+            groupid: 1,
+          },
+          {
+            groupid: 4,
+          },
+          {
+            groupid: 5,
+          },
+        ],
+        groupnames: [
+          {
+            groupname: 'java',
+          },
+          {
+            groupname: 'group1',
+          },
+          {
+            groupname: 'test',
+          },
+        ],
+      },
+      // 여기까지 가짜데이터임!!!!!
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
   }
@@ -26,7 +58,7 @@ class App extends React.Component {
       this.setState({
         isSignin: true,
         userinfo: res.data, // id, email, username, mobile
-        groupinfo: signinData.groups,
+        groupinfo: signinData,
       });
       this.props.history.push('/');
     });

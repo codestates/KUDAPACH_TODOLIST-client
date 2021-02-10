@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import React from 'react';
 import '../../css/ModalSetting.css';
 
@@ -8,12 +6,12 @@ class ModalGroup extends React.Component {
     super(props);
     this.state = {
       isGroup: 'none',
-    }
+    };
     this.selectGroupHandler = this.selectGroupHandler.bind(this);
   }
 
   selectGroupHandler(e) {
-    this.setState({ isGroup: e.target.getAttribute('value') })
+    this.setState({ isGroup: e.target.getAttribute('value') });
   }
 
   render() {
@@ -23,9 +21,18 @@ class ModalGroup extends React.Component {
         <div className="accountText">Group</div>
         <div className="signoutText">My todo</div>
         <div className="hrBox"></div>
-        <div className="signoutText" value={groupinfo[0]} onClick={(e) => this.selectGroupHandler(e)}>{groupinfo[0]}</div>
-        <div className="signoutText" value={groupinfo[1]} onClick={(e) => this.selectGroupHandler(e)}>{groupinfo[1]}</div>
-        <div className="signoutText" value={groupinfo[2]} onClick={(e) => this.selectGroupHandler(e)}>{groupinfo[2]}</div>
+        {groupinfo.groupnames.map((el, id) => {
+          return (
+            <div
+              className="signoutText"
+              key={id}
+              value={el.groupname}
+              onClick={(e) => this.selectGroupHandler(e)}
+            >
+              {el.groupname}
+            </div>
+          );
+        })}
       </div>
     );
   }

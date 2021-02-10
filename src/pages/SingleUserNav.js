@@ -63,7 +63,6 @@ function SingleUserNav({ groupinfo }) {
     }
   };
   // setting 모달창에 대한 state hook과 function들 ---- 끝
-
   return (
     <div className="body__container">
       {/*nev 부분입니다.*/}
@@ -74,7 +73,7 @@ function SingleUserNav({ groupinfo }) {
               <a href="#"> </a>
             </div>
             <ul className="main-menu">
-              <li>Welcome kudapach</li>
+              <li>Welcome {groupinfo.data.username}</li>
             </ul>
           </div>
 
