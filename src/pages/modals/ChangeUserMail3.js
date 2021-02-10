@@ -14,7 +14,7 @@ class ChangeUserMail3 extends React.Component {
             placeholder="New usermail"
             onChange={handleChangeInput('userEmail3')}
           />
-          <button onClick={handleEmail3Toggle}>SAVE</button>
+          <button onClick={handleEmail3Toggle}>EDIT</button>
         </div>
       </>
     );

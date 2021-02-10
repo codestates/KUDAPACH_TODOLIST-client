@@ -14,7 +14,7 @@ class ChangeGroup extends React.Component {
             placeholder="New Groupname"
             onChange={handleChangeInput('groupname')}
           />
-          <button onClick={handleGroupToggle}>SAVE</button>
+          <button onClick={handleGroupToggle}>EDIT</button>
         </div>
       </>
     );
