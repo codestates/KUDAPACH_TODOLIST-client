@@ -1,9 +1,3 @@
-.Box__container{
-    margin-top: 55px;
-    margin-left: 60px;
-    display: inline-flex;
-    flex-flow: wrap;
-}
 
 .CreateButton{
     width: 340px;
@@ -27,6 +21,7 @@
 .create_text{
     width: 145px;
     height: 64px;
+    font-family: Roboto;
     font-size: 24px;
     font-weight: 500;
     font-stretch: normal;
@@ -35,9 +30,26 @@
     letter-spacing: normal;
     text-align: right;
     color: #9292a7;
-    margin-top: 8px;
+    margin-top: 11px;
     margin-left: 164px;
 }
+
+
+.text_Box{
+    width: 340px;
+    height: 340px;
+    background: cornflowerblue;
+    border-radius: 5px;
+    border: none;
+    resize:none;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.text_Box:hover{
+    opacity: 80%;
+}
+
 
 
 
@@ -52,5 +64,11 @@
 
 .CreateButton:hover .create_text{
     color:white;
+}
+
+.btn{
+    border: none;
+    width: 340px;
+    height: 340px;
 }
 
