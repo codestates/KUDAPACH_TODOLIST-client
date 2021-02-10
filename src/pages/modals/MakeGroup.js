@@ -90,11 +90,10 @@ class MakeGroup extends React.Component {
       usermail4,
     } = this.state;
     if (
-      groupname &&
-      emailValidation(usermail1) &&
-      emailValidation(usermail2) &&
-      emailValidation(usermail3) &&
-      emailValidation(usermail4) &&
+      (groupname && emailValidation(usermail1)) ||
+      emailValidation(usermail2) ||
+      emailValidation(usermail3) ||
+      emailValidation(usermail4) ||
       usermail4
     ) {
       swal({
@@ -218,10 +217,9 @@ class MakeGroup extends React.Component {
           )}
           <button
             className={
-              groupname &&
-              user1check &&
-              user2check &&
-              user3check &&
+              (groupname && user1check) ||
+              user2check ||
+              user3check ||
               emailValidation(usermail4)
                 ? 'confirmSaveBtn'
                 : 'saveBtn'

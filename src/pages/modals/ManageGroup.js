@@ -26,6 +26,10 @@ class ManageGroup extends React.Component {
       userNewEmail3: 'test3@gmail.com',
       userEmail4: 'test4@gmail.com',
       userNewEmail4: 'test4@gmail.com',
+      user1check: true,
+      user2check: true,
+      user3check: true,
+      user4check: true,
     };
     this.handleGroupToggle = this.handleGroupToggle.bind(this);
     this.handleEmail1Toggle = this.handleEmail1Toggle.bind(this);
@@ -34,11 +38,28 @@ class ManageGroup extends React.Component {
     this.handleEmail4Toggle = this.handleEmail4Toggle.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleGroupDelete = this.handleGroupDelete.bind(this);
+    this.handleEmail1Delete = this.handleEmail1Delete.bind(this);
+    this.handleEmail2Delete = this.handleEmail2Delete.bind(this);
+    this.handleEmail3Delete = this.handleEmail3Delete.bind(this);
+    this.handleEmail4Delete = this.handleEmail4Delete.bind(this);
   }
 
   handleChangeInput = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
+  handleEmail1Delete() {
+    this.setState({ user1check: false });
+  }
+  handleEmail2Delete() {
+    this.setState({ user2check: false });
+  }
+  handleEmail3Delete() {
+    this.setState({ user3check: false });
+  }
+  handleEmail4Delete() {
+    this.setState({ user4check: false });
+  }
 
   handleGroupDelete() {
     const { toggleGroupModal, groupFalseHandler } = this.props;
@@ -116,6 +137,10 @@ class ManageGroup extends React.Component {
       userNewEmail3,
       isEmail4Change,
       userNewEmail4,
+      user1check,
+      user2check,
+      user3check,
+      user4check,
     } = this.state;
     return (
       <div className="makeGroupWrapper">
@@ -130,34 +155,50 @@ class ManageGroup extends React.Component {
         </div>
         <div className="hrBox2"></div>
         <div className="useremailWrapper">
-          <div className="useremailInput">
-            <div className="groupUserEmail">{userNewEmail1}</div>
-            <div className="updateDeleteWrapperInMail">
-              <div className="pencil" onClick={this.handleEmail1Toggle}></div>
-              <div className="trash"></div>
+          {user1check === true ? (
+            <div className="useremailInput">
+              <div className="groupUserEmail">{userNewEmail1}</div>
+              <div className="updateDeleteWrapperInMail">
+                <div className="pencil" onClick={this.handleEmail1Toggle}></div>
+                <div className="trash" onClick={this.handleEmail1Delete}></div>
+              </div>
             </div>
-          </div>
-          <div className="useremailInput">
-            <div className="groupUserEmail">{userNewEmail2}</div>
-            <div className="updateDeleteWrapperInMail">
-              <div className="pencil" onClick={this.handleEmail2Toggle}></div>
-              <div className="trash"></div>
+          ) : (
+            <div className="blankDiv2" />
+          )}
+          {user2check === true ? (
+            <div className="useremailInput">
+              <div className="groupUserEmail">{userNewEmail2}</div>
+              <div className="updateDeleteWrapperInMail">
+                <div className="pencil" onClick={this.handleEmail2Toggle}></div>
+                <div className="trash" onClick={this.handleEmail2Delete}></div>
+              </div>
             </div>
-          </div>
-          <div className="useremailInput">
-            <div className="groupUserEmail">{userNewEmail3}</div>
-            <div className="updateDeleteWrapperInMail">
-              <div className="pencil" onClick={this.handleEmail3Toggle}></div>
-              <div className="trash"></div>
+          ) : (
+            <div className="blankDiv2" />
+          )}
+          {user3check === true ? (
+            <div className="useremailInput">
+              <div className="groupUserEmail">{userNewEmail3}</div>
+              <div className="updateDeleteWrapperInMail">
+                <div className="pencil" onClick={this.handleEmail3Toggle}></div>
+                <div className="trash" onClick={this.handleEmail3Delete}></div>
+              </div>
             </div>
-          </div>
-          <div className="useremailInput">
-            <div className="groupUserEmail">{userNewEmail4}</div>
-            <div className="updateDeleteWrapperInMail">
-              <div className="pencil" onClick={this.handleEmail4Toggle}></div>
-              <div className="trash"></div>
+          ) : (
+            <div className="blankDiv2" />
+          )}
+          {user4check === true ? (
+            <div className="useremailInput">
+              <div className="groupUserEmail">{userNewEmail4}</div>
+              <div className="updateDeleteWrapperInMail">
+                <div className="pencil" onClick={this.handleEmail4Toggle}></div>
+                <div className="trash" onClick={this.handleEmail4Delete}></div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="blankDiv2" />
+          )}
           <button className="saveBtn">SAVE</button>
         </div>
         {isGroupChange ? (

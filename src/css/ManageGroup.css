@@ -52,3 +52,8 @@
   display: flex;
   justify-content: space-between
 }
+
+.blankDiv2 {
+  height: 48px;
+  margin: 8px 0;
+}
