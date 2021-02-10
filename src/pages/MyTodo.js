@@ -7,48 +7,7 @@ class MyTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardData: [
-        {
-          id: 1,
-          text:
-            'Then beginning of\n' +
-            'screenless design:\n' +
-            'UI jobs to be taken\n' +
-            'over by Solution Architect',
-          date: '2020-18-18',
-          color: '#c2667b',
-        },
-        {
-          id: 2,
-          text:
-            'Then beginning of\n' +
-            'screenless design:\n' +
-            'UI jobs to be taken\n' +
-            'over by Solution Architect',
-          date: '2020-18-18',
-          color: '#83a2fd',
-        },
-        {
-          id: 3,
-          text:
-            'Then beginning of\n' +
-            'screenless design:\n' +
-            'UI jobs to be taken\n' +
-            'over by Solution Architect',
-          date: '2020-18-18',
-          color: '#6278e1',
-        },
-        {
-          id: 4,
-          text:
-            'Then beginning of\n' +
-            'screenless design:\n' +
-            'UI jobs to be taken\n' +
-            'over by Solution Architect',
-          date: '2020-18-18',
-          color: '#4d50a4',
-        },
-      ],
+      cardData: [...this.props.TodoData],
     };
   }
 
@@ -57,7 +16,7 @@ class MyTodo extends Component {
     this.setState({
       cardData: cardData.concat({
         id: cardData.length + 1,
-        date: new Date().toISOString().substring(0, 10),
+        updatedAt: new Date().toISOString().substring(0, 10),
         ...data,
       }),
     });
@@ -71,7 +30,7 @@ class MyTodo extends Component {
           return {
             id,
             color: cardData.color,
-            date: cardData.date,
+            updatedAt: cardData.updatedAt,
             ...data,
           };
         }

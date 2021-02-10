@@ -21,7 +21,7 @@ class CreateTodo extends Component {
       {
         text: '',
         color: this.state.colors[index],
-        date: new Date().toISOString().substring(0, 10),
+        updatedAt: new Date().toISOString().substring(0, 10),
       },
       () => this.props.onCreate(this.state),
     );

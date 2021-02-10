@@ -98,19 +98,27 @@ const ColorSeting = styled.div`
   cursor: pointer;
   border: 2px solid white;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  z-index: 5;
 `;
 
 class ToDoColorChange extends Component {
-  state = {
-    toggle: false,
-    color: this.props.color,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: false,
+      ... this.props.data
+    };
+  }
+
+
 
   handleChangeComplete = (color) => {
     this.setState({
-      color: color.hex,
-    });
+      color : color.hex,
+    },() => this.props.handleColorBox(this.state.color));
+
   };
+
 
   handleColorToggleChange = () => {
     const { toggle } = this.state;
@@ -128,13 +136,19 @@ class ToDoColorChange extends Component {
   render() {
     const { toggle } = this.state;
     return (
+
       <div>
         {toggle ? (
+
+          <div>
+            <div className="bg_color"> </div>
           <CirclePicker onChange={this.handleChangeComplete} />
+          </div>
         ) : (
           <ColorSeting>
             <MdExpandMore />
           </ColorSeting>
+
         )}
         <ColorSeting onClick={this.handleColorToggleChange}>
           <MdExpandMore />
@@ -148,6 +162,7 @@ class ToDoInfo extends Component {
   state = {
     toggle: false,
     text: '',
+    color: this.props.data.color
   };
 
   handleChange = (e) => {
@@ -178,20 +193,29 @@ class ToDoInfo extends Component {
     onRemove(data.id);
   };
 
+  handleColorBox = (color) => {
+    this.setState({
+      color
+    })
+  }
+
+
+
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
+    console.log(data.color)
     return (
       <div>
         <TodoItemBlock
           style={
-            { backgroundColor: data.color }
+            { backgroundColor: this.state.color }
             // { backgroundColor: '#c2667b' }
           }
         >
           {toggle ? (
             <textarea
-              placeholder="텍스트를 입력해주세"
+              placeholder="텍스트를 입력해주세요"
               maxLength="140"
               onChange={this.handleChange}
               value={text}
@@ -201,16 +225,16 @@ class ToDoInfo extends Component {
           ) : (
             <div>
               <div className="card_box">{data.text}</div>
-              <div className="date">{data.date}</div>
+              <div className="date">{data.updatedAt}</div>
             </div>
           )}
-          <ToDoColorChange data={data} />
           <Remove onClick={this.handleRemove}>
             <MdDelete />
           </Remove>
           <Edit onClick={this.handleToggleChange}>
             {toggle ? <MdEdit /> : <MdEdit />}
           </Edit>
+          <ToDoColorChange data={data} handleColorBox={this.handleColorBox}/>
         </TodoItemBlock>
       </div>
     );

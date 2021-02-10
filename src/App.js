@@ -15,6 +15,22 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
+      TodoData: [
+        {
+          id: 1,
+          text: 'learn Python',
+          color: '#646465',
+          createdAt: '2020.02.10',
+          updatedAt: '2020.03.10',
+        },
+        {
+          id: 2,
+          text: 'learn TypeScript',
+          color: '#808080',
+          createdAt: '2020.3.10',
+          updatedAt: '2020.03.10',
+        },
+      ],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
   }
@@ -27,10 +43,17 @@ class App extends React.Component {
       });
       this.props.history.push('/');
     });
+
+    axios.get('https://server.kudapach.com/todo').then((res) => {
+      this.setState({
+        ...this.state,
+        TodoData: res.data,
+      });
+    });
   }
 
   render() {
-    const { isSignin, userinfo } = this.state;
+    const { isSignin, userinfo, TodoData } = this.state;
 
     return (
       <div>
@@ -43,7 +66,10 @@ class App extends React.Component {
           />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
-          <Route path="/mytodo" render={() => <MyTodo userinfo={userinfo} />} />
+          <Route
+            path="/mytodo"
+            render={() => <MyTodo userinfo={userinfo} TodoData={TodoData} />}
+          />
           <Route path="/mypage" render={() => <Mypage />} />
           <Route
             path="/"
