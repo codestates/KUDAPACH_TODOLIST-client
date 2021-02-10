@@ -101,7 +101,6 @@ class MyTodo extends Component {
             onCreate={this.handleCreate}
           />
         </div>
-        <div></div>
       </div>
     );
   }

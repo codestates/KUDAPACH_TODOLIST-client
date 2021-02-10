@@ -90,6 +90,10 @@ header .setting {
     height: 40px;
 }
 
+.setting:hover {
+    fill : #24C774;
+}
+
 header .sign-group{
     display: inline-flex;
     align-items: center;
