@@ -51,6 +51,11 @@ header .main-menu li {
     font-weight: 500;
 }
 
+.user:hover,
+.setting:hover {
+    cursor: pointer;
+}
+
 ul{
     list-style: none;
     padding: 0px;

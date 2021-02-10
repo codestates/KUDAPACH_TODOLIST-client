@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React from 'react';
 import '../../css/ManageGroup.css';
 import ChangeGroup from './ChangeGroup';
@@ -16,20 +19,22 @@ class ManageGroup extends React.Component {
       isEmail2Change: false,
       isEmail3Change: false,
       isEmail4Change: false,
-      groupname: 'KUDAPACH Group',
-      newGroupname: 'KUDAPACH Group',
-      userEmail1: 'test1@gmail.com',
-      userNewEmail1: 'test1@gmail.com',
-      userEmail2: 'test2@gmail.com',
-      userNewEmail2: 'test2@gmail.com',
-      userEmail3: 'test3@gmail.com',
-      userNewEmail3: 'test3@gmail.com',
-      userEmail4: 'test4@gmail.com',
-      userNewEmail4: 'test4@gmail.com',
+      groupid: this.props.groupData.groups.groupid,
+      groupname: this.props.groupData.groupname,
+      newGroupname: this.props.groupData.groupname,
+      userEmail1: '',
+      userNewEmail1: '',
+      userEmail2: '',
+      userNewEmail2: '',
+      userEmail3: '',
+      userNewEmail3: '',
+      userEmail4: '',
+      userNewEmail4: '',
       user1check: true,
       user2check: true,
       user3check: true,
       user4check: true,
+      groupDelete: false,
     };
     this.handleGroupToggle = this.handleGroupToggle.bind(this);
     this.handleEmail1Toggle = this.handleEmail1Toggle.bind(this);
@@ -44,6 +49,58 @@ class ManageGroup extends React.Component {
     this.handleEmail4Delete = this.handleEmail4Delete.bind(this);
     this.handleGroupSave = this.handleGroupSave.bind(this);
     this.handleAddMail = this.handleAddMail.bind(this);
+    this.renderInfoToState = this.renderInfoToState.bind(this);
+  }
+
+  componentDidMount() {
+    // 처음에 그룹의 멤버 수 만큼 state에 mail 덧씌움
+    this.renderInfoToState();
+  }
+
+  renderInfoToState() {
+    const { groupData } = this.props;
+    if (groupData.emails.length === 4) {
+      this.setState({
+        userEmail1: groupData.emails[0].email,
+        userNewEmail1: groupData.emails[0].email,
+        userEmail2: groupData.emails[1].email,
+        userNewEmail2: groupData.emails[1].email,
+        userEmail3: groupData.emails[2].email,
+        userNewEmail3: groupData.emails[2].email,
+        userEmail4: groupData.emails[3].email,
+        userNewEmail4: groupData.emails[3].email,
+      });
+    }
+    if (groupData.emails.length === 3) {
+      this.setState({
+        userEmail1: groupData.emails[0].email,
+        userNewEmail1: groupData.emails[0].email,
+        userEmail2: groupData.emails[1].email,
+        userNewEmail2: groupData.emails[1].email,
+        userEmail3: groupData.emails[2].email,
+        userNewEmail3: groupData.emails[2].email,
+        user4check: false,
+      });
+    }
+    if (groupData.emails.length === 2) {
+      this.setState({
+        userEmail1: groupData.emails[0].email,
+        userNewEmail1: groupData.emails[0].email,
+        userEmail2: groupData.emails[1].email,
+        userNewEmail2: groupData.emails[1].email,
+        user3check: false,
+        user4check: false,
+      });
+    }
+    if (groupData.emails.length === 1) {
+      this.setState({
+        userEmail1: groupData.emails[0].email,
+        userNewEmail1: groupData.emails[0].email,
+        user2check: false,
+        user3check: false,
+        user4check: false,
+      });
+    }
   }
 
   handleChangeInput = (key) => (e) => {
@@ -79,6 +136,9 @@ class ManageGroup extends React.Component {
   handleGroupSave() {
     const { toggleGroupModal } = this.props;
     const {
+      groupDelete,
+      groupid,
+      groupname,
       userNewEmail1,
       userNewEmail2,
       userNewEmail3,
@@ -101,14 +161,54 @@ class ManageGroup extends React.Component {
         button: 'confirm',
       });
     } else {
-      swal({
-        title: 'Cool!',
-        text: 'All thing is saved',
-        icon: 'success',
-        button: 'confirm',
-      }).then(() => {
-        toggleGroupModal();
-      });
+      axios
+        .post('https://server.kudapach.com/groupsetting/edit', {
+            groupDelete: groupDelete,
+            groupid: groupid,
+            groupname: groupname,
+            emails: [
+            {
+              email: userNewEmail1,
+            },
+            {
+              email: userNewEmail2,
+            },
+            {
+              email: userNewEmail3,
+            },
+            {
+              email: userNewEmail4,
+            },
+          ]
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if(res.status === 200) {
+            swal({
+              title: 'Cool!',
+              text: 'All thing is saved',
+              icon: 'success',
+              button: 'confirm',
+            }).then(() => {
+              toggleGroupModal();
+            });
+          }
+        })
+        .catch(err => {
+          if(err.response.status === 409) {
+            swal({
+              title: 'Invalid email exists',
+              text: 'Please check emails',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        })
     }
   }
 

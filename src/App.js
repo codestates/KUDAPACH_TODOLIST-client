@@ -15,7 +15,41 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
-      TodoData: [
+      // groupinfo: null,
+      // 위가 진짜 데이터 아래는 통신 전 가짜데이터임!!!!!
+      groupinfo: {
+        data: {
+          id: 1,
+          email: 'hello@email.com',
+          username: 'sanghyuk',
+          mobile: '0100100101',
+          group: 3,
+        },
+        groups: [
+          {
+            groupid: 1,
+          },
+          {
+            groupid: 4,
+          },
+          {
+            groupid: 5,
+          },
+        ],
+        groupnames: [
+          {
+            groupname: 'java',
+          },
+          {
+            groupname: 'group1',
+          },
+          {
+            groupname: 'test',
+          },
+        ],
+      },
+      // 여기까지 가짜데이터임!!!!!
+      todoData: [
         {
           id: 1,
           text: 'learn Python',
@@ -33,27 +67,36 @@ class App extends React.Component {
       ],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
-  handleResponseSuccess() {
-    axios.get('https://server.kudapach.com/user/info').then((res) => {
-      this.setState({
-        isSignin: true,
-        userinfo: res.data, // 추후 이렇게 넘기는게 맞는지 확인필요
-      });
-      this.props.history.push('/');
-    });
-
+  handleResponseSuccess(signinData) {
     axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        TodoData: res.data,
+        todoData: res.data,
       });
+    });
+    
+    axios.get('https://server.kudapach.com/user/info').then((res) => {
+      this.setState({
+        isSignin: true,
+        userinfo: res.data, // id, email, username, mobile
+        groupinfo: signinData,
+      });
+      this.props.history.push('/');
     });
   }
 
+  handleSignOut() {
+    this.setState({ isSignin: false });
+    this.props.history.push('/');
+    // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
+    // 부모state관리이므로 이 함수를 내려보내 사용
+  }
+
   render() {
-    const { isSignin, userinfo, TodoData } = this.state;
+    const { isSignin, userinfo, groupinfo, todoData } = this.state;
 
     return (
       <div>
@@ -68,9 +111,24 @@ class App extends React.Component {
           <Route exact path="/signup" render={() => <Signup />} />
           <Route
             path="/mytodo"
-            render={() => <MyTodo userinfo={userinfo} TodoData={TodoData} />}
+            render={() => (
+              <MyTodo
+                userinfo={userinfo}
+                groupinfo={groupinfo}
+                handleSignOut={this.handleSignOut}
+                todoData={todoData}
+              />
+            )}
           />
-          <Route path="/mypage" render={() => <Mypage />} />
+          <Route
+            path="/mypage"
+            render={() => (
+              <Mypage
+                groupinfo={groupinfo}
+                handleSignOut={this.handleSignOut}
+              />
+            )}
+          />
           <Route
             path="/"
             render={() => {

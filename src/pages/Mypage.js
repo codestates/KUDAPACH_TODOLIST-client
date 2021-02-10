@@ -3,17 +3,17 @@ import SingleUserNav from './SingleUserNav';
 import '../css/Mypage.css';
 import { phoneNumValidation } from '../pages/ValidationFun';
 import swal from 'sweetalert';
+import axios from 'axios';
 // const saltedSha256 = require('salted-sha256');
 
 class Mypage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      email: 'test@test.com',
-      username: 'kudapach',
-      mobile: '01012345678',
-      prevPassword: '11111111',
+      id: this.props.groupinfo.data.id,
+      email: this.props.groupinfo.data.email,
+      username: this.props.groupinfo.data.username,
+      mobile: this.props.groupinfo.data.mobile,
       currentPassword: '',
       password: '',
       passwordConfirm: '',
@@ -32,7 +32,6 @@ class Mypage extends React.Component {
     const {
       username,
       mobile,
-      prevPassword,
       currentPassword,
       password,
       passwordConfirm,
@@ -42,7 +41,7 @@ class Mypage extends React.Component {
       username &&
       phoneNumValidation(mobile) &&
       password &&
-      currentPassword === prevPassword &&
+      currentPassword &&
       password === passwordConfirm
     ) {
       return true;
@@ -62,6 +61,7 @@ class Mypage extends React.Component {
   }
 
   handleSaveButton() {
+    const { id, username, mobile, currentPassword, password } = this.state;
     if (this.checkChangedInfo() === false) {
       swal({
         title: 'Some Information is wrong',
@@ -70,18 +70,83 @@ class Mypage extends React.Component {
         button: 'confirm',
       });
     }
-    if (this.checkChangedInfo() === true) {
-      // console.log(this.state);
-      swal({
-        title: 'Cool!',
-        text: 'Information is changed',
-        icon: 'success',
-        button: 'confirm',
-      });
+    if (this.checkChangedInfo() === true && !currentPassword) {
+      axios
+        .post(
+          'https://server.kudapach.com/user/info/edit',
+          {
+            id: id,
+            username: username,
+            mobile: mobile,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            swal({
+              title: 'Cool!',
+              text: 'Information is changed',
+              icon: 'success',
+              button: 'confirm',
+            });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 500) {
+            swal({
+              title: 'Some Information is wrong',
+              text: 'Please check your Information',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
+    } else if (this.checkChangedInfo() === true && currentPassword) {
+      axios
+        .post(
+          'https://server.kudapach.com/user/info/edit',
+          {
+            id: id,
+            username: username,
+            mobile: mobile,
+            currentPassword: currentPassword, // 현재비번 여기서 확인
+            password: password,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            swal({
+              title: 'Cool!',
+              text: 'Information is changed',
+              icon: 'success',
+              button: 'confirm',
+            });
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 500) {
+            swal({
+              title: 'Some Information is wrong',
+              text: 'Please check your Information',
+              icon: 'warning',
+              button: 'confirm',
+            });
+          }
+        });
     }
   }
 
   render() {
+    const { groupinfo, handleSignOut } = this.props;
     const {
       email,
       username,
@@ -94,7 +159,7 @@ class Mypage extends React.Component {
 
     return (
       <div>
-        <SingleUserNav />
+        <SingleUserNav groupinfo={groupinfo} handleSignOut={handleSignOut} />
         <div className="mainSide">
           <div className="mypageMainWrapper">
             <div className="userInfoWrapper">

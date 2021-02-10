@@ -4,8 +4,9 @@ import ModalSetting from './modals/ModalSetting';
 import ModalCalendar from 'react-calendar';
 import '../css/Calendar.css';
 import GroupSetting from './modals/GroupSetting';
+import ModalGroup from './modals/ModalGroup';
 
-function SingleUserNav() {
+function SingleUserNav({ groupinfo, handleSignOut }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
   const toggleModalSetting = () => {
@@ -51,6 +52,17 @@ function SingleUserNav() {
   };
   // GroupSetting 모달창에 대한 state hook과 function들 ---- 끝
 
+  // setting 모달창에 대한 state hook과 function들 ---- 시작
+  const [onGroup, setOnGroup] = useState(false);
+  const toggleOnGroup = () => {
+    if (onGroup === false) {
+      setOnGroup(true);
+    }
+    if (onGroup === true) {
+      setOnGroup(false);
+    }
+  };
+  // setting 모달창에 대한 state hook과 function들 ---- 끝
   return (
     <div className="body__container">
       {/*nev 부분입니다.*/}
@@ -61,7 +73,7 @@ function SingleUserNav() {
               <a href="#"> </a>
             </div>
             <ul className="main-menu">
-              <li>Welcome kudapach</li>
+              <li>Welcome {groupinfo.data.username}</li>
             </ul>
           </div>
 
@@ -73,7 +85,9 @@ function SingleUserNav() {
               >
                 Search Calendar
               </div>
-              <div className="user"> </div>
+              <div className="user" onClick={toggleOnGroup}>
+                {' '}
+              </div>
               <div className="setting" onClick={toggleModalSetting}>
                 {' '}
               </div>
@@ -83,15 +97,25 @@ function SingleUserNav() {
       </header>
       {settingModal === true ? (
         <ModalSetting
+          groupinfo={groupinfo}
           toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
+          handleSignOut={handleSignOut}
         />
       ) : (
         <div />
       )}
       {calendarModal === true ? <ModalCalendar /> : <div />}
       {groupModal === true ? (
-        <GroupSetting toggleGroupModal={toggleGroupModal} />
+        <GroupSetting
+          toggleGroupModal={toggleGroupModal}
+          groupinfo={groupinfo}
+        />
+      ) : (
+        <div />
+      )}
+      {onGroup === true ? (
+        <ModalGroup toggleOnGroup={toggleOnGroup} groupinfo={groupinfo} />
       ) : (
         <div />
       )}

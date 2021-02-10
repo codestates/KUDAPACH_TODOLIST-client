@@ -48,10 +48,15 @@ class MyTodo extends Component {
   };
 
   render() {
+    const { userinfo, groupinfo, handleSignOut } = this.props;
     const { cardData } = this.state;
     return (
       <div>
-        <SingleUserNav />
+        <SingleUserNav
+          userinfo={userinfo}
+          groupinfo={groupinfo}
+          handleSignOut={handleSignOut}
+        />
         <div className="Box_container main_Box">
           <TodoList
             data={cardData}
