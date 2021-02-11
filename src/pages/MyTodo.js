@@ -9,10 +9,6 @@ class MyTodo extends Component {
     this.state = {
       cardData: [...this.props.todoData],
     };
-
-    // this.handleCreate = this.handleCreate.bind(this);
-    // this.handleUpdate = this.handleUpdate.bind(this);
-    // this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleCreate = (data) => {

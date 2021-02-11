@@ -126,7 +126,7 @@ class Signin extends React.Component {
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <Link to="/Signin">
+            <Link to="/signin">
               <div className="logo" />
             </Link>
             <div className="comment">
@@ -164,9 +164,9 @@ class Signin extends React.Component {
                 CONNECT
               </button>
               <div className="connectText">
-                <a href="#" title="go to Guest Sign in">
+                <Link to="/guestTodo">
                   <span className="guestSignIn">Guest Sign in</span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="middleLine">

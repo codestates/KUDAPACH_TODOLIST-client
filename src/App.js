@@ -8,6 +8,7 @@ import MyTodo from './pages/MyTodo';
 import LoadingSignup from './pages/LoadingSignup';
 import axios from 'axios';
 import Mypage from './pages/Mypage';
+import GuestTodo from './pages/GuestTodo';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,53 +16,8 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
-      groupinfo: {
-        data: {
-          id: 1,
-          email: 'hello@email.com',
-          username: 'sanghyuk',
-          mobile: '0100100101',
-          group: 3,
-        },
-        groups: [
-          {
-            groupid: 1,
-          },
-          {
-            groupid: 4,
-          },
-          {
-            groupid: 5,
-          },
-        ],
-        groupnames: [
-          {
-            groupname: 'java',
-          },
-          {
-            groupname: 'group1',
-          },
-          {
-            groupname: 'test',
-          },
-        ],
-      },
-      todoData: [
-        {
-          id: 1,
-          text: 'learn Python',
-          color: '#646465',
-          createdAt: '2020.02.10',
-          updatedAt: '2020.03.10',
-        },
-        {
-          id: 2,
-          text: 'learn TypeScript',
-          color: '#808080',
-          createdAt: '2020.3.10',
-          updatedAt: '2020.03.10',
-        },
-      ],
+      groupinfo: null,
+      todoData: [],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
@@ -86,10 +42,10 @@ class App extends React.Component {
   }
 
   handleSignOut() {
-    this.setState({ isSignin: false });
-    this.props.history.push('/');
-    // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
-    // 부모state관리이므로 이 함수를 내려보내 사용
+    axios.post('https://server.kudapach.com/signout').then(() => {
+      this.setState({ isSignin: false });
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -104,6 +60,7 @@ class App extends React.Component {
               <Signin handleResponseSuccess={this.handleResponseSuccess} />
             )}
           />
+          <Route path="/guestTodo" render={() => <GuestTodo />} />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route
