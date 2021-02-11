@@ -15,53 +15,8 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
-      groupinfo: {
-        data: {
-          id: 1,
-          email: 'hello@email.com',
-          username: 'sanghyuk',
-          mobile: '0100100101',
-          group: 3,
-        },
-        groups: [
-          {
-            groupid: 1,
-          },
-          {
-            groupid: 4,
-          },
-          {
-            groupid: 5,
-          },
-        ],
-        groupnames: [
-          {
-            groupname: 'java',
-          },
-          {
-            groupname: 'group1',
-          },
-          {
-            groupname: 'test',
-          },
-        ],
-      },
-      todoData: [
-        {
-          id: 1,
-          text: 'learn Python',
-          color: '#646465',
-          createdAt: '2020.02.10',
-          updatedAt: '2020.03.10',
-        },
-        {
-          id: 2,
-          text: 'learn TypeScript',
-          color: '#808080',
-          createdAt: '2020.3.10',
-          updatedAt: '2020.03.10',
-        },
-      ],
+      groupinfo: null,
+      todoData: [],
     };
 
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
@@ -91,9 +46,6 @@ class App extends React.Component {
       this.setState({ isSignin: false });
       this.props.history.push('/');
     });
-
-    // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
-    // 부모state관리이므로 이 함수를 내려보내 사용
   }
 
   render() {
