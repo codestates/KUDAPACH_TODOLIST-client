@@ -8,7 +8,7 @@ import MyTodo from './pages/MyTodo';
 import LoadingSignup from './pages/LoadingSignup';
 import axios from 'axios';
 import Mypage from './pages/Mypage';
-import GuestTodo from './pages/GuestTodo';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -32,16 +32,15 @@ class App extends React.Component {
     });
 
     await axios
-      .get('https://server.kudapach.com/user/info')
-      .then((res) => {
-        this.setState({
-          isSignin: true,
-          userinfo: res.data.data, // !! id, email, username, mobile !!
-          groupinfo: signinData.data.data,
-        });
-        this.props.history.push('/');
-      })
-      .then((res) => console.log(res));
+        .get('https://server.kudapach.com/user/info')
+        .then((res) => {
+          this.setState({
+            isSignin: true,
+            userinfo: res.data.data, // !! id, email, username, mobile !!
+            groupinfo: signinData.data.data,
+          });
+          this.props.history.push('/');
+        })
   };
 
   handleSignOut() {
@@ -55,48 +54,47 @@ class App extends React.Component {
     const { isSignin, userinfo, groupinfo, todoData } = this.state;
 
     return (
-      <div>
-        <Switch>
-          <Route
-            path="/signin"
-            render={() => (
-              <Signin handleResponseSuccess={this.handleResponseSuccess} />
-            )}
-          />
-          <Route path="/guestTodo" render={() => <GuestTodo />} />
-          <Route path="/loadingSignup" render={() => <LoadingSignup />} />
-          <Route exact path="/signup" render={() => <Signup />} />
-          <Route
-            path="/mytodo"
-            render={() => (
-              <MyTodo
-                userinfo={userinfo}
-                groupinfo={groupinfo}
-                handleSignOut={this.handleSignOut}
-                todoData={todoData}
-              />
-            )}
-          />
-          <Route
-            path="/mypage"
-            render={() => (
-              <Mypage
-                groupinfo={groupinfo}
-                handleSignOut={this.handleSignOut}
-              />
-            )}
-          />
-          <Route
-            path="/"
-            render={() => {
-              if (isSignin) {
-                return <Redirect to="/mytodo" />;
-              }
-              return <Redirect to="/signin" />;
-            }}
-          />
-        </Switch>
-      </div>
+        <div>
+          <Switch>
+            <Route
+                path="/signin"
+                render={() => (
+                    <Signin handleResponseSuccess={this.handleResponseSuccess} />
+                )}
+            />
+            <Route path="/loadingSignup" render={() => <LoadingSignup />} />
+            <Route exact path="/signup" render={() => <Signup />} />
+            <Route
+                path="/mytodo"
+                render={() => (
+                    <MyTodo
+                        userinfo={userinfo}
+                        groupinfo={groupinfo}
+                        handleSignOut={this.handleSignOut}
+                        todoData={todoData}
+                    />
+                )}
+            />
+            <Route
+                path="/mypage"
+                render={() => (
+                    <Mypage
+                        groupinfo={groupinfo}
+                        handleSignOut={this.handleSignOut}
+                    />
+                )}
+            />
+            <Route
+                path="/"
+                render={() => {
+                  if (isSignin) {
+                    return <Redirect to="/mytodo" />;
+                  }
+                  return <Redirect to="/signin" />;
+                }}
+            />
+          </Switch>
+        </div>
     );
   }
 }
