@@ -3,7 +3,7 @@ import TodoList from './TodoList';
 import SingleUserNav from './SingleUserNav';
 import '../css/MyTodo.css';
 
-class MyTodo extends Component {
+class GuestTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,4 +70,4 @@ class MyTodo extends Component {
   }
 }
 
-export default MyTodo;
+export default GuestTodo;

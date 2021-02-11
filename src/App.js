@@ -8,6 +8,7 @@ import MyTodo from './pages/MyTodo';
 import LoadingSignup from './pages/LoadingSignup';
 import axios from 'axios';
 import Mypage from './pages/Mypage';
+import GuestTodo from './pages/GuestTodo';
 
 class App extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class App extends React.Component {
         todoData: res.data,
       });
     });
-    
+
     axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
@@ -107,6 +108,7 @@ class App extends React.Component {
               <Signin handleResponseSuccess={this.handleResponseSuccess} />
             )}
           />
+          <Route path="/guestTodo" render={() => <GuestTodo />} />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route

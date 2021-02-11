@@ -99,7 +99,7 @@ class Signup extends React.Component {
       <div className="allLoginPage">
         <div className="leftSide">
           <div className="leftMiddle">
-            <Link to="/Signin">
+            <Link to="/signin">
               <div className="logo" />
             </Link>
             <div className="comment">
