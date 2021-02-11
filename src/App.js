@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
@@ -26,15 +27,16 @@ class App extends React.Component {
     axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data, // !!
+        todoData: res.data.data, // !!
       });
     });
 
     axios.get('https://server.kudapach.com/user/info').then((res) => {
+      console.log(res);
       this.setState({
         isSignin: true,
-        userinfo: res.data, // !! id, email, username, mobile !!
-        groupinfo: signinData.data,
+        userinfo: res.data.data, // !! id, email, username, mobile !!
+        groupinfo: signinData.data.data,
       });
       this.props.history.push('/');
     });
