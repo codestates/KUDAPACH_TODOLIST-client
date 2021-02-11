@@ -3,60 +3,62 @@ import React, { Component } from 'react';
 import TodoList from './TodoList';
 import SingleUserNav from './SingleUserNav';
 import '../css/MyTodo.css';
+import axios from 'axios';
 
 class MyTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardData: [...this.props.todoData],
+      cardData: this.props.todoData,
     };
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleColorUpdate = this.handleColorUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
-  handleCreate = (data) => {
-    const { cardData } = this.state;
-    this.setState({
-      cardData: cardData.concat({
-        id: cardData.length+1,
-        updatedAt: new Date().toISOString().substring(0, 10),
-        ...data,
-      }),
-    })
-  }
-
-  handleColorUpdate = (id, data) => {
-    const temp = [...this.state.cardData];
-    const idx = temp.findIndex((v) => v.id === id);
-
-    temp[idx].color = data;
-
-    this.setState({
-      cardData: temp,
+  handleCreate = async (color) => {
+    axios.defaults.withCredentials = true;
+    await axios.post('https://server.kudapach.com/todo/create', {
+      color,
     });
+    await axios
+      .get('https://server.kudapach.com/todo')
+      .then((res) => this.props.handleTodoCards(res.data.data));
   };
 
-  handleUpdate = (id, data) => {
-    const { cardData } = this.state;
-    this.setState({
-      cardData: cardData.map((todocard) => {
-        if (todocard.id === id) {
-          return {
-            id,
-            color: todocard.color,
-            updatedAt: todocard.updatedAt,
-            ...data,
-          };
-        }
-        return todocard;
-      }),
+  handleColorUpdate = async (id, text, color) => {
+    await axios.post('https://server.kudapach.com/todo/edit', {
+      id,
+      trash: false,
+      text,
+      color,
     });
+    await axios
+      .get('https://server.kudapach.com/todo')
+      .then((res) => this.props.handleTodoCards(res.data.data));
   };
 
-  handleRemove = (id) => {
-    const { cardData } = this.state;
+  handleUpdate = async (id, text, color) => {
+    await axios.post('https://server.kudapach.com/todo/edit', {
+      id,
+      trash: false,
+      text,
+      color,
+    });
+    await axios
+      .get('https://server.kudapach.com/todo')
+      .then((res) => this.props.handleTodoCards(res.data.data));
+  };
 
-    this.setState({
-      cardData: cardData.filter((data) => data.id !== id),
-    },()=>console.log(id));
+  handleRemove = async (id) => {
+    await axios.post('https://server.kudapach.com/todo/edit', {
+      id,
+      trash: true,
+    });
+    await axios
+      .get('https://server.kudapach.com/todo')
+      .then((res) => this.props.handleTodoCards(res.data.data));
   };
 
   render() {
@@ -68,6 +70,7 @@ class MyTodo extends Component {
           userinfo={userinfo}
           groupinfo={groupinfo}
           handleSignOut={handleSignOut}
+          handleTodoCards={this.props.handleTodoCards}
         />
         <div className="Box_container main_Box">
           <TodoList

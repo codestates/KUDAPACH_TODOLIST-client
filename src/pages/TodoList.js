@@ -4,6 +4,10 @@ import '../css/MyTodo.css';
 import CreateTodo from './CreateTodo';
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     const { data, onUpdate, onRemove, onCreate, onColorChange } = this.props;
     return (

@@ -3,34 +3,29 @@ import '../css/CreateTodo.css';
 import GroupSvg from '../asset/img/MyTodo/GroupSvg';
 
 class CreateTodo extends Component {
-  state = {
-    text: '',
-    colors: ['#c2667b', '#83a2fd', '#6278e1', '#4d50a4'],
-    color: '',
-  };
+  constructor(props) {
+    super(props);
 
-  // handleChange = (e) => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+    this.state = {
+      text: '',
+      colors: ['#c2667b', '#83a2fd', '#6278e1', '#4d50a4'],
+      color: '',
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     // ? 새로운 카드 생성하는 메소드
     const index = Math.round(Math.random() * 3);
-    e.preventDefault();
     this.setState(
       {
-        text: '',
         color: this.state.colors[index],
-        updatedAt: new Date().toISOString().substring(0, 10),
       },
-      () => this.props.onCreate(this.state),
+      () => this.props.onCreate(this.state.color),
     );
   };
 
   render() {
-    // const { text } = this.state;
     return (
       <>
         <div className="CreateButton" onClick={this.handleSubmit}>

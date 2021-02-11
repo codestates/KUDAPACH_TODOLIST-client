@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 function GuestSingleUserNav() {
   return (
     <div className="body__container">
-      {/*nev 부분입니다.*/}
       <header className="section">
         <div className="inner clearfix">
           <div className="menu-group float--left">
-            <div className="MyTodologo">
-              <Link to="/Signup"> </Link>
-            </div>
+            <Link to="/Signup">
+              <div className="MyTodologo" />
+            </Link>
             <ul className="main-menu">
               <li>Welcome Guest</li>
             </ul>

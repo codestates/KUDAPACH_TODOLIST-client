@@ -10,10 +10,12 @@ class ToDoInfo extends Component {
     this.state = {
       toggle: false,
       text: '',
-      color: this.props.data.color
+      color: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleToggleChange = this.handleToggleChange.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
-
 
   handleChange = (e) => {
     this.setState({
@@ -23,14 +25,14 @@ class ToDoInfo extends Component {
 
   handleToggleChange = () => {
     const { toggle, text } = this.state;
-    const { data, onUpdate } = this.props;
+    const { data, onUpdate, color } = this.props;
     if (!toggle) {
       this.setState({
         text: data.text,
         toggle: true,
       });
     } else {
-      onUpdate(data.id, { text: text });
+      onUpdate(data.id, text, color);
       this.setState({
         toggle: false,
       });
@@ -42,24 +44,15 @@ class ToDoInfo extends Component {
     onRemove(data.id);
   };
 
-  // handleColorBox = (color) => {
-  //   this.setState({
-  //     color
-  //   })
-  // }
-
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
 
-
     return (
       <div>
         <div
-            className='todoboxBlock'
-          style={
-            { backgroundColor: this.props.data.color }
-          }
+          className="todoboxBlock"
+          style={{ backgroundColor: this.props.data.color }}
         >
           {toggle ? (
             <textarea
@@ -76,17 +69,16 @@ class ToDoInfo extends Component {
               <div className="date">{data.updatedAt}</div>
             </div>
           )}
-          <div
-              className='remove'
-              onClick={this.handleRemove}>
+          <div className="remove" onClick={this.handleRemove}>
             <MdDelete />
           </div>
-          <div
-              className='edit'
-              onClick={this.handleToggleChange}>
+          <div className="edit" onClick={this.handleToggleChange}>
             {toggle ? <MdEdit /> : <MdEdit />}
           </div>
-          <ToDoColorChange data={data} handleColorBox={this.props.onColorChange}/>
+          <ToDoColorChange
+            data={data}
+            handleColorBox={this.props.onColorChange}
+          />
         </div>
       </div>
     );
