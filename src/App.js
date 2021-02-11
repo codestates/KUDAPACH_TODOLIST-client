@@ -63,7 +63,6 @@ class App extends React.Component {
         },
       ],
     };
-
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -87,11 +86,8 @@ class App extends React.Component {
   }
 
   handleSignOut() {
-    axios.post('https://server.kudapach.com/signout').then(() => {
-      this.setState({ isSignin: false });
-      this.props.history.push('/');
-    });
-
+    this.setState({ isSignin: false });
+    this.props.history.push('/');
     // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
     // 부모state관리이므로 이 함수를 내려보내 사용
   }
