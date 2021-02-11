@@ -22,6 +22,17 @@ class MyTodo extends Component {
     });
   };
 
+  handleColorUpdate = (id, data) => {
+    const temp = [...this.state.cardData];
+    const idx = temp.findIndex((v) => v.id === id);
+
+    temp[idx].color = data;
+
+    this.setState({
+      cardData: temp,
+    });
+  };
+
   handleUpdate = (id, data) => {
     const { cardData } = this.state;
     this.setState({
@@ -63,6 +74,7 @@ class MyTodo extends Component {
             onUpdate={this.handleUpdate}
             onRemove={this.handleRemove}
             onCreate={this.handleCreate}
+            onColorChange={this.handleColorUpdate}
           />
         </div>
       </div>
