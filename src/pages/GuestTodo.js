@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import TodoList from './TodoList';
 import GuestSingleUserNav from './GuestSingleUserNav';
@@ -39,6 +40,7 @@ class GuestTodo extends Component {
         },
       ],
     };
+    this.handleCreate = this.handleCreate.bind(this)
   }
 
   handleCreate = (data) => {
@@ -47,13 +49,29 @@ class GuestTodo extends Component {
       cardData: cardData.concat({
         id: cardData.length + 1,
         updatedAt: new Date().toISOString().substring(0, 10),
-        ...data,
-      }),
-    });
+        text:data.text,
+        color:data.color
+      })
+    })
   };
+
+  handleColorUpdate = (id, data) => {
+
+    const temp = [...this.state.cardData];
+    const idx = temp.findIndex(v=>v.id === id);
+
+    temp[idx].color = data;
+
+    this.setState({
+      cardData: temp,
+    })
+
+  }
 
   handleUpdate = (id, data) => {
     const { cardData } = this.state;
+
+    console.log(id,data);
     this.setState({
       cardData: cardData.map((cardData) => {
         if (cardData.id === id) {
@@ -75,6 +93,7 @@ class GuestTodo extends Component {
     this.setState({
       cardData: cardData.filter((data) => data.id !== id),
     });
+
   };
 
   render() {
@@ -93,6 +112,7 @@ class GuestTodo extends Component {
             onUpdate={this.handleUpdate}
             onRemove={this.handleRemove}
             onCreate={this.handleCreate}
+            onColorChange={this.handleColorUpdate}
           />
         </div>
       </div>

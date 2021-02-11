@@ -17,7 +17,7 @@ class ToDoColorChange extends Component {
       {
         color: color.hex,
       },
-      () => this.props.handleColorBox(this.state.color),
+      () => this.props.handleColorBox(this.props.data.id, this.state.color),
     );
   };
 
