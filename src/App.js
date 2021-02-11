@@ -29,21 +29,18 @@ class App extends React.Component {
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data.data, // !!
+        todoData: res.data, // !!
       });
     });
 
-    await axios
-      .get('https://server.kudapach.com/user/info')
-      .then((res) => {
-        this.setState({
-          isSignin: true,
-          userinfo: res.data.data, // !! id, email, username, mobile !!
-          groupinfo: signinData.data.data,
-        });
-        this.props.history.push('/');
-      })
-      .then((res) => console.log(res));
+    await axios.get('https://server.kudapach.com/user/info').then((res) => {
+      this.setState({
+        isSignin: true,
+        userinfo: res.data, // !! id, email, username, mobile !!
+        groupinfo: signinData.data,
+      });
+      this.props.history.push('/');
+    });
   };
 
   handleSignOut() {
