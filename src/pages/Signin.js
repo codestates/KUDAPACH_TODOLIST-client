@@ -1,6 +1,4 @@
 /*eslint-disable*/
-
-
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
@@ -8,8 +6,6 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import GoogleLogin from 'react-google-login';
 import KaKaoLogin from 'react-kakao-login';
-
-
 class Signin extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +18,6 @@ class Signin extends React.Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.onFailure = this.onFailure.bind(this);
   }
-
   // input value를 가져오는 함수
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
@@ -69,7 +64,6 @@ class Signin extends React.Component {
         });
     }
   };
-
   onSuccess = (res) => {
     if (res.profileObj) {
       // ? GOOGLE_OAUTH
@@ -109,7 +103,6 @@ class Signin extends React.Component {
         });
     }
   };
-
   onFailure = (res) => {
     console.log('[Login failed] res:', res);
     swal({
@@ -119,7 +112,6 @@ class Signin extends React.Component {
       button: 'confirm',
     });
   };
-
   render() {
     return (
       <div className="allLoginPage">
@@ -197,5 +189,4 @@ class Signin extends React.Component {
     );
   }
 }
-
 export default withRouter(Signin);

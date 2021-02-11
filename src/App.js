@@ -9,12 +9,11 @@ import LoadingSignup from './pages/LoadingSignup';
 import axios from 'axios';
 import Mypage from './pages/Mypage';
 import GuestTodo from './pages/GuestTodo';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSignin: true,
+      isSignin: false,
       userinfo: null,
       groupinfo: null,
       todoData: [],
@@ -22,7 +21,6 @@ class App extends React.Component {
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
-
   handleResponseSuccess = async (signinData) => {
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
@@ -30,7 +28,6 @@ class App extends React.Component {
         todoData: res.data.data, // !!
       });
     });
-
     await axios
       .get('https://server.kudapach.com/user/info')
       .then((res) => {
@@ -43,17 +40,14 @@ class App extends React.Component {
       })
       .then((res) => console.log(res));
   };
-
   handleSignOut() {
     axios.post('https://server.kudapach.com/signout').then(() => {
       this.setState({ isSignin: false });
       this.props.history.push('/');
     });
   }
-
   render() {
     const { isSignin, userinfo, groupinfo, todoData } = this.state;
-
     return (
       <div>
         <Switch>
@@ -100,5 +94,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default withRouter(App);
