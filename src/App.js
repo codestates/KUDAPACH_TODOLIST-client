@@ -35,7 +35,7 @@ class App extends React.Component {
       this.setState({
         isSignin: true,
         userinfo: res.data, // !! id, email, username, mobile !!
-        groupinfo: signinData,
+        groupinfo: signinData.data,
       });
       this.props.history.push('/');
     });
