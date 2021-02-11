@@ -60,7 +60,6 @@ class GuestTodo extends Component {
     const temp = [...this.state.cardData];
     const idx = temp.findIndex(v=>v.id === id);
 
-    console.log(idx, id);
     temp[idx].color = data;
 
     this.setState({

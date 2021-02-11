@@ -42,17 +42,16 @@ class ToDoInfo extends Component {
     onRemove(data.id);
   };
 
-  handleColorBox = (color) => {
-    this.setState({
-      color
-    })
-  }
+  // handleColorBox = (color) => {
+  //   this.setState({
+  //     color
+  //   })
+  // }
 
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
 
-    console.log('data '+ data.color, 'state ' + this.state.color);
 
     return (
       <div>
