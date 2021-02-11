@@ -129,6 +129,10 @@
   opacity: 1;
 }
 
+guestSignIn:hover {
+  cursor: pointer;
+}
+
 .connectBtn:hover {
   opacity: 0.8;
 }
@@ -189,6 +193,10 @@
   background-image: url('../asset/img/MyTodo/kakologo.svg');
   transition: 0.3s;
   box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+}
+
+.guestSignIn:hover {
+  cursor: pointer;
 }
 
 .kakaoBtn:hover {
