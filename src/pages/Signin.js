@@ -9,7 +9,6 @@ import axios from 'axios';
 import GoogleLogin from 'react-google-login';
 import KaKaoLogin from 'react-kakao-login';
 
-axios.defaults.withCredentials = true;
 
 class Signin extends React.Component {
   constructor(props) {
