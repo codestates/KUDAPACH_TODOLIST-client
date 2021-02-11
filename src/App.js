@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
-
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import MyTodo from './pages/MyTodo';
