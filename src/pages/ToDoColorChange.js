@@ -10,6 +10,8 @@ class ToDoColorChange extends Component {
       toggle: false,
       color: '',
     };
+    this.handleChangeComplete = this.handleChangeComplete.bind(this);
+    this.handleColorToggleChange = this.handleColorToggleChange.bind(this);
   }
 
   handleChangeComplete = (color) => {
@@ -17,7 +19,12 @@ class ToDoColorChange extends Component {
       {
         color: color.hex,
       },
-      () => this.props.handleColorBox(this.props.data.id, this.state.color),
+      () =>
+        this.props.handleColorBox(
+          this.props.data.id,
+          this.props.text,
+          this.state.color,
+        ),
     );
   };
 

@@ -15,70 +15,26 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
-      groupinfo: {
-        data: {
-          id: 1,
-          email: 'hello@email.com',
-          username: 'sanghyuk',
-          mobile: '0100100101',
-          group: 3,
-        },
-        groups: [
-          {
-            groupid: 1,
-          },
-          {
-            groupid: 4,
-          },
-          {
-            groupid: 5,
-          },
-        ],
-        groupnames: [
-          {
-            groupname: 'java',
-          },
-          {
-            groupname: 'group1',
-          },
-          {
-            groupname: 'test',
-          },
-        ],
-      },
-      todoData: [
-        {
-          id: 1,
-          text: 'learn Python',
-          color: '#646465',
-          createdAt: '2020.02.10',
-          updatedAt: '2020.03.10',
-        },
-        {
-          id: 2,
-          text: 'learn TypeScript',
-          color: '#808080',
-          createdAt: '2020.3.10',
-          updatedAt: '2020.03.10',
-        },
-      ]
+      groupinfo: null,
+      todoData: [],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleTodoCards = this.handleTodoCards.bind(this);
   }
   handleResponseSuccess = async (signinData) => {
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data,
+        todoData: res.data.data,
       });
     });
 
     await axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data,
-        groupinfo: signinData.data,
+        userinfo: res.data.data,
+        groupinfo: signinData,
       });
       this.props.history.push('/');
     });
@@ -87,6 +43,11 @@ class App extends React.Component {
     axios.post('https://server.kudapach.com/signout').then(() => {
       this.setState({ isSignin: false });
       this.props.history.push('/');
+    });
+  }
+  handleTodoCards(data) {
+    this.setState({
+      todoData: data,
     });
   }
   render() {
@@ -111,6 +72,7 @@ class App extends React.Component {
                 groupinfo={groupinfo}
                 handleSignOut={this.handleSignOut}
                 todoData={todoData}
+                handleTodoCards={this.handleTodoCards}
               />
             )}
           />

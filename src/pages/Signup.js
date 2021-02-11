@@ -70,7 +70,6 @@ class Signup extends React.Component {
         })
         .catch((err) => {
           if (err.response.status === 409) {
-            // inputBox의 border를 빨갛게
             let emailInput = document.querySelector('#emailInput');
             emailInput.classList.add('tryAgain');
 

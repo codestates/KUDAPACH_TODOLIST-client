@@ -46,7 +46,7 @@ class Signin extends React.Component {
           },
         )
         .then((res) => {
-          this.props.handleResponseSuccess(res);
+          this.props.handleResponseSuccess(res.data);
         })
         .catch((err) => {
           if (err.response.status === 401) {
@@ -81,7 +81,7 @@ class Signin extends React.Component {
           },
         )
         .then((res) => {
-          this.props.handleResponseSuccess(res);
+          this.props.handleResponseSuccess(res.data);
         });
     } else {
       // ? KAKAO_OAUTH
@@ -99,12 +99,11 @@ class Signin extends React.Component {
           },
         )
         .then((res) => {
-          this.props.handleResponseSuccess(res);
+          this.props.handleResponseSuccess(res.data);
         });
     }
   };
   onFailure = (res) => {
-    console.log('[Login failed] res:', res);
     swal({
       title: 'Unauthorized',
       text: 'Please check your email or password',

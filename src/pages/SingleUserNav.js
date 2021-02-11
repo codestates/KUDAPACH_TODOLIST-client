@@ -6,8 +6,10 @@ import ModalCalendar from 'react-calendar';
 import '../css/Calendar.css';
 import GroupSetting from './modals/GroupSetting';
 import ModalGroup from './modals/ModalGroup';
+import moment from 'moment';
+import axios from 'axios';
 
-function SingleUserNav({ groupinfo, handleSignOut }) {
+function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
   const toggleModalSetting = () => {
@@ -64,6 +66,16 @@ function SingleUserNav({ groupinfo, handleSignOut }) {
     }
   };
   // setting 모달창에 대한 state hook과 function들 ---- 끝
+
+  const onDateChange = (date) => {
+    let d = moment(date).format('YYYY-MM-DD');
+    axios
+      .post('https://server.kudapach.com/todo/calendar', {
+        date: d,
+      })
+      .then((res) => handleTodoCards(res.data.data));
+  };
+
   return (
     <div className="body__container">
       {/*nev 부분입니다.*/}
@@ -74,7 +86,7 @@ function SingleUserNav({ groupinfo, handleSignOut }) {
               <div className="MyTodologo" />
             </Link>
             <ul className="main-menu">
-              {/*<li>Welcome {groupinfo.data.username}</li>*/}
+              <li>Welcome {groupinfo.data.username}</li>
             </ul>
           </div>
 
@@ -106,7 +118,11 @@ function SingleUserNav({ groupinfo, handleSignOut }) {
       ) : (
         <div />
       )}
-      {calendarModal === true ? <ModalCalendar /> : <div />}
+      {calendarModal === true ? (
+        <ModalCalendar onChange={onDateChange} />
+      ) : (
+        <div />
+      )}
       {groupModal === true ? (
         <GroupSetting
           toggleGroupModal={toggleGroupModal}
