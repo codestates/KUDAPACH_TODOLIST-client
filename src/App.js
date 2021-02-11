@@ -17,10 +17,12 @@ class App extends React.Component {
       isSignin: false,
       userinfo: null,
       groupinfo: null,
+      isGuest: false,
       todoData: [],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleGuestIn = this.handleGuestIn.bind(this);
   }
 
   handleResponseSuccess(signinData) {
@@ -49,8 +51,13 @@ class App extends React.Component {
     });
   }
 
+  handleGuestIn() {
+    this.setState({ isGuest: true });
+    this.props.history.push('/');
+  }
+
   render() {
-    const { isSignin, userinfo, groupinfo, todoData } = this.state;
+    const { isSignin, userinfo, groupinfo, todoData, isGuest } = this.state;
 
     return (
       <div>
@@ -58,12 +65,21 @@ class App extends React.Component {
           <Route
             path="/signin"
             render={() => (
-              <Signin handleResponseSuccess={this.handleResponseSuccess} />
+              <Signin handleResponseSuccess={this.handleResponseSuccess} handleGuestIn={this.handleGuestIn}/>
             )}
           />
           <Route path="/guestTodo" render={() => <GuestTodo />} />
           <Route path="/loadingSignup" render={() => <LoadingSignup />} />
           <Route exact path="/signup" render={() => <Signup />} />
+          <Route path="/guestTodo" render={() => <GuestTodo />} />
+          <Route
+            path="/"
+            render={() => {
+              if (isGuest) {
+                return <Redirect to="/guestTodo" />;
+              }
+            }}
+          />
           <Route
             path="/mytodo"
             render={() => (
