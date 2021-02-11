@@ -16,13 +16,7 @@ class MyTodo extends Component {
     const { cardData } = this.state;
     this.setState({
       cardData: cardData.concat({
-        id: function(cardData){
-          for(let i = 0; i<cardData; i++){
-            if(cardData[i].id === cardData.length){
-              return cardData[i].id+1
-            }
-          }
-        },
+        id: cardData.length+1,
         updatedAt: new Date().toISOString().substring(0, 10),
         ...data,
       }),
