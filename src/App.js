@@ -24,6 +24,8 @@ class App extends React.Component {
   }
 
   handleResponseSuccess = async (signinData) => {
+    axios.defaults.withCredentials = true;
+
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
