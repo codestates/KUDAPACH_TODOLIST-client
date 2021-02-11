@@ -24,19 +24,17 @@ class App extends React.Component {
   }
 
   handleResponseSuccess = async (signinData) => {
-    axios.defaults.withCredentials = true;
-
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data, // !!
+        todoData: res.data,
       });
     });
 
     await axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data, // !! id, email, username, mobile !!
+        userinfo: res.data,
         groupinfo: signinData.data,
       });
       this.props.history.push('/');

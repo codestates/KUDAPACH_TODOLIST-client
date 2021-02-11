@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/SingleUserNav.css';
 import ModalSetting from './modals/ModalSetting';
 import ModalCalendar from 'react-calendar';
@@ -69,11 +70,11 @@ function SingleUserNav({ groupinfo, handleSignOut }) {
       <header className="section">
         <div className="inner clearfix">
           <div className="menu-group float--left">
-            <div className="MyTodologo">
-              <a href="#"> </a>
-            </div>
+            <Link to="/mytodo">
+              <div className="MyTodologo" />
+            </Link>
             <ul className="main-menu">
-              <li>Welcome {groupinfo.data.username}</li>
+              {/*<li>Welcome {groupinfo.data.username}</li>*/}
             </ul>
           </div>
 

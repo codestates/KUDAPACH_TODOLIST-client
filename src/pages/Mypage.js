@@ -4,7 +4,6 @@ import '../css/Mypage.css';
 import { phoneNumValidation } from '../pages/ValidationFun';
 import swal from 'sweetalert';
 import axios from 'axios';
-// const saltedSha256 = require('salted-sha256');
 
 class Mypage extends React.Component {
   constructor(props) {
