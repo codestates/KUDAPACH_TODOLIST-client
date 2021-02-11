@@ -160,7 +160,9 @@ class Signin extends React.Component {
                   CONNECT
                 </button>
                 <div className="connectText">
+                  <Link to="/guestTodo">
                     <span className="guestSignIn">Guest Sign in</span>
+                  </Link>
                 </div>
               </div>
               <div className="middleLine">
