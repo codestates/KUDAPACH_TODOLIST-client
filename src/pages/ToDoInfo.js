@@ -5,11 +5,15 @@ import '../css/TodoInfo.css';
 import ToDoColorChange from './ToDoColorChange';
 
 class ToDoInfo extends Component {
-  state = {
-    toggle: false,
-    text: '',
-    color: this.props.data.color
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: false,
+      text: '',
+      color: this.props.data.color
+    };
+  }
+
 
   handleChange = (e) => {
     this.setState({
@@ -38,21 +42,23 @@ class ToDoInfo extends Component {
     onRemove(data.id);
   };
 
-  handleColorBox = (color) => {
-    this.setState({
-      color
-    })
-  }
+  // handleColorBox = (color) => {
+  //   this.setState({
+  //     color
+  //   })
+  // }
 
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
+
+
     return (
       <div>
         <div
             className='todoboxBlock'
           style={
-            { backgroundColor: this.state.color }
+            { backgroundColor: this.props.data.color }
           }
         >
           {toggle ? (
@@ -80,7 +86,7 @@ class ToDoInfo extends Component {
               onClick={this.handleToggleChange}>
             {toggle ? <MdEdit /> : <MdEdit />}
           </div>
-          <ToDoColorChange data={data} handleColorBox={this.handleColorBox}/>
+          <ToDoColorChange data={data} handleColorBox={this.props.onColorChange}/>
         </div>
       </div>
     );

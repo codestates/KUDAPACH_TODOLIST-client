@@ -5,7 +5,7 @@ import CreateTodo from './CreateTodo';
 
 class TodoList extends Component {
   render() {
-    const { data, onUpdate, onRemove, onCreate } = this.props;
+    const { data, onUpdate, onRemove, onCreate, onColorChange } = this.props;
     return (
       <div className="list_Box">
         <CreateTodo onCreate={onCreate} />
@@ -17,6 +17,7 @@ class TodoList extends Component {
               key={i}
               onRemove={onRemove}
               onUpdate={onUpdate}
+              onColorChange={onColorChange}
             />
           ))
           .reverse()}
