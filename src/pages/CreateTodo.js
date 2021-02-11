@@ -8,13 +8,15 @@ class CreateTodo extends Component {
     colors: ['#c2667b', '#83a2fd', '#6278e1', '#4d50a4'],
     color: '',
   };
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+
+  // handleChange = (e) => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   handleSubmit = (e) => {
+    // ? 새로운 카드 생성하는 메소드
     const index = Math.round(Math.random() * 3);
     e.preventDefault();
     this.setState(
@@ -26,6 +28,7 @@ class CreateTodo extends Component {
       () => this.props.onCreate(this.state),
     );
   };
+
   render() {
     // const { text } = this.state;
     return (

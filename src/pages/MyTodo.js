@@ -7,8 +7,12 @@ class MyTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardData: [...this.props.TodoData],
+      cardData: [...this.props.todoData],
     };
+
+    // this.handleCreate = this.handleCreate.bind(this);
+    // this.handleUpdate = this.handleUpdate.bind(this);
+    // this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleCreate = (data) => {
@@ -25,16 +29,16 @@ class MyTodo extends Component {
   handleUpdate = (id, data) => {
     const { cardData } = this.state;
     this.setState({
-      cardData: cardData.map((cardData) => {
-        if (cardData.id === id) {
+      cardData: cardData.map((todocard) => {
+        if (todocard.id === id) {
           return {
             id,
-            color: cardData.color,
-            updatedAt: cardData.updatedAt,
+            color: todocard.color,
+            updatedAt: todocard.updatedAt,
             ...data,
           };
         }
-        return cardData;
+        return todocard;
       }),
     });
   };

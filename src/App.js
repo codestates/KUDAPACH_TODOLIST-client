@@ -15,8 +15,6 @@ class App extends React.Component {
     this.state = {
       isSignin: false,
       userinfo: null,
-      // groupinfo: null,
-      // 위가 진짜 데이터 아래는 통신 전 가짜데이터임!!!!!
       groupinfo: {
         data: {
           id: 1,
@@ -48,7 +46,6 @@ class App extends React.Component {
           },
         ],
       },
-      // 여기까지 가짜데이터임!!!!!
       todoData: [
         {
           id: 1,
@@ -66,6 +63,7 @@ class App extends React.Component {
         },
       ],
     };
+
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -74,14 +72,14 @@ class App extends React.Component {
     axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data,
+        todoData: res.data, // !!
       });
     });
 
     axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data, // id, email, username, mobile
+        userinfo: res.data, // !! id, email, username, mobile !!
         groupinfo: signinData,
       });
       this.props.history.push('/');
@@ -89,8 +87,11 @@ class App extends React.Component {
   }
 
   handleSignOut() {
-    this.setState({ isSignin: false });
-    this.props.history.push('/');
+    axios.post('https://server.kudapach.com/signout').then(() => {
+      this.setState({ isSignin: false });
+      this.props.history.push('/');
+    });
+
     // 토근 및 세션 등 인증된 부분 삭제기능 들어가야 함
     // 부모state관리이므로 이 함수를 내려보내 사용
   }
