@@ -36,7 +36,7 @@ header .MyTodologo{
     margin-right: 16px;
 }
 
-header .MyTodologo a{
+header .MyTodologo{
     background: url("../asset/img/MyTodo/project_logo.svg");
     width: 40px;
     height: 40px;

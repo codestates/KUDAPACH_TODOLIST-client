@@ -24,19 +24,17 @@ class App extends React.Component {
   }
 
   handleResponseSuccess = async (signinData) => {
-    axios.defaults.withCredentials = true;
-
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
         ...this.state,
-        todoData: res.data, // !!
+        todoData: res.data,
       });
     });
 
     await axios.get('https://server.kudapach.com/user/info').then((res) => {
       this.setState({
         isSignin: true,
-        userinfo: res.data, // !! id, email, username, mobile !!
+        userinfo: res.data,
         groupinfo: signinData.data,
       });
       this.props.history.push('/');
@@ -54,48 +52,48 @@ class App extends React.Component {
     const { isSignin, userinfo, groupinfo, todoData } = this.state;
 
     return (
-      <div>
-        <Switch>
-          <Route
-            path="/signin"
-            render={() => (
-              <Signin handleResponseSuccess={this.handleResponseSuccess} />
-            )}
-          />
-          <Route path="/guestTodo" render={() => <GuestTodo />} />
-          <Route path="/loadingSignup" render={() => <LoadingSignup />} />
-          <Route exact path="/signup" render={() => <Signup />} />
-          <Route
-            path="/mytodo"
-            render={() => (
-              <MyTodo
-                userinfo={userinfo}
-                groupinfo={groupinfo}
-                handleSignOut={this.handleSignOut}
-                todoData={todoData}
-              />
-            )}
-          />
-          <Route
-            path="/mypage"
-            render={() => (
-              <Mypage
-                groupinfo={groupinfo}
-                handleSignOut={this.handleSignOut}
-              />
-            )}
-          />
-          <Route
-            path="/"
-            render={() => {
-              if (isSignin) {
-                return <Redirect to="/mytodo" />;
-              }
-              return <Redirect to="/signin" />;
-            }}
-          />
-        </Switch>
-      </div>
+        <div>
+          <Switch>
+            <Route
+                path="/signin"
+                render={() => (
+                    <Signin handleResponseSuccess={this.handleResponseSuccess} />
+                )}
+            />
+            <Route path="/guestTodo" render={() => <GuestTodo />} />
+            <Route path="/loadingSignup" render={() => <LoadingSignup />} />
+            <Route exact path="/signup" render={() => <Signup />} />
+            <Route
+                path="/mytodo"
+                render={() => (
+                    <MyTodo
+                        userinfo={userinfo}
+                        groupinfo={groupinfo}
+                        handleSignOut={this.handleSignOut}
+                        todoData={todoData}
+                    />
+                )}
+            />
+            <Route
+                path="/mypage"
+                render={() => (
+                    <Mypage
+                        groupinfo={groupinfo}
+                        handleSignOut={this.handleSignOut}
+                    />
+                )}
+            />
+            <Route
+                path="/"
+                render={() => {
+                  if (isSignin) {
+                    return <Redirect to="/mytodo" />;
+                  }
+                  return <Redirect to="/signin" />;
+                }}
+            />
+          </Switch>
+        </div>
     );
   }
 }
