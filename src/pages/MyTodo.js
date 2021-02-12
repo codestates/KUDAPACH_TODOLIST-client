@@ -8,9 +8,6 @@ import axios from 'axios';
 class MyTodo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cardData: this.props.todoData,
-    };
     this.handleCreate = this.handleCreate.bind(this);
     this.handleColorUpdate = this.handleColorUpdate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -62,8 +59,8 @@ class MyTodo extends Component {
   };
 
   render() {
-    const { userinfo, groupinfo, handleSignOut } = this.props;
-    const { cardData } = this.state;
+    const { userinfo, groupinfo, handleSignOut, todoData } = this.props;
+
     return (
       <div>
         <SingleUserNav
@@ -74,7 +71,7 @@ class MyTodo extends Component {
         />
         <div className="Box_container main_Box">
           <TodoList
-            data={cardData}
+            data={todoData}
             onUpdate={this.handleUpdate}
             onRemove={this.handleRemove}
             onCreate={this.handleCreate}

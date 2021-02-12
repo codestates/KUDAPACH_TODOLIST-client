@@ -40,46 +40,48 @@ class GuestTodo extends Component {
         },
       ],
     };
-    this.handleCreate = this.handleCreate.bind(this)
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleColorUpdate = this.handleColorUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleCreate = (data) => {
     const { cardData } = this.state;
+    const colors = ['#c2667b', '#83a2fd', '#6278e1', '#4d50a4'];
+    const index = Math.round(Math.random() * 3);
     this.setState({
       cardData: cardData.concat({
         id: cardData.length + 1,
-        updatedAt: new Date().toISOString().substring(0, 10),
-        text:data.text,
-        color:data.color
-      })
-    })
+        updatedAt: (`${new Date(new Date().setHours(new Date().getHours() + 9))}`).slice(0,15),
+        text: data.text,
+        color: colors[index],
+      }),
+    });
   };
 
-  handleColorUpdate = (id, data) => {
-
+  handleColorUpdate = (id, text, color) => {
     const temp = [...this.state.cardData];
-    const idx = temp.findIndex(v=>v.id === id);
+    const idx = temp.findIndex((v) => v.id === id);
 
-    temp[idx].color = data;
+    temp[idx].color = color;
 
     this.setState({
       cardData: temp,
-    })
+    });
+  };
 
-  }
-
-  handleUpdate = (id, data) => {
+  handleUpdate = (id, text) => {
     const { cardData } = this.state;
 
-    console.log(id,data);
     this.setState({
       cardData: cardData.map((cardData) => {
         if (cardData.id === id) {
           return {
             id,
+            text,
             color: cardData.color,
             updatedAt: cardData.updatedAt,
-            ...data,
           };
         }
         return cardData;
@@ -93,7 +95,6 @@ class GuestTodo extends Component {
     this.setState({
       cardData: cardData.filter((data) => data.id !== id),
     });
-
   };
 
   render() {

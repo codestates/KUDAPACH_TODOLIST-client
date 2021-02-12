@@ -16,16 +16,61 @@ class App extends React.Component {
       isSignin: false,
       userinfo: null,
       groupinfo: null,
+      // groupinfo: {
+      //   data: {
+      //     id: 1,
+      //     email: 'hello@email.com',
+      //     username: 'sanghyuk',
+      //     mobile: '0100100101',
+      //     group: 3,
+      //   },
+      //   groups: [
+      //     {
+      //       groupid: 1,
+      //     },
+      //     {
+      //       groupid: 4,
+      //     },
+      //     {
+      //       groupid: 5,
+      //     },
+      //   ],
+      //   groupnames: [
+      //     {
+      //       groupname: 'java',
+      //     },
+      //     {
+      //       groupname: 'group1',
+      //     },
+      //     {
+      //       groupname: 'test',
+      //     },
+      //   ],
+      // },
       todoData: [],
+      // todoData: [
+      //   {
+      //     id: 1,
+      //     userid: 1,
+      //     text: 'learn Python',
+      //     color: '#ffffff',
+      //   },
+      //   {
+      //     id: 2,
+      //     text: 'learn TypeScript',
+      //     color: '#808080',
+      //   },
+      // ],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleTodoCards = this.handleTodoCards.bind(this);
+    this.handleUsernameEmail = this.handleUsernameEmail.bind(this);
   }
+
   handleResponseSuccess = async (signinData) => {
     await axios.get('https://server.kudapach.com/todo').then((res) => {
       this.setState({
-        ...this.state,
         todoData: res.data.data,
       });
     });
@@ -46,11 +91,27 @@ class App extends React.Component {
     });
   }
   handleTodoCards(data) {
-    this.setState({
-      todoData: data,
-    });
+    console.log(111, this.state);
+    this.setState(
+      {
+        todoData: data,
+      },
+      () => console.log(222, this.state),
+    );
   }
+
+  handleUsernameEmail = async () => {
+    await axios.get('https://server.kudapach.com/user/info').then(
+      (res) => {
+        this.setState({
+          userinfo: res.data.data,
+        });
+      },
+      () => console.log(this.state),
+    );
+  };
   render() {
+    console.log(333, this.state);
     const { isSignin, userinfo, groupinfo, todoData } = this.state;
     return (
       <div>
@@ -82,6 +143,7 @@ class App extends React.Component {
               <Mypage
                 groupinfo={groupinfo}
                 handleSignOut={this.handleSignOut}
+                handleUsernameEmail={this.handleUsernameEmail}
               />
             )}
           />

@@ -1,17 +1,20 @@
 import React from 'react';
-import '../../css/ModalSetting.css';
+import '../../css/ModalGroup.css';
+import { Link } from 'react-router-dom';
 
 class ModalGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      whichGroup: 0,
+      whichGroup: '',
     };
     this.selectGroupHandler = this.selectGroupHandler.bind(this);
   }
 
   selectGroupHandler(e) {
-    this.setState({ whichGroup: e.target.getAttribute('value') });
+    this.setState({ whichGroup: e.target.getAttribute('value') }, () =>
+      this.props.handleGroupName(this.state.whichGroup),
+    );
   }
 
   render() {
@@ -29,13 +32,14 @@ class ModalGroup extends React.Component {
     // console.log(groupIdNamesInfo); // 2중배열로 만들어진 것 확인
     return (
       <div className="GroupWrapper">
-        <div className="accountText">Group</div>
-        <div className="signoutText">My todo</div>
-        <div className="hrBox"></div>
+        <Link to="/mytodo">
+          <div className="mytodotitle">My todo</div>
+        </Link>
+        <div className="grayunderline"></div>
         {groupIdNamesInfo.map((el) => {
           return (
             <div
-              className="signoutText"
+              className="groupelement"
               key={el[0]}
               value={el[0]}
               onClick={(e) => this.selectGroupHandler(e)}

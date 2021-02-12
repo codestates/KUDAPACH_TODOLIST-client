@@ -47,13 +47,12 @@ class ToDoInfo extends Component {
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
+    let date = new Date(data.updatedAt);
 
+    console.log(data);
     return (
       <div>
-        <div
-          className="todoboxBlock"
-          style={{ backgroundColor: this.props.data.color }}
-        >
+        <div className="todoboxBlock" style={{ backgroundColor: data.color }}>
           {toggle ? (
             <textarea
               placeholder="텍스트를 입력해주세요"
