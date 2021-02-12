@@ -16,6 +16,7 @@ class Mypage extends React.Component {
       currentPassword: '',
       password: '',
       passwordConfirm: '',
+      oauth: this.props.groupinfo.oauth,
       // 추후 RDS에서 가져온 DATA로 설정
     };
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -128,7 +129,7 @@ class Mypage extends React.Component {
               text: 'Information is changed',
               icon: 'success',
               button: 'confirm',
-            });
+            }).then(() => this.props.handleUsernameEmail());
           }
         })
         .catch((err) => {
@@ -150,10 +151,11 @@ class Mypage extends React.Component {
       email,
       username,
       mobile,
-      prevPassword,
-      currentPassword,
+      // prevPassword,
+      // currentPassword,
       password,
       passwordConfirm,
+      oauth,
     } = this.state;
 
     return (
@@ -174,6 +176,7 @@ class Mypage extends React.Component {
                     : 'allGood'
                 }
                 value={username}
+                placeholder="Username"
                 onChange={this.handleChangeInput('username')}
               />
               <input
@@ -186,47 +189,47 @@ class Mypage extends React.Component {
                     : 'allGood'
                 }
                 value={mobile}
+                placeholder="Mobile"
                 onChange={this.handleChangeInput('mobile')}
               />
             </div>
             <div className="changePasswordWrapper">
-              <div className="mypageText">CHANGE PASSWORD</div>
-              <input
-                type="password"
-                className={
-                  currentPassword.length === 0
-                    ? ''
-                    : prevPassword !== currentPassword
-                    ? 'tryAgain'
-                    : 'allGood'
-                }
-                placeholder="Current Password"
-                onChange={this.handleChangeInput('currentPassword')}
-              />
-              <input
-                type="password"
-                className={
-                  password.length === 0
-                    ? ''
-                    : password.length < 8
-                    ? 'tryAgain'
-                    : 'allGood'
-                }
-                placeholder="New Password"
-                onChange={this.handleChangeInput('password')}
-              />
-              <input
-                type="password"
-                className={
-                  passwordConfirm.length === 0
-                    ? ''
-                    : password !== passwordConfirm
-                    ? 'tryAgain'
-                    : 'allGood'
-                }
-                placeholder="Confirm Password"
-                onChange={this.handleChangeInput('passwordConfirm')}
-              />
+              {oauth ? (
+                <div />
+              ) : (
+                <>
+                  <div className="mypageText">CHANGE PASSWORD</div>
+                  <input
+                    type="password"
+                    placeholder="Current Password"
+                    onChange={this.handleChangeInput('currentPassword')}
+                  />
+                  <input
+                    type="password"
+                    className={
+                      password.length === 0
+                        ? ''
+                        : password.length < 8
+                        ? 'tryAgain'
+                        : 'allGood'
+                    }
+                    placeholder="New Password"
+                    onChange={this.handleChangeInput('password')}
+                  />
+                  <input
+                    type="password"
+                    className={
+                      passwordConfirm.length === 0
+                        ? ''
+                        : password !== passwordConfirm
+                        ? 'tryAgain'
+                        : 'allGood'
+                    }
+                    placeholder="Confirm Password"
+                    onChange={this.handleChangeInput('passwordConfirm')}
+                  />
+                </>
+              )}
               <button
                 className={
                   this.checkChangedInfo() === true

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/ModalGroup.css';
+import '../../css/ModalSetting.css';
 import { Link } from 'react-router-dom';
 
 class ModalSetting extends React.Component {

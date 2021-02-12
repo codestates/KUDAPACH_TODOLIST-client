@@ -1,9 +1,9 @@
 .GroupWrapper {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   left: 78.8%;
   width: 287px;
-  height: 241px;
+  height: 217px;
   border-radius: 5px;
   box-shadow: 0 0 18px 0 rgba(87, 45, 127, 0.47);
   background-color: white;
@@ -13,4 +13,32 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.mytodotitle,
+.groupelement {
+  font-size: 18px;
+  color: #9292a7;
+  text-decoration: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+}
+
+.mytodotitle:hover,
+.groupelement:hover {
+  color: #572d7f;
+  background-color: #e4e4e4;
+  cursor: pointer;
+}
+
+.grayunderline {
+  width: 255px;
+  height: 1px;
+  margin: 8px 16px;
+  background-color: #e4e4e4;
+}
+
+.mytodotitle{
+  font-weight: 700;
 }

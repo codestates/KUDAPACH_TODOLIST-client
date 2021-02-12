@@ -34,7 +34,7 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
   };
   // calendar 모달창에 대한 state hook과 function들 ---- 끝
 
-  // GroupSetting 모달창에 대한 state hook과 function들 ---- 시작
+  // setting 안에 있는 GroupSetting 모달창에 대한 state hook과 function들 ---- 시작
   const [groupModal, setGroupModal] = useState(false);
   const toggleGroupModal = () => {
     if (groupModal === false) {
@@ -53,9 +53,9 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
       setGroupModal(false);
     }
   };
-  // GroupSetting 모달창에 대한 state hook과 function들 ---- 끝
+  // setting 안에 있는 GroupSetting 모달창에 대한 state hook과 function들 ---- 끝
 
-  // setting 모달창에 대한 state hook과 function들 ---- 시작
+  // usericon 모달창에 대한 state hook과 function들 ---- 시작
   const [onGroup, setOnGroup] = useState(false);
   const toggleOnGroup = () => {
     if (onGroup === false) {
@@ -65,7 +65,7 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
       setOnGroup(false);
     }
   };
-  // setting 모달창에 대한 state hook과 function들 ---- 끝
+  // usericon 모달창에 대한 state hook과 function들 ---- 끝
 
   const onDateChange = (date) => {
     let d = moment(date).format('YYYY-MM-DD');
@@ -74,6 +74,11 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
         date: d,
       })
       .then((res) => handleTodoCards(res.data.data));
+  };
+
+  const [groupName, setGroupName] = useState('');
+  const handleGroupName = (groupName) => {
+    setGroupName(groupName);
   };
 
   return (
@@ -127,12 +132,17 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
         <GroupSetting
           toggleGroupModal={toggleGroupModal}
           groupinfo={groupinfo}
+          groupName={groupName}
         />
       ) : (
         <div />
       )}
       {onGroup === true ? (
-        <ModalGroup toggleOnGroup={toggleOnGroup} groupinfo={groupinfo} />
+        <ModalGroup
+          toggleOnGroup={toggleOnGroup}
+          groupinfo={groupinfo}
+          handleGroupName={handleGroupName}
+        />
       ) : (
         <div />
       )}
