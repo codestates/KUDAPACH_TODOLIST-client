@@ -9,7 +9,12 @@ import ModalGroup from './modals/ModalGroup';
 import moment from 'moment';
 import axios from 'axios';
 
-function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
+function SingleUserNav({
+  groupinfo,
+  handleSignOut,
+  handleTodoCards,
+  handleUsernameEmail,
+}) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
   const toggleModalSetting = () => {
@@ -88,7 +93,7 @@ function SingleUserNav({ groupinfo, handleSignOut, handleTodoCards }) {
         <div className="inner clearfix">
           <div className="menu-group float--left">
             <Link to="/mytodo">
-              <div className="MyTodologo" />
+              <div className="MyTodologo" onClick={handleUsernameEmail} />
             </Link>
             <ul className="main-menu">
               <li>Welcome {groupinfo.data.username}</li>

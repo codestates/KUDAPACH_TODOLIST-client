@@ -35,7 +35,7 @@ class ModalGroup extends React.Component {
         <Link to="/mytodo">
           <div className="mytodotitle">My todo</div>
         </Link>
-        <div className="grayunderline"></div>
+        <div className="grayunderline" />
         {groupIdNamesInfo.map((el) => {
           return (
             <div

@@ -53,7 +53,7 @@ class GuestTodo extends Component {
     this.setState({
       cardData: cardData.concat({
         id: cardData.length + 1,
-        updatedAt: (`${new Date(new Date().setHours(new Date().getHours() + 9))}`).slice(0,15),
+        updatedAt: new Date().toISOString().substring(0, 10),
         text: data.text,
         color: colors[index],
       }),
