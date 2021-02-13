@@ -8,19 +8,20 @@ class ModalSetting extends React.Component {
       toggleGroupModalWithSetting,
       handleSignOut,
       groupinfo,
+      userinfo,
     } = this.props;
     return (
       <div className="settingWrapper">
         <div className="accountText">Account</div>
-        <div className="hrBox"></div>
+        <div className="hrBox" />
         <div className="userBox">
           <div className="userLogo" src="user.svg" alt="user logo img" />
           <div className="userInfo">
-            <div className="userName">{groupinfo.data.username}</div>
+            <div className="userName">{userinfo.username}</div>
             <div className="userEmail">{groupinfo.data.email}</div>
           </div>
         </div>
-        <div className="hrBox"></div>
+        <div className="hrBox" />
         <Link to="/mypage" className="mypagesetText">
           <div>My Page</div>
         </Link>

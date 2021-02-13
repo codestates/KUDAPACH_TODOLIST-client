@@ -1,75 +1,68 @@
-
-.CreateButton{
-    width: 340px;
-    height: 340px;
-    position: relative;
-    margin-right: 25px;
-    margin-bottom: 25px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #f0f0f0;
-    font-weight: 700;
-    cursor: pointer;
+.CreateButton {
+  width: 340px;
+  height: 340px;
+  position: relative;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.pluse_icon{
-    width: 40px;
-    height: 40px;
-    margin-top: 207px;
-    margin-left: 268px
+.pluse_icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 207px;
+  margin-left: 268px;
 }
 
-.create_text{
-    width: 145px;
-    height: 64px;
-    font-family: Roboto;
-    font-size: 24px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #9292a7;
-    margin-top: 11px;
-    margin-left: 164px;
+.create_text {
+  width: 145px;
+  height: 64px;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #9292a7;
+  margin-top: 11px;
+  margin-left: 164px;
 }
 
-
-.text_Box{
-    width: 340px;
-    height: 340px;
-    background: cornflowerblue;
-    border-radius: 5px;
-    border: none;
-    resize:none;
-    cursor: pointer;
-    margin-right: 15px;
+.text_Box {
+  width: 340px;
+  height: 340px;
+  background: cornflowerblue;
+  border-radius: 5px;
+  border: none;
+  resize: none;
+  cursor: pointer;
+  margin-right: 15px;
 }
 
-.text_Box:hover{
-    opacity: 80%;
+.text_Box:hover {
+  opacity: 80%;
 }
 
-
-
-
-.CreateButton:hover{
-    background-color: #572d7f;
+.CreateButton:hover {
+  background-color: #572d7f;
 }
-
 
 .CreateButton:hover svg {
-    fill:white;
+  fill: white;
 }
 
-.CreateButton:hover .create_text{
-    color:white;
+.CreateButton:hover .create_text {
+  color: white;
 }
 
-.btn{
-    border: none;
-    width: 340px;
-    height: 340px;
+.btn {
+  border: none;
+  width: 340px;
+  height: 340px;
 }
-

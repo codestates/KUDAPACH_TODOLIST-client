@@ -1,10 +1,10 @@
 import React from 'react';
 import SingleUserNav from './SingleUserNav';
 import '../css/Mypage.css';
-import { phoneNumValidation } from '../pages/ValidationFun';
+import { phoneNumValidation } from './ValidationFun';
 import swal from 'sweetalert';
 import axios from 'axios';
-
+/*eslint-disable*/
 class Mypage extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,6 @@ class Mypage extends React.Component {
       password: '',
       passwordConfirm: '',
       oauth: this.props.groupinfo.oauth,
-      // 추후 RDS에서 가져온 DATA로 설정
     };
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
@@ -113,7 +112,7 @@ class Mypage extends React.Component {
             id: id,
             username: username,
             mobile: mobile,
-            currentPassword: currentPassword, // 현재비번 여기서 확인
+            currentPassword: currentPassword,
             password: password,
           },
           {
@@ -124,12 +123,16 @@ class Mypage extends React.Component {
         )
         .then((res) => {
           if (res.status === 200) {
-            swal({
-              title: 'Cool!',
-              text: 'Information is changed',
-              icon: 'success',
-              button: 'confirm',
-            }).then(() => this.props.handleUsernameEmail());
+            async () => {
+              await swal({
+                title: 'Cool!',
+                text: 'Information is changed',
+                icon: 'success',
+                button: 'confirm',
+              });
+              console.log(111);
+              await this.props.handleUsernameEmail();
+            };
           }
         })
         .catch((err) => {
@@ -145,14 +148,24 @@ class Mypage extends React.Component {
     }
   }
 
+  handleMobileValue() {
+    this.setState({
+      mobile: '',
+    });
+  }
+
   render() {
-    const { groupinfo, handleSignOut, handleUsernameEmail } = this.props;
+    const {
+      userinfo,
+      groupinfo,
+      handleSignOut,
+      handleUsernameEmail,
+      handleIsGroup,
+    } = this.props;
     const {
       email,
       username,
       mobile,
-      // prevPassword,
-      // currentPassword,
       password,
       passwordConfirm,
       oauth,
@@ -161,9 +174,11 @@ class Mypage extends React.Component {
     return (
       <div>
         <SingleUserNav
+          userinfo={userinfo}
           groupinfo={groupinfo}
           handleSignOut={handleSignOut}
           handleUsernameEmail={handleUsernameEmail}
+          handleIsGroup={handleIsGroup}
         />
         <div className="mainSide">
           <div className="mypageMainWrapper">
@@ -219,6 +234,7 @@ class Mypage extends React.Component {
                     }
                     placeholder="New Password"
                     onChange={this.handleChangeInput('password')}
+                    onClick={this.handleMobileValue.bind(this)}
                   />
                   <input
                     type="password"

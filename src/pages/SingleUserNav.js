@@ -8,12 +8,14 @@ import GroupSetting from './modals/GroupSetting';
 import ModalGroup from './modals/ModalGroup';
 import moment from 'moment';
 import axios from 'axios';
-
+/*eslint-disable*/
 function SingleUserNav({
+  userinfo,
   groupinfo,
   handleSignOut,
   handleTodoCards,
   handleUsernameEmail,
+  handleIsGroup,
 }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
@@ -92,11 +94,11 @@ function SingleUserNav({
       <header className="section">
         <div className="inner clearfix">
           <div className="menu-group float--left">
-            <Link to="/mytodo">
-              <div className="MyTodologo" onClick={handleUsernameEmail} />
+            <Link to="/mytodo" onClick={handleUsernameEmail}>
+              <div className="MyTodologo" />
             </Link>
             <ul className="main-menu">
-              <li>Welcome {groupinfo.data.username}</li>
+              <li>Welcome {userinfo.username}</li>
             </ul>
           </div>
 
@@ -120,6 +122,7 @@ function SingleUserNav({
       </header>
       {settingModal === true ? (
         <ModalSetting
+          userinfo={userinfo}
           groupinfo={groupinfo}
           toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
@@ -147,6 +150,8 @@ function SingleUserNav({
           toggleOnGroup={toggleOnGroup}
           groupinfo={groupinfo}
           handleGroupName={handleGroupName}
+          handleTodoCards={handleTodoCards}
+          handleIsGroup={handleIsGroup}
         />
       ) : (
         <div />

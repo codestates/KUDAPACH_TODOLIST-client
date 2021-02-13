@@ -1,111 +1,113 @@
-.body__container{
-    font-size: 14px;
-    color: #572d7f;
+.body__container {
+  font-size: 14px;
+  color: #572d7f;
 }
-.clearfix::after{
-    content: "";
-    clear: both;
-    display: block;
-}
-
-.float--left{
-    float: left;
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
 }
 
-.float--right{
-    float: right;
+.float--left {
+  float: left;
 }
 
-header{
-    border-bottom: 1px solid #E4E4E4;
-    background: #ffffff;
+.float--right {
+  float: right;
+}
+
+header {
+  border-bottom: 1px solid #e4e4e4;
+  background: #ffffff;
 }
 
 header .inner {
-    max-width: 1800px;
-    height: 80px;
-    margin: 0 auto;
+  max-width: 1800px;
+  height: 80px;
+  margin: 0 auto;
 }
 
-header .menu-group{
-    display: flex;
-    align-items: center;
-    height: 100%;
+header .menu-group {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
-header .MyTodologo{
-    margin-right: 16px;
+header .MyTodologo {
+  margin-right: 16px;
 }
 
-header .MyTodologo{
-    background: url("../asset/img/MyTodo/project_logo.svg");
-    width: 40px;
-    height: 40px;
-    display: block;
+header .MyTodologo {
+  background: url('../asset/img/MyTodo/project_logo.svg');
+  width: 40px;
+  height: 40px;
+  display: block;
+  cursor: pointer;
 }
-header .main-menu{
-    display: flex;
+
+header .main-menu {
+  display: flex;
 }
 
 header .main-menu li {
-    margin-right: 16px;
-    font-weight: 500;
+  margin-right: 16px;
+  font-weight: 500;
 }
 
 .user:hover,
 .setting:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-ul{
-    list-style: none;
-    padding: 0px;
+ul {
+  list-style: none;
+  padding: 0px;
 }
 
-.Search_Calendar_btn{
-    background: #F3F3F4 ;
-    background-image: url("../asset/img/MyTodo/Calendar.svg");
-    background-repeat: no-repeat;
-    background-position: 18px center;
-    width: 170px;
-    height: 40px;
-    border-radius: 5px;
-    display: inline-flex;
-    align-items: center;
-    font-size: 14px;
-    padding-left: 50px;
-    color: #9292A7;
-    font-weight: 400;
-    cursor: pointer;
-    box-sizing: border-box;
-    margin-right: 16px;
+.Search_Calendar_btn {
+  background: #f3f3f4;
+  background-image: url('../asset/img/MyTodo/Calendar.svg');
+  background-repeat: no-repeat;
+  background-position: 18px center;
+  width: 170px;
+  height: 40px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  padding-left: 50px;
+  color: #9292a7;
+  font-weight: 400;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-right: 16px;
 }
 
 header .user {
-    background: url("../asset/img/MyTodo/user.svg");
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    margin-right: 16px;
+  background: url('../asset/img/MyTodo/user.svg');
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
 }
 
 header .setting {
-    background: url("../asset/img/MyTodo/setting.svg");
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
+  background: url('../asset/img/MyTodo/setting.svg');
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
 }
 
 .setting:hover {
-    fill : #24C774;
+  fill: #24c774;
 }
 
-header .sign-group{
-    display: inline-flex;
-    align-items: center;
-    height: 100%;
+header .sign-group {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 
-header .btn-group{
-    display: inline-flex;
-    align-items: center;
+header .btn-group {
+  display: inline-flex;
+  align-items: center;
 }

@@ -3,18 +3,18 @@
   left: 278px;
   width: 35px;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .pencil {
-  background-image: url("../asset/img/pencil.svg");
+  background-image: url('../asset/img/pencil.svg');
   background-size: contain;
   width: 16px;
   height: 16px;
 }
 
 .trash {
-  background-image: url("../asset/img/trash.svg");
+  background-image: url('../asset/img/trash.svg');
   background-size: contain;
   width: 16px;
   height: 16px;
@@ -50,7 +50,7 @@
   left: 373px;
   width: 35px;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .blankDiv2 {

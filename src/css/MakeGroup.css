@@ -9,7 +9,7 @@
   left: -18px;
   width: 20px;
   height: 23px;
-  background-image: url("../asset/img/x.svg");
+  background-image: url('../asset/img/x.svg');
   background-position: center;
   border: none;
 }
@@ -89,7 +89,7 @@
   padding-left: 10px;
   font-size: 16px;
   border-radius: 5px;
-  border: 1px #24C774 solid;
+  border: 1px #24c774 solid;
 }
 
 .hrBox1 {
@@ -137,7 +137,13 @@
   border-radius: 5px;
   border: none;
   color: #ffffff;
-  background-image: radial-gradient(circle at 10% 50%, #333086, #4a63d9 22%, #83a2fd 64%, #c2667b 114%);
+  background-image: radial-gradient(
+    circle at 10% 50%,
+    #333086,
+    #4a63d9 22%,
+    #83a2fd 64%,
+    #c2667b 114%
+  );
 }
 
 .blankDiv {
@@ -150,7 +156,7 @@
   padding-left: 10px;
   font-size: 16px;
   border-radius: 5px;
-  border: 1px #24C774 solid;
+  border: 1px #24c774 solid;
 }
 
 .tryAgain {
@@ -159,5 +165,5 @@
   padding-left: 10px;
   font-size: 16px;
   border-radius: 5px;
-  border: 1px #FF5656 solid;
+  border: 1px #ff5656 solid;
 }

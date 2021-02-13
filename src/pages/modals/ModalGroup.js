@@ -1,7 +1,8 @@
+/*eslint-disable*/
 import React from 'react';
 import '../../css/ModalGroup.css';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 class ModalGroup extends React.Component {
   constructor(props) {
     super(props);
@@ -12,9 +13,19 @@ class ModalGroup extends React.Component {
   }
 
   selectGroupHandler(e) {
-    this.setState({ whichGroup: e.target.getAttribute('value') }, () =>
-      this.props.handleGroupName(this.state.whichGroup),
-    );
+    console.log('groupinfo', this.props.groupinfo);
+
+    this.setState({ whichGroup: e.target.getAttribute('value') }, () => {
+      console.log(this.state.whichGroup);
+
+      axios
+        .post('https://server.kudapach.com/grouptodocard', {
+          groupid: this.state.whichGroup,
+        })
+        .then((res) => this.props.handleTodoCards(res.data.data))
+        .then(() => this.props.handleGroupName(this.state.whichGroup))
+        .then(() => this.props.handleIsGroup(this.state.whichGroup));
+    });
   }
 
   render() {
