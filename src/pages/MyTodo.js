@@ -102,7 +102,9 @@ class MyTodo extends Component {
         trash: true,
       });
       await axios
-        .get('https://server.kudapach.com/grouptodocard')
+        .post('https://server.kudapach.com/grouptodocard', {
+          groupid: this.props.currentGroupId,
+        })
         .then((res) => this.props.handleTodoCards(res.data.data));
     }
   };
@@ -115,6 +117,7 @@ class MyTodo extends Component {
       todoData,
       handleUsernameEmail,
       handleIsGroup,
+      currentGroupId,
     } = this.props;
 
     return (
@@ -125,6 +128,7 @@ class MyTodo extends Component {
           handleSignOut={handleSignOut}
           handleTodoCards={this.props.handleTodoCards}
           handleUsernameEmail={handleUsernameEmail}
+          currentGroupId={currentGroupId}
           handleIsGroup={handleIsGroup}
         />
         <div className="Box_container main_Box">

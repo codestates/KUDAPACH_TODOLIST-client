@@ -1,6 +1,5 @@
 /*eslint-disable*/
 
-
 import React from 'react';
 import '../../css/ManageGroup.css';
 import ChangeGroup from './ChangeGroup';
@@ -19,9 +18,8 @@ class ManageGroup extends React.Component {
       isEmail2Change: false,
       isEmail3Change: false,
       isEmail4Change: false,
-      groupid: this.props.groupData.groups.groupid,
+      groupid: this.props.currentGroupId,
       groupname: this.props.groupData.groupname,
-      newGroupname: this.props.groupData.groupname,
       userEmail1: '',
       userNewEmail1: '',
       userEmail2: '',
@@ -121,14 +119,13 @@ class ManageGroup extends React.Component {
   }
 
   handleGroupDelete() {
-    const { toggleGroupModal, groupFalseHandler } = this.props;
+    const { toggleGroupModal } = this.props;
     swal({
       title: 'Delete complete',
       text: 'Group delete is completed',
       icon: 'success',
       button: 'confirm',
     }).then(() => {
-      groupFalseHandler();
       toggleGroupModal();
     });
   }
@@ -162,24 +159,26 @@ class ManageGroup extends React.Component {
       });
     } else {
       axios
-        .post('https://server.kudapach.com/groupsetting/edit', {
+        .post(
+          'https://server.kudapach.com/groupsetting/edit',
+          {
             groupDelete: groupDelete,
             groupid: groupid,
             groupname: groupname,
             emails: [
-            {
-              email: userNewEmail1,
-            },
-            {
-              email: userNewEmail2,
-            },
-            {
-              email: userNewEmail3,
-            },
-            {
-              email: userNewEmail4,
-            },
-          ]
+              {
+                email: userNewEmail1,
+              },
+              {
+                email: userNewEmail2,
+              },
+              {
+                email: userNewEmail3,
+              },
+              {
+                email: userNewEmail4,
+              },
+            ],
           },
           {
             headers: {
@@ -188,7 +187,7 @@ class ManageGroup extends React.Component {
           },
         )
         .then((res) => {
-          if(res.status === 200) {
+          if (res.status === 200) {
             swal({
               title: 'Cool!',
               text: 'All thing is saved',
@@ -199,8 +198,8 @@ class ManageGroup extends React.Component {
             });
           }
         })
-        .catch(err => {
-          if(err.response.status === 409) {
+        .catch((err) => {
+          if (err.response.status === 409) {
             swal({
               title: 'Invalid email exists',
               text: 'Please check emails',
@@ -208,7 +207,7 @@ class ManageGroup extends React.Component {
               button: 'confirm',
             });
           }
-        })
+        });
     }
   }
 
@@ -219,7 +218,7 @@ class ManageGroup extends React.Component {
     } else {
       this.setState({ isGroupChange: false });
     }
-    this.setState({ newGroupname: groupname });
+    this.setState({ groupname });
   }
 
   handleEmail1Toggle() {
@@ -302,7 +301,7 @@ class ManageGroup extends React.Component {
     const { toggleGroupModal } = this.props;
     const {
       isGroupChange,
-      newGroupname,
+      groupname,
       isEmail1Change,
       userNewEmail1,
       isEmail2Change,
@@ -320,7 +319,7 @@ class ManageGroup extends React.Component {
       <div className="makeGroupWrapper">
         <div className="xBtn" onClick={toggleGroupModal} />
         <div className="addWrapper">
-          <div className="addText">{newGroupname}</div>
+          <div className="addText">{groupname}</div>
           <div className="updateDeleteWrapper">
             <div className="pencil" onClick={this.handleGroupToggle}></div>
             <div className="trash" onClick={this.handleGroupDelete}></div>

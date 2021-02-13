@@ -65,13 +65,14 @@ class Signin extends React.Component {
     }
   };
   onSuccess = (res) => {
+    console.log(res);
     if (res.profileObj) {
       // ? GOOGLE_OAUTH
       axios
         .post(
           'https://server.kudapach.com/oauth',
           {
-            email: res.profileObj.googleId,
+            email: res.profileObj.email,
             username: res.profileObj.givenName,
           },
           {
@@ -85,22 +86,41 @@ class Signin extends React.Component {
         });
     } else {
       // ? KAKAO_OAUTH
-      axios
-        .post(
-          'https://server.kudapach.com/oauth',
-          {
-            email: res.profile.id,
-            username: res.profile.properties.nickname,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
+      if (res.profile.kakao_account.email) {
+        axios
+          .post(
+            'https://server.kudapach.com/oauth',
+            {
+              email: res.profile.kakao_account.email,
+              username: res.profile.properties.nickname,
             },
-          },
-        )
-        .then((res) => {
-          this.props.handleResponseSuccess(res.data);
-        });
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            },
+          )
+          .then((res) => {
+            this.props.handleResponseSuccess(res.data);
+          });
+      } else {
+        axios
+          .post(
+            'https://server.kudapach.com/oauth',
+            {
+              email: res.profile.id,
+              username: res.profile.properties.nickname,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            },
+          )
+          .then((res) => {
+            this.props.handleResponseSuccess(res.data);
+          });
+      }
     }
   };
   onFailure = (res) => {

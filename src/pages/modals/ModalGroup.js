@@ -10,6 +10,7 @@ class ModalGroup extends React.Component {
       whichGroup: '',
     };
     this.selectGroupHandler = this.selectGroupHandler.bind(this);
+    this.handleWhichGroup = this.handleWhichGroup.bind(this);
   }
 
   selectGroupHandler(e) {
@@ -23,9 +24,22 @@ class ModalGroup extends React.Component {
           groupid: this.state.whichGroup,
         })
         .then((res) => this.props.handleTodoCards(res.data.data))
-        .then(() => this.props.handleGroupName(this.state.whichGroup))
-        .then(() => this.props.handleIsGroup(this.state.whichGroup));
+        .then(() => this.props.handleIsGroup(this.state.whichGroup))
+        .then(() => this.props.getGroupInfoHandler());
     });
+  }
+  handleWhichGroup() {
+    this.setState(
+      {
+        whichGroup: 0,
+      },
+      async () => {
+        await axios
+          .get('https://server.kudapach.com/todo')
+          .then((res) => this.props.handleTodoCards(res.data.data))
+          .then(() => this.props.handleIsGroup(this.state.whichGroup));
+      },
+    );
   }
 
   render() {
@@ -43,7 +57,7 @@ class ModalGroup extends React.Component {
     // console.log(groupIdNamesInfo); // 2중배열로 만들어진 것 확인
     return (
       <div className="GroupWrapper">
-        <Link to="/mytodo">
+        <Link to="/mytodo" onClick={() => this.handleWhichGroup()}>
           <div className="mytodotitle">My todo</div>
         </Link>
         <div className="grayunderline" />
