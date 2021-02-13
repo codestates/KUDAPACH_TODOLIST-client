@@ -14,58 +14,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       isSignin: false,
+      currentGroupId: 0,
       userinfo: null,
       groupinfo: null,
-      // groupinfo: {
-      //   data: {
-      //     id: 1,
-      //     email: 'hello@email.com',
-      //     username: 'sanghyuk',
-      //     mobile: '0100100101',
-      //     group: 3,
-      //   },
-      //   groups: [
-      //     {
-      //       groupid: 1,
-      //     },
-      //     {
-      //       groupid: 4,
-      //     },
-      //     {
-      //       groupid: 5,
-      //     },
-      //   ],
-      //   groupnames: [
-      //     {
-      //       groupname: 'java',
-      //     },
-      //     {
-      //       groupname: 'group1',
-      //     },
-      //     {
-      //       groupname: 'test',
-      //     },
-      //   ],
-      // },
       todoData: [],
-      // todoData: [
-      //   {
-      //     id: 1,
-      //     userid: 1,
-      //     text: 'learn Python',
-      //     color: '#ffffff',
-      //   },
-      //   {
-      //     id: 2,
-      //     text: 'learn TypeScript',
-      //     color: '#808080',
-      //   },
-      // ],
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleTodoCards = this.handleTodoCards.bind(this);
     this.handleUsernameEmail = this.handleUsernameEmail.bind(this);
+    this.handleIsGroup = this.handleIsGroup.bind(this);
   }
 
   handleResponseSuccess = async (signinData) => {
@@ -91,13 +49,9 @@ class App extends React.Component {
     });
   }
   handleTodoCards(data) {
-    console.log(111, this.state);
-    this.setState(
-      {
-        todoData: data,
-      },
-      () => console.log(222, this.state),
-    );
+    this.setState({
+      todoData: data,
+    });
   }
 
   handleUsernameEmail = async () => {
@@ -107,12 +61,24 @@ class App extends React.Component {
           userinfo: res.data.data,
         });
       },
-      () => console.log(this.state),
+      () => this.props.history.push('/'),
     );
   };
+
+  handleIsGroup(currentGroupId) {
+    this.setState({
+      currentGroupId,
+    });
+  }
   render() {
     console.log(333, this.state);
-    const { isSignin, userinfo, groupinfo, todoData } = this.state;
+    const {
+      isSignin,
+      userinfo,
+      groupinfo,
+      todoData,
+      currentGroupId,
+    } = this.state;
     return (
       <div>
         <Switch>
@@ -129,11 +95,14 @@ class App extends React.Component {
             path="/mytodo"
             render={() => (
               <MyTodo
+                todoData={todoData}
                 userinfo={userinfo}
                 groupinfo={groupinfo}
+                currentGroupId={currentGroupId}
                 handleSignOut={this.handleSignOut}
-                todoData={todoData}
+                handleIsGroup={this.handleIsGroup}
                 handleTodoCards={this.handleTodoCards}
+                handleUsernameEmail={this.handleUsernameEmail}
               />
             )}
           />
@@ -141,9 +110,11 @@ class App extends React.Component {
             path="/mypage"
             render={() => (
               <Mypage
+                userinfo={userinfo}
                 groupinfo={groupinfo}
                 handleSignOut={this.handleSignOut}
                 handleUsernameEmail={this.handleUsernameEmail}
+                handleIsGroup={this.handleIsGroup}
               />
             )}
           />

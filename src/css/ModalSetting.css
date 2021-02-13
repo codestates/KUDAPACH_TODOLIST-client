@@ -42,7 +42,7 @@
   width: 40px;
   height: 40px;
   margin: 0 15px 0 0;
-  background: url("../asset/img/MyTodo/user.svg");
+  background: url('../asset/img/MyTodo/user.svg');
 }
 
 .userInfo {
@@ -55,7 +55,7 @@
 .userName {
   font-size: 16px;
   font-weight: 900;
-  color: #572d7f
+  color: #572d7f;
 }
 
 .userEmail {
@@ -71,7 +71,7 @@
 
 .mypagesetText,
 .groupsetText,
-.signoutText{
+.signoutText {
   padding-left: 16px;
   font-size: 18px;
   color: #9292a7;
@@ -87,5 +87,3 @@
   background-color: #e4e4e4;
   cursor: pointer;
 }
-
-

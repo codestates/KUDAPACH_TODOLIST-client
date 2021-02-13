@@ -1,18 +1,16 @@
-.Box_container{
-    margin-top: 55px;
-    margin-left: 60px;
-    display: inline-flex;
-    flex-flow: wrap;
+.Box_container {
+  margin-top: 55px;
+  margin-left: 60px;
+  display: inline-flex;
+  flex-flow: wrap;
 }
 
-.main_Box{
-    display: inline-flex;
-    flex-flow: wrap;
+.main_Box {
+  display: inline-flex;
+  flex-flow: wrap;
 }
 
-.list_Box{
-    display: inline-flex;
-    flex-flow: wrap;
+.list_Box {
+  display: inline-flex;
+  flex-flow: wrap;
 }
-
-

@@ -1,149 +1,151 @@
 .date {
-    position: absolute;
-    display: inline-flex;
-    font-weight: 700;
-    top: 277px;
+  position: absolute;
+  display: inline-flex;
+  font-weight: 700;
+  top: 277px;
 }
 
 .card_box {
+  width: 275px;
+  height: 200px;
+  word-break: break-all;
+  position: absolute;
+  white-space: pre-line;
+  overflow: auto;
+  font-weight: bold;
+  margin-right: 32px;
+}
 
-    width: 275px;
-    height: 200px;
-    word-break:break-all;
-    position: absolute;
-    white-space: pre-line;
-    overflow: scroll;
-    font-weight: bold;
-    margin-right: 32px;
-
+.card_box::-webkit-scrollbar {
+  display: none;
 }
 
 .textBox {
-    line-height: 28px;
-    width: 275px;
-    height: 200px;
-    resize: none;
-    border: none;
-    overflow:hidden;
-    font-size: 20px;
-    color: white;
-    background-color: transparent;
+  line-height: 28px;
+  width: 275px;
+  height: 200px;
+  resize: none;
+  border: none;
+  overflow: hidden;
+  font-size: 20px;
+  color: white;
+  background-color: transparent;
 }
 
-.bg_color{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    opacity: 0.9;
-    background-color: black;
-    width: 340px;
-    height: 340px;
-    /*z-index: -1;*/
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    box-sizing: border-box;
+.bg_color {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0.9;
+  background-color: black;
+  width: 340px;
+  height: 340px;
+  /*z-index: -1;*/
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.textBox:focus{
-    border: none;
-    outline: none;
+.textBox:focus {
+  border: none;
+  outline: none;
 }
 
 textarea::placeholder {
-    color: white;
-    font-weight: normal;
+  color: white;
+  font-weight: normal;
 }
 
-.todoboxBlock{
-    width: 340px;
-    height: 340px;
-    position: relative;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: normal;
-    background-color: #f0f0f0;
-    display: inline-flex;
-    margin-right: 25px;
-    margin-bottom: 25px;
-    flex-flow: wrap;
-    color: white;
-    padding-top: 31px;
-    padding-left: 31px;
-    padding-right: 31px;
-    line-height: 28px;
+.todoboxBlock {
+  width: 340px;
+  height: 340px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: normal;
+  background-color: #f0f0f0;
+  display: inline-flex;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  flex-flow: wrap;
+  color: white;
+  padding-top: 31px;
+  padding-left: 31px;
+  padding-right: 31px;
+  line-height: 28px;
 }
 
 .remove {
-    position: absolute;
-    opacity: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 268px;
-    left: 268px;
-    color: #9292a7;
-    cursor: pointer;
-    background: white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  position: absolute;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 268px;
+  left: 268px;
+  color: #9292a7;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
 }
 
-.edit{
-    position: absolute;
-    opacity: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 268px;
-    left: 220px;
-    color: #9292a7;
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-    background: white;
+.edit {
+  position: absolute;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 268px;
+  left: 220px;
+  color: #9292a7;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  background: white;
 }
 
-.todoboxBlock:hover .remove{
-    opacity: 1 ;
+.todoboxBlock:hover .remove {
+  opacity: 1;
 }
-.todoboxBlock:hover .edit{
-    opacity: 1 ;
+.todoboxBlock:hover .edit {
+  opacity: 1;
 }
 
 .remove:hover {
-    color: white;
-    background-color: #572d7f;
-    opacity: 1 ;
+  color: white;
+  background-color: #572d7f;
+  opacity: 1;
 }
 
 .edit:hover {
-    color: white;
-    background-color: #572d7f;
-    opacity: 1 ;
+  color: white;
+  background-color: #572d7f;
+  opacity: 1;
 }
 
-.colorSetting{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    top: 15px;
-    left: 300px;
-    color: white;
-    cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-    z-index: 1;
+.colorSetting {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  top: 15px;
+  left: 300px;
+  color: white;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  z-index: 1;
 }

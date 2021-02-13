@@ -47,8 +47,6 @@ class ToDoInfo extends Component {
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
-    let date = new Date(data.updatedAt);
-
     console.log(data);
     return (
       <div>
@@ -60,7 +58,7 @@ class ToDoInfo extends Component {
               onChange={this.handleChange}
               value={text}
               name="text"
-              className="textBox card_box"
+              className="textBox"
             />
           ) : (
             <div>
