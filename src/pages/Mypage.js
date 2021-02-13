@@ -87,7 +87,7 @@ class Mypage extends React.Component {
         .then((res) => {
           if (res.status === 200) {
             swal({
-              title: 'Cool!',
+              title: 'Success!',
               text: 'Information is changed',
               icon: 'success',
               button: 'confirm',
@@ -123,16 +123,12 @@ class Mypage extends React.Component {
         )
         .then((res) => {
           if (res.status === 200) {
-            async () => {
-              await swal({
-                title: 'Cool!',
-                text: 'Information is changed',
-                icon: 'success',
-                button: 'confirm',
-              });
-              console.log(111);
-              await this.props.handleUsernameEmail();
-            };
+            swal({
+              title: 'Success!',
+              text: 'Information is changed',
+              icon: 'success',
+              button: 'confirm',
+            }).then(() => this.props.handleUsernameEmail());
           }
         })
         .catch((err) => {
@@ -148,12 +144,6 @@ class Mypage extends React.Component {
     }
   }
 
-  handleMobileValue() {
-    this.setState({
-      mobile: '',
-    });
-  }
-
   render() {
     const {
       userinfo,
@@ -161,6 +151,7 @@ class Mypage extends React.Component {
       handleSignOut,
       handleUsernameEmail,
       handleIsGroup,
+      currentGroupId,
     } = this.props;
     const {
       email,
@@ -179,6 +170,7 @@ class Mypage extends React.Component {
           handleSignOut={handleSignOut}
           handleUsernameEmail={handleUsernameEmail}
           handleIsGroup={handleIsGroup}
+          currentGroupId={currentGroupId}
         />
         <div className="mainSide">
           <div className="mypageMainWrapper">
@@ -194,23 +186,39 @@ class Mypage extends React.Component {
                     ? 'tryAgain'
                     : 'allGood'
                 }
-                value={username}
+                value={userinfo.username}
                 placeholder="Username"
                 onChange={this.handleChangeInput('username')}
               />
-              <input
-                type="text"
-                className={
-                  mobile.length === 0
-                    ? ''
-                    : !phoneNumValidation(mobile)
-                    ? 'tryAgain'
-                    : 'allGood'
-                }
-                value={mobile}
-                placeholder="Mobile"
-                onChange={this.handleChangeInput('mobile')}
-              />
+              {oauth ? (
+                <input
+                  type="text"
+                  className={
+                    mobile.length === 0
+                      ? ''
+                      : !phoneNumValidation(mobile)
+                      ? 'tryAgain'
+                      : 'allGood'
+                  }
+                  value={userinfo.mobile}
+                  placeholder="Mobile"
+                  onChange={this.handleChangeInput('mobile')}
+                />
+              ) : (
+                <input
+                  type="text"
+                  className={
+                    mobile.length === 0
+                      ? ''
+                      : !phoneNumValidation(mobile)
+                      ? 'tryAgain'
+                      : 'allGood'
+                  }
+                  value={userinfo.mobile}
+                  placeholder="Mobile"
+                  onChange={this.handleChangeInput('mobile')}
+                />
+              )}
             </div>
             <div className="changePasswordWrapper">
               {oauth ? (
@@ -234,7 +242,6 @@ class Mypage extends React.Component {
                     }
                     placeholder="New Password"
                     onChange={this.handleChangeInput('password')}
-                    onClick={this.handleMobileValue.bind(this)}
                   />
                   <input
                     type="password"

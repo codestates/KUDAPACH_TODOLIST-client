@@ -16,6 +16,7 @@ function SingleUserNav({
   handleTodoCards,
   handleUsernameEmail,
   handleIsGroup,
+  currentGroupId,
 }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
@@ -76,16 +77,42 @@ function SingleUserNav({
 
   const onDateChange = (date) => {
     let d = moment(date).format('YYYY-MM-DD');
-    axios
-      .post('https://server.kudapach.com/todo/calendar', {
-        date: d,
-      })
-      .then((res) => handleTodoCards(res.data.data));
+    if (currentGroupId === 0) {
+      axios
+        .post('https://server.kudapach.com/todo/calendar', {
+          date: d,
+        })
+        .then((res) => handleTodoCards(res.data.data));
+    } else {
+      axios
+        .post('https://server.kudapach.com/grouptodocard/calendar', {
+          groupid: currentGroupId,
+          date: d,
+        })
+        .then((res) => handleTodoCards(res.data.data));
+    }
   };
 
-  const [groupName, setGroupName] = useState('');
-  const handleGroupName = (groupName) => {
-    setGroupName(groupName);
+
+  const [groupData, setgroupData] = useState({});
+  const getGroupInfoHandler = () => {
+    axios
+      .post(
+        'https://server.kudapach.com/groupsetting',
+        {
+          groupid: currentGroupId,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setgroupData(res.data);
+        }
+      });
   };
 
   return (
@@ -138,9 +165,11 @@ function SingleUserNav({
       )}
       {groupModal === true ? (
         <GroupSetting
-          toggleGroupModal={toggleGroupModal}
           groupinfo={groupinfo}
-          groupName={groupName}
+          groupData={groupData}
+          currentGroupId={currentGroupId}
+          handleUsernameEmail={handleUsernameEmail}
+          toggleGroupModal={toggleGroupModal}
         />
       ) : (
         <div />
@@ -149,9 +178,9 @@ function SingleUserNav({
         <ModalGroup
           toggleOnGroup={toggleOnGroup}
           groupinfo={groupinfo}
-          handleGroupName={handleGroupName}
           handleTodoCards={handleTodoCards}
           handleIsGroup={handleIsGroup}
+          getGroupInfoHandler={getGroupInfoHandler}
         />
       ) : (
         <div />

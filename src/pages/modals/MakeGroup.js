@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../css/MakeGroup.css';
-import { emailValidation } from '../../pages/ValidationFun';
 import swal from 'sweetalert';
 import axios from 'axios';
 
@@ -38,13 +37,13 @@ class MakeGroup extends React.Component {
     if (groupname) {
       this.setState({ user1check: true });
     }
-    if (emailValidation(usermail1)) {
+    if (usermail1) {
       this.setState({ user2check: true });
     }
-    if (emailValidation(usermail2)) {
+    if (usermail2) {
       this.setState({ user3check: true });
     }
-    if (emailValidation(usermail3)) {
+    if (usermail3) {
       this.setState({ user4check: true });
     }
     if (!groupname) {
@@ -54,27 +53,10 @@ class MakeGroup extends React.Component {
         icon: 'warning',
         button: 'confirm',
       });
-    } else if (
-      groupname &&
-      emailValidation(usermail1) &&
-      emailValidation(usermail2) &&
-      emailValidation(usermail3) &&
-      emailValidation(usermail4)
-    ) {
+    } else if (groupname && usermail1 && usermail2 && usermail3 && usermail4) {
       swal({
         title: 'Maximum is 4 users',
         text: 'You cant add more users',
-        icon: 'warning',
-        button: 'confirm',
-      });
-    } else if (
-      (usermail1 && !emailValidation(usermail1)) ||
-      (usermail2 && !emailValidation(usermail2)) ||
-      (usermail3 && !emailValidation(usermail3))
-    ) {
-      swal({
-        title: 'Email is wrong',
-        text: 'Please check users email',
         icon: 'warning',
         button: 'confirm',
       });
@@ -82,7 +64,7 @@ class MakeGroup extends React.Component {
   };
 
   handleGroupSave = () => {
-    const { toggleGroupModal, groupTrueHandler } = this.props;
+    const { toggleGroupModal, handleUsernameEmail } = this.props;
     const {
       groupname,
       usermail1,
@@ -90,32 +72,20 @@ class MakeGroup extends React.Component {
       usermail3,
       usermail4,
     } = this.state;
-    if (
-      (groupname && emailValidation(usermail1)) ||
-      emailValidation(usermail2) ||
-      emailValidation(usermail3) ||
-      emailValidation(usermail4) ||
-      usermail4
-    ) {
+    if ((groupname && usermail1) || usermail2 || usermail3 || usermail4) {
+      let list = [usermail1, usermail2, usermail3, usermail4];
+      const emails = [];
+      for (let el of list) {
+        if (el.length !== 0) {
+          emails.push(el);
+        }
+      }
       axios
         .post(
           'https://server.kudapach.com/groupsetting/create',
           {
-            groupname: groupname,
-            emails: [
-              {
-                email: usermail1,
-              },
-              {
-                email: usermail2,
-              },
-              {
-                email: usermail3,
-              },
-              {
-                email: usermail4,
-              },
-            ],
+            groupname,
+            emails,
           },
           {
             headers: {
@@ -126,13 +96,13 @@ class MakeGroup extends React.Component {
         .then((res) => {
           if (res.status === 200) {
             swal({
-              title: 'Cool!',
+              title: 'Success!',
               text: 'Group is made',
               icon: 'success',
               button: 'confirm',
             }).then(() => {
-              groupTrueHandler();
               toggleGroupModal();
+              handleUsernameEmail();
             });
           }
         })
@@ -197,9 +167,9 @@ class MakeGroup extends React.Component {
               className={
                 usermail1.length === 0
                   ? 'useremailInput'
-                  : !emailValidation(usermail1)
-                  ? 'tryAgain'
-                  : 'allGood'
+                  : usermail1
+                  ? 'allGood'
+                  : 'tryAgain'
               }
               type="text"
               placeholder="user email"
@@ -213,9 +183,9 @@ class MakeGroup extends React.Component {
               className={
                 usermail2.length === 0
                   ? 'useremailInput'
-                  : !emailValidation(usermail2)
-                  ? 'tryAgain'
-                  : 'allGood'
+                  : usermail2
+                  ? 'allGood'
+                  : 'tryAgain'
               }
               type="text"
               placeholder="user email"
@@ -229,9 +199,9 @@ class MakeGroup extends React.Component {
               className={
                 usermail3.length === 0
                   ? 'useremailInput'
-                  : !emailValidation(usermail3)
-                  ? 'tryAgain'
-                  : 'allGood'
+                  : usermail3
+                  ? 'allGood'
+                  : 'tryAgain'
               }
               type="text"
               placeholder="user email"
@@ -245,9 +215,9 @@ class MakeGroup extends React.Component {
               className={
                 usermail4.length === 0
                   ? 'useremailInput'
-                  : !emailValidation(usermail4)
-                  ? 'tryAgain'
-                  : 'allGood'
+                  : usermail4
+                  ? 'allGood'
+                  : 'tryAgain'
               }
               type="text"
               placeholder="user email"
@@ -258,10 +228,7 @@ class MakeGroup extends React.Component {
           )}
           <button
             className={
-              (groupname && user1check) ||
-              user2check ||
-              user3check ||
-              emailValidation(usermail4)
+              (groupname && user1check) || user2check || user3check || usermail4
                 ? 'confirmSaveBtn'
                 : 'saveBtn'
             }

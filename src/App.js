@@ -112,9 +112,11 @@ class App extends React.Component {
               <Mypage
                 userinfo={userinfo}
                 groupinfo={groupinfo}
+                currentGroupId={currentGroupId}
                 handleSignOut={this.handleSignOut}
-                handleUsernameEmail={this.handleUsernameEmail}
                 handleIsGroup={this.handleIsGroup}
+                handleTodoCards={this.handleTodoCards}
+                handleUsernameEmail={this.handleUsernameEmail}
               />
             )}
           />
