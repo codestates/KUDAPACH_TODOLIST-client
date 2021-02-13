@@ -146,7 +146,7 @@ class Mypage extends React.Component {
   }
 
   render() {
-    const { groupinfo, handleSignOut } = this.props;
+    const { groupinfo, handleSignOut, handleUsernameEmail } = this.props;
     const {
       email,
       username,
@@ -160,7 +160,11 @@ class Mypage extends React.Component {
 
     return (
       <div>
-        <SingleUserNav groupinfo={groupinfo} handleSignOut={handleSignOut} />
+        <SingleUserNav
+          groupinfo={groupinfo}
+          handleSignOut={handleSignOut}
+          handleUsernameEmail={handleUsernameEmail}
+        />
         <div className="mainSide">
           <div className="mypageMainWrapper">
             <div className="userInfoWrapper">

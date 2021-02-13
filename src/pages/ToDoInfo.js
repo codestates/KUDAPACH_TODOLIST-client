@@ -65,7 +65,7 @@ class ToDoInfo extends Component {
           ) : (
             <div>
               <div className="card_box">{data.text}</div>
-              <div className="date">{(`${new Date(new Date().setHours(new Date().getHours() + 9))}`).slice(0,15)}</div>
+              <div className="date">{data.updatedAt}</div>
             </div>
           )}
           <div className="remove" onClick={this.handleRemove}>
