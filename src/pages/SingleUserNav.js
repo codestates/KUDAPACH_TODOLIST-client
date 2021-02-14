@@ -18,6 +18,7 @@ function SingleUserNav({
   handleIsGroup,
   currentGroupId,
   page,
+  handleGroupInfo,
 }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
@@ -171,6 +172,7 @@ function SingleUserNav({
           groupData={groupData}
           currentGroupId={currentGroupId}
           handleIsGroup={handleIsGroup}
+          handleGroupInfo={handleGroupInfo}
           handleUsernameEmail={handleUsernameEmail}
           toggleGroupModal={toggleGroupModal}
         />

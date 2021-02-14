@@ -136,12 +136,13 @@ class ManageGroup extends React.Component {
       )
       .then(() => {
         toggleGroupModal();
+        this.props.handleGroupInfo();
         this.props.handleIsGroup(0);
       });
   }
 
   handleGroupSave() {
-    const { toggleGroupModal } = this.props;
+    const { toggleGroupModal, handleGroupInfo } = this.props;
     const {
       groupDelete,
       groupid,
@@ -199,6 +200,7 @@ class ManageGroup extends React.Component {
               button: 'confirm',
             }).then(() => {
               toggleGroupModal();
+              handleGroupInfo();
             });
           }
         })
