@@ -110,6 +110,7 @@ class App extends React.Component {
             path="/mypage"
             render={() => (
               <Mypage
+                todoData={todoData}
                 userinfo={userinfo}
                 groupinfo={groupinfo}
                 currentGroupId={currentGroupId}
