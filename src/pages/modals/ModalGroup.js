@@ -63,14 +63,11 @@ class ModalGroup extends React.Component {
         <div className="grayunderline" />
         {groupIdNamesInfo.map((el) => {
           return (
-            <div
-              className="groupelement"
-              key={el[0]}
-              value={el[0]}
-              onClick={(e) => this.selectGroupHandler(e)}
-            >
-              {el[1]}
-            </div>
+            <Link to="/mytodo" onClick={(e) => this.selectGroupHandler(e)}>
+              <div className="groupelement" key={el[0]} value={el[0]}>
+                {el[1]}
+              </div>
+            </Link>
           );
         })}
       </div>

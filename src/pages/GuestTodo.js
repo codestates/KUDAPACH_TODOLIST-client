@@ -14,7 +14,7 @@ class GuestTodo extends Component {
           text:
             'Once you sign in or sign up \n' +
             'with us, all Kudapach features can be accessed.\n',
-          date: '2021-02-11',
+          updatedAt: '2021-02-14 00:00:00',
           color: '#c2667b',
         },
         {
@@ -24,7 +24,7 @@ class GuestTodo extends Component {
             'All todo cards will disappear \n' +
             'once you leave or reload the \n' +
             'page.',
-          date: '2020-18-18',
+          updatedAt: '2021-02-14 00:00:00',
           color: '#83a2fd',
         },
         {
@@ -35,7 +35,7 @@ class GuestTodo extends Component {
             'features,please click the logo\n' +
             'on the upper left side of the \n' +
             'screen.',
-          date: '2020-18-18',
+          updatedAt: '2021-02-14 00:00:00',
           color: '#6278e1',
         },
       ],
@@ -53,7 +53,7 @@ class GuestTodo extends Component {
     this.setState({
       cardData: cardData.concat({
         id: cardData.length + 1,
-        updatedAt: new Date().toISOString().substring(0, 10),
+        updatedAt: new Date().toISOString().substring(0, 16),
         text: data.text,
         color: colors[index],
       }),
