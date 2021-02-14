@@ -73,22 +73,52 @@ class App extends React.Component {
     });
   }
 
-  handleGroupInfo() {
-    axios
-      .get('https://server.kudapach.com/groupsetting/groupinfo')
-      .then((res) =>
-        this.setState(
-          {
+  handleGroupInfo(e) {
+    if (e === 'delete') {
+      axios
+        .get('https://server.kudapach.com/groupsetting/groupinfo')
+        .then((res) =>
+          this.setState(
+            {
+              groupinfo: res.data,
+            },
+            () =>
+              axios.get('https://server.kudapach.com/todo').then((res) => {
+                this.setState({
+                  todoData: res.data.data,
+                });
+              }),
+          ),
+        );
+    } else if (e === 'create') {
+      axios
+        .get('https://server.kudapach.com/groupsetting/groupinfo')
+        .then((res) =>
+          this.setState(
+            {
+              groupinfo: res.data,
+            },
+            () =>
+              axios
+                .post('https://server.kudapach.com/grouptodocard', {
+                  groupid: this.state.currentGroupId,
+                })
+                .then((res) =>
+                  this.setState({
+                    todoData: res.data.data,
+                  }),
+                ),
+          ),
+        );
+    } else {
+      axios
+        .get('https://server.kudapach.com/groupsetting/groupinfo')
+        .then((res) =>
+          this.setState({
             groupinfo: res.data,
-          },
-          () =>
-            axios.get('https://server.kudapach.com/todo').then((res) => {
-              this.setState({
-                todoData: res.data.data,
-              });
-            }),
-        ),
-      );
+          }),
+        );
+    }
   }
 
   render() {

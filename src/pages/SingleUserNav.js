@@ -174,6 +174,7 @@ function SingleUserNav({
           handleIsGroup={handleIsGroup}
           handleGroupInfo={handleGroupInfo}
           handleUsernameEmail={handleUsernameEmail}
+          getGroupInfoHandler={getGroupInfoHandler}
           toggleGroupModal={toggleGroupModal}
         />
       ) : (
