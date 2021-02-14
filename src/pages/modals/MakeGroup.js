@@ -68,6 +68,8 @@ class MakeGroup extends React.Component {
       toggleGroupModal,
       handleUsernameEmail,
       handleGroupInfo,
+      handleIsGroup,
+      getGroupInfoHandler,
     } = this.props;
     const {
       groupname,
@@ -99,6 +101,8 @@ class MakeGroup extends React.Component {
         )
         .then((res) => {
           if (res.status === 200) {
+            handleIsGroup(res.data.groupid);
+            getGroupInfoHandler(res.data.groupid);
             swal({
               title: 'Success!',
               text: 'Group is made',
@@ -106,7 +110,7 @@ class MakeGroup extends React.Component {
               button: 'confirm',
             }).then(() => {
               toggleGroupModal();
-              handleGroupInfo();
+              handleGroupInfo('create');
               handleUsernameEmail();
             });
           }
