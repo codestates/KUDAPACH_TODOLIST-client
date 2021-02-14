@@ -121,6 +121,7 @@ class MyTodo extends Component {
       handleUsernameEmail,
       handleIsGroup,
       currentGroupId,
+      handleGroupInfo,
     } = this.props;
 
     return (
@@ -134,6 +135,7 @@ class MyTodo extends Component {
           handleUsernameEmail={handleUsernameEmail}
           currentGroupId={currentGroupId}
           handleIsGroup={handleIsGroup}
+          handleGroupInfo={handleGroupInfo}
         />
         <div className="Box_container main_Box">
           <TodoList

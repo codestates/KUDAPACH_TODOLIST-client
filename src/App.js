@@ -24,6 +24,7 @@ class App extends React.Component {
     this.handleTodoCards = this.handleTodoCards.bind(this);
     this.handleUsernameEmail = this.handleUsernameEmail.bind(this);
     this.handleIsGroup = this.handleIsGroup.bind(this);
+    this.handleGroupInfo = this.handleGroupInfo.bind(this);
   }
 
   handleResponseSuccess = async (signinData) => {
@@ -42,6 +43,7 @@ class App extends React.Component {
       this.props.history.push('/');
     });
   };
+
   handleSignOut() {
     axios.post('https://server.kudapach.com/signout').then(() => {
       this.setState({ isSignin: false });
@@ -70,6 +72,25 @@ class App extends React.Component {
       currentGroupId,
     });
   }
+
+  handleGroupInfo() {
+    axios
+      .get('https://server.kudapach.com/groupsetting/groupinfo')
+      .then((res) =>
+        this.setState(
+          {
+            groupinfo: res.data,
+          },
+          () =>
+            axios.get('https://server.kudapach.com/todo').then((res) => {
+              this.setState({
+                todoData: res.data.data,
+              });
+            }),
+        ),
+      );
+  }
+
   render() {
     console.log(333, this.state);
     const {
@@ -102,6 +123,7 @@ class App extends React.Component {
                 handleSignOut={this.handleSignOut}
                 handleIsGroup={this.handleIsGroup}
                 handleTodoCards={this.handleTodoCards}
+                handleGroupInfo={this.handleGroupInfo}
                 handleUsernameEmail={this.handleUsernameEmail}
               />
             )}
