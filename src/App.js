@@ -139,6 +139,7 @@ class App extends React.Component {
                 handleSignOut={this.handleSignOut}
                 handleIsGroup={this.handleIsGroup}
                 handleTodoCards={this.handleTodoCards}
+                handleGroupInfo={this.handleGroupInfo}
                 handleUsernameEmail={this.handleUsernameEmail}
               />
             )}
