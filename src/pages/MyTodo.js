@@ -8,6 +8,9 @@ axios.defaults.withCredentials = true;
 class MyTodo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      page: true,
+    };
     this.handleCreate = this.handleCreate.bind(this);
     this.handleColorUpdate = this.handleColorUpdate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -123,6 +126,7 @@ class MyTodo extends Component {
     return (
       <div>
         <SingleUserNav
+          page={this.state.page}
           userinfo={userinfo}
           groupinfo={groupinfo}
           handleSignOut={handleSignOut}

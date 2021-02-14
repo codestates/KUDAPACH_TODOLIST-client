@@ -11,12 +11,13 @@ class Mypage extends React.Component {
     this.state = {
       id: this.props.groupinfo.data.id,
       email: this.props.groupinfo.data.email,
-      username: this.props.groupinfo.data.username,
-      mobile: this.props.groupinfo.data.mobile,
+      username: this.props.userinfo.username,
+      mobile: this.props.userinfo.mobile,
       currentPassword: '',
       password: '',
       passwordConfirm: '',
       oauth: this.props.groupinfo.oauth,
+      page: false,
     };
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
@@ -91,6 +92,9 @@ class Mypage extends React.Component {
               text: 'Information is changed',
               icon: 'success',
               button: 'confirm',
+            }).then(() => {
+              console.log('11111111111111');
+              this.props.handleUsernameEmail();
             });
           }
         })
@@ -128,7 +132,10 @@ class Mypage extends React.Component {
               text: 'Information is changed',
               icon: 'success',
               button: 'confirm',
-            }).then(() => this.props.handleUsernameEmail());
+            }).then(() => {
+              console.log('11111111111111');
+              this.props.handleUsernameEmail();
+            });
           }
         })
         .catch((err) => {
@@ -160,11 +167,13 @@ class Mypage extends React.Component {
       password,
       passwordConfirm,
       oauth,
+      page,
     } = this.state;
 
     return (
       <div>
         <SingleUserNav
+          page={page}
           userinfo={userinfo}
           groupinfo={groupinfo}
           handleSignOut={handleSignOut}
@@ -186,7 +195,7 @@ class Mypage extends React.Component {
                     ? 'tryAgain'
                     : 'allGood'
                 }
-                value={userinfo.username}
+                value={username}
                 placeholder="Username"
                 onChange={this.handleChangeInput('username')}
               />
@@ -200,7 +209,7 @@ class Mypage extends React.Component {
                       ? 'tryAgain'
                       : 'allGood'
                   }
-                  value={userinfo.mobile}
+                  value={mobile}
                   placeholder="Mobile"
                   onChange={this.handleChangeInput('mobile')}
                 />
@@ -214,7 +223,7 @@ class Mypage extends React.Component {
                       ? 'tryAgain'
                       : 'allGood'
                   }
-                  value={userinfo.mobile}
+                  value={mobile}
                   placeholder="Mobile"
                   onChange={this.handleChangeInput('mobile')}
                 />

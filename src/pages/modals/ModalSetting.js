@@ -25,9 +25,13 @@ class ModalSetting extends React.Component {
         <Link to="/mypage" className="mypagesetText">
           <div>My Page</div>
         </Link>
-        <div className="groupsetText" onClick={toggleGroupModalWithSetting}>
-          Group Setting
-        </div>
+        {this.props.page ? (
+          <div className="groupsetText" onClick={toggleGroupModalWithSetting}>
+            Group Setting
+          </div>
+        ) : (
+          <div />
+        )}
         <div className="signoutText" onClick={handleSignOut}>
           Sign Out
         </div>

@@ -17,6 +17,7 @@ function SingleUserNav({
   handleUsernameEmail,
   handleIsGroup,
   currentGroupId,
+  page,
 }) {
   // setting 모달창에 대한 state hook과 function들 ---- 시작
   const [settingModal, setSettingModal] = useState(false);
@@ -93,7 +94,6 @@ function SingleUserNav({
     }
   };
 
-
   const [groupData, setgroupData] = useState({});
   const getGroupInfoHandler = () => {
     axios
@@ -149,8 +149,10 @@ function SingleUserNav({
       </header>
       {settingModal === true ? (
         <ModalSetting
+          page={page}
           userinfo={userinfo}
           groupinfo={groupinfo}
+          currentGroupId={currentGroupId}
           toggleGroupModalWithSetting={toggleGroupModalWithSetting}
           toggleModalSetting={toggleModalSetting}
           handleSignOut={handleSignOut}
@@ -168,6 +170,7 @@ function SingleUserNav({
           groupinfo={groupinfo}
           groupData={groupData}
           currentGroupId={currentGroupId}
+          handleIsGroup={handleIsGroup}
           handleUsernameEmail={handleUsernameEmail}
           toggleGroupModal={toggleGroupModal}
         />
@@ -180,6 +183,7 @@ function SingleUserNav({
           groupinfo={groupinfo}
           handleTodoCards={handleTodoCards}
           handleIsGroup={handleIsGroup}
+          handleUsernameEmail={handleUsernameEmail}
           getGroupInfoHandler={getGroupInfoHandler}
         />
       ) : (
