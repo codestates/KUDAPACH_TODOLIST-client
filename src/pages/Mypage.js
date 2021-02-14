@@ -159,6 +159,7 @@ class Mypage extends React.Component {
       handleUsernameEmail,
       handleIsGroup,
       currentGroupId,
+      handleGroupInfo,
     } = this.props;
     const {
       email,
@@ -177,9 +178,10 @@ class Mypage extends React.Component {
           userinfo={userinfo}
           groupinfo={groupinfo}
           handleSignOut={handleSignOut}
-          handleUsernameEmail={handleUsernameEmail}
           handleIsGroup={handleIsGroup}
           currentGroupId={currentGroupId}
+          handleGroupInfo={handleGroupInfo}
+          handleUsernameEmail={handleUsernameEmail}
         />
         <div className="mainSide">
           <div className="mypageMainWrapper">
