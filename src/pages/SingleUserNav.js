@@ -97,6 +97,7 @@ function SingleUserNav({
 
   const [groupData, setgroupData] = useState({});
   const getGroupInfoHandler = () => {
+    console.log('변경 전', groupData);
     axios
       .post(
         'https://server.kudapach.com/groupsetting',
@@ -112,6 +113,7 @@ function SingleUserNav({
       .then((res) => {
         if (res.status === 200) {
           setgroupData(res.data);
+          console.log('변경 후', groupData);
         }
       });
   };

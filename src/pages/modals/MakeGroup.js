@@ -102,7 +102,7 @@ class MakeGroup extends React.Component {
         .then((res) => {
           if (res.status === 200) {
             handleIsGroup(res.data.groupid);
-            getGroupInfoHandler(res.data.groupid);
+            getGroupInfoHandler();
             swal({
               title: 'Success!',
               text: 'Group is made',

@@ -18,8 +18,7 @@ class ManageGroup extends React.Component {
       isEmail1Change: false,
       isEmail2Change: false,
       isEmail3Change: false,
-      isEmail4Change: false,
-      groupid: this.props.currentGroupId,
+      isEmail4Change: false, 
       groupname: this.props.groupData.groupname,
       userEmail1: '',
       userNewEmail1: '',
@@ -124,7 +123,7 @@ class ManageGroup extends React.Component {
     axios
       .post('https://server.kudapach.com/groupsetting/edit', {
         groupDelete: true,
-        groupid: this.state.groupid,
+        groupid: this.props.currentGroupId,
       })
       .then(
         swal({
@@ -149,7 +148,6 @@ class ManageGroup extends React.Component {
     } = this.props;
     const {
       groupDelete,
-      groupid,
       groupname,
       userNewEmail1,
       userNewEmail2,
@@ -185,7 +183,7 @@ class ManageGroup extends React.Component {
           'https://server.kudapach.com/groupsetting/edit',
           {
             groupDelete: groupDelete,
-            groupid: groupid,
+            groupid: this.props.currentGroupId,
             groupname: groupname,
             emails,
           },
@@ -197,6 +195,8 @@ class ManageGroup extends React.Component {
         )
         .then((res) => {
           if (res.status === 200) {
+            this.props.handleIsGroup(res.data.groupid);
+            getGroupInfoHandler();
             swal({
               title: 'Success!',
               text: 'Everything has been updated',
@@ -205,7 +205,6 @@ class ManageGroup extends React.Component {
             }).then(() => {
               toggleGroupModal();
               handleGroupInfo('edit');
-              getGroupInfoHandler(this.props.currentGroupId)
             });
           }
         })
@@ -327,14 +326,16 @@ class ManageGroup extends React.Component {
       user3check,
       user4check,
     } = this.state;
+
+    console.log('프롭스로 변경될 때마다 내려오는 지', this.props.groupData);
     return (
       <div className="makeGroupWrapper">
         <div className="xBtn" onClick={toggleGroupModal} />
         <div className="addWrapper">
           <div className="addText">{groupname}</div>
           <div className="updateDeleteWrapper">
-            <div className="pencil" onClick={this.handleGroupToggle}></div>
-            <div className="trash" onClick={this.handleGroupDelete}></div>
+            <div className="pencil" onClick={this.handleGroupToggle}/>
+            <div className="trash" onClick={this.handleGroupDelete}/>
           </div>
           <button className="confirmAddBtn" onClick={this.handleAddMail}>
             Add User
@@ -346,8 +347,8 @@ class ManageGroup extends React.Component {
             <div className="useremailInput">
               <div className="groupUserEmail">{userNewEmail1}</div>
               <div className="updateDeleteWrapperInMail">
-                <div className="pencil" onClick={this.handleEmail1Toggle}></div>
-                <div className="trash" onClick={this.handleEmail1Delete}></div>
+                <div className="pencil" onClick={this.handleEmail1Toggle}/>
+                <div className="trash" onClick={this.handleEmail1Delete}/>
               </div>
             </div>
           ) : (
@@ -357,8 +358,8 @@ class ManageGroup extends React.Component {
             <div className="useremailInput">
               <div className="groupUserEmail">{userNewEmail2}</div>
               <div className="updateDeleteWrapperInMail">
-                <div className="pencil" onClick={this.handleEmail2Toggle}></div>
-                <div className="trash" onClick={this.handleEmail2Delete}></div>
+                <div className="pencil" onClick={this.handleEmail2Toggle}/>
+                <div className="trash" onClick={this.handleEmail2Delete}/>
               </div>
             </div>
           ) : (
@@ -368,8 +369,8 @@ class ManageGroup extends React.Component {
             <div className="useremailInput">
               <div className="groupUserEmail">{userNewEmail3}</div>
               <div className="updateDeleteWrapperInMail">
-                <div className="pencil" onClick={this.handleEmail3Toggle}></div>
-                <div className="trash" onClick={this.handleEmail3Delete}></div>
+                <div className="pencil" onClick={this.handleEmail3Toggle}/>
+                <div className="trash" onClick={this.handleEmail3Delete}/>
               </div>
             </div>
           ) : (
@@ -379,8 +380,8 @@ class ManageGroup extends React.Component {
             <div className="useremailInput">
               <div className="groupUserEmail">{userNewEmail4}</div>
               <div className="updateDeleteWrapperInMail">
-                <div className="pencil" onClick={this.handleEmail4Toggle}></div>
-                <div className="trash" onClick={this.handleEmail4Delete}></div>
+                <div className="pencil" onClick={this.handleEmail4Toggle}/>
+                <div className="trash" onClick={this.handleEmail4Delete}/>
               </div>
             </div>
           ) : (
