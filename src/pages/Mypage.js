@@ -99,7 +99,7 @@ class Mypage extends React.Component {
           }
         })
         .catch((err) => {
-          if (err.response.status === 500) {
+          if (err.response.status === 500 || err.response.status === 409) {
             swal({
               title: 'Some Information is wrong',
               text: 'Please check your Information',
@@ -139,7 +139,7 @@ class Mypage extends React.Component {
           }
         })
         .catch((err) => {
-          if (err.response.status === 500) {
+          if (err.response.status === 500 || err.response.status === 409) {
             swal({
               title: 'Some Information is wrong',
               text: 'Please check your Information',
