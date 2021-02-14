@@ -8,6 +8,7 @@ import ChangeUserMail2 from './ChangeUserMail2';
 import ChangeUserMail3 from './ChangeUserMail3';
 import ChangeUserMail4 from './ChangeUserMail4';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 class ManageGroup extends React.Component {
   constructor(props) {
@@ -106,28 +107,37 @@ class ManageGroup extends React.Component {
   };
 
   handleEmail1Delete() {
-    this.setState({ user1check: false });
+    this.setState({ user1check: false, userNewEmail1: '' });
   }
   handleEmail2Delete() {
-    this.setState({ user2check: false });
+    this.setState({ user2check: false, userNewEmail2: '' });
   }
   handleEmail3Delete() {
-    this.setState({ user3check: false });
+    this.setState({ user3check: false, userNewEmail3: '' });
   }
   handleEmail4Delete() {
-    this.setState({ user4check: false });
+    this.setState({ user4check: false, userNewEmail4: '' });
   }
 
   handleGroupDelete() {
     const { toggleGroupModal } = this.props;
-    swal({
-      title: 'Delete complete',
-      text: 'Group delete is completed',
-      icon: 'success',
-      button: 'confirm',
-    }).then(() => {
-      toggleGroupModal();
-    });
+    axios
+      .post('https://server.kudapach.com/groupsetting/edit', {
+        groupDelete: true,
+        groupid: this.state.groupid,
+      })
+      .then(
+        swal({
+          title: 'Success',
+          text: 'Group has been deleted',
+          icon: 'success',
+          button: 'confirm',
+        }),
+      )
+      .then(() => {
+        toggleGroupModal();
+        this.props.handleIsGroup(0);
+      });
   }
 
   handleGroupSave() {
@@ -158,6 +168,13 @@ class ManageGroup extends React.Component {
         button: 'confirm',
       });
     } else {
+      let list = [userNewEmail1, userNewEmail2, userNewEmail3, userNewEmail4];
+      const emails = [];
+      for (let el of list) {
+        if (el.length !== 0) {
+          emails.push(el);
+        }
+      }
       axios
         .post(
           'https://server.kudapach.com/groupsetting/edit',
@@ -165,20 +182,7 @@ class ManageGroup extends React.Component {
             groupDelete: groupDelete,
             groupid: groupid,
             groupname: groupname,
-            emails: [
-              {
-                email: userNewEmail1,
-              },
-              {
-                email: userNewEmail2,
-              },
-              {
-                email: userNewEmail3,
-              },
-              {
-                email: userNewEmail4,
-              },
-            ],
+            emails,
           },
           {
             headers: {
@@ -189,8 +193,8 @@ class ManageGroup extends React.Component {
         .then((res) => {
           if (res.status === 200) {
             swal({
-              title: 'Cool!',
-              text: 'All thing is saved',
+              title: 'Success!',
+              text: 'Everything has been updated',
               icon: 'success',
               button: 'confirm',
             }).then(() => {
@@ -289,8 +293,9 @@ class ManageGroup extends React.Component {
       });
     } else {
       swal({
-        title: 'Maximum is 4 users',
-        text: 'You cant add more users',
+        title:
+          'You have already exceeded the maximum number of members in a group.',
+        text: 'Unable to add more users.',
         icon: 'warning',
         button: 'confirm',
       });

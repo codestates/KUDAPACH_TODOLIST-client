@@ -16,6 +16,7 @@ class GroupSetting extends React.Component {
       currentGroupId,
       handleUsernameEmail,
       groupData,
+      handleIsGroup,
     } = this.props;
     // eslint-disable-next-line no-console
     console.log(currentGroupId);
@@ -34,6 +35,7 @@ class GroupSetting extends React.Component {
               <ManageGroup
                 groupData={groupData}
                 groupinfo={groupinfo}
+                handleIsGroup={handleIsGroup}
                 toggleGroupModal={toggleGroupModal}
                 currentGroupId={currentGroupId}
               />
