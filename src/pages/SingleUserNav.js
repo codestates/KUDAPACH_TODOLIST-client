@@ -95,7 +95,7 @@ function SingleUserNav({
     }
   };
 
-  const [groupData, setgroupData] = useState({});
+  const [groupData, setgroupData] = useState('');
   const getGroupInfoHandler = () => {
     console.log('변경 전', groupData);
     axios
