@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from 'react';
 import '../../css/ModalGroup.css';
 import { Link } from 'react-router-dom';
@@ -14,11 +13,7 @@ class ModalGroup extends React.Component {
   }
 
   selectGroupHandler(e) {
-    console.log('groupinfo', this.props.groupinfo);
-
     this.setState({ whichGroup: e.target.getAttribute('value') }, () => {
-      console.log(this.state.whichGroup);
-
       axios
         .post('https://server.kudapach.com/grouptodocard', {
           groupid: this.state.whichGroup,
@@ -54,7 +49,6 @@ class ModalGroup extends React.Component {
       groupIdNamesInfo.push(temp);
       temp = [];
     }
-    // console.log(groupIdNamesInfo); // 2중배열로 만들어진 것 확인
     return (
       <div className="GroupWrapper">
         <Link

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
@@ -122,7 +121,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(333, this.state);
     const {
       isSignin,
       userinfo,

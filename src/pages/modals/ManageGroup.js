@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import React from 'react';
 import '../../css/ManageGroup.css';
 import ChangeGroup from './ChangeGroup';
@@ -55,7 +53,6 @@ class ManageGroup extends React.Component {
 
   renderInfoToState() {
     const { groupData } = this.props;
-    console.log(groupData);
     if (!groupData) {
       this.setState({
         ...this.state,
@@ -327,7 +324,6 @@ class ManageGroup extends React.Component {
       user4check,
     } = this.state;
 
-    console.log('프롭스로 변경될 때마다 내려오는 지', this.props.groupData);
     return (
       <div className="makeGroupWrapper">
         <div className="xBtn" onClick={toggleGroupModal} />

@@ -20,9 +20,6 @@ class GroupSetting extends React.Component {
       handleGroupInfo,
       getGroupInfoHandler,
     } = this.props;
-    // eslint-disable-next-line no-console
-    console.log(currentGroupId);
-    // eslint-disable-next-line no-console
 
     return (
       <>

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import '../css/TodoInfo.css';
@@ -47,7 +46,6 @@ class ToDoInfo extends Component {
   render() {
     const { data } = this.props;
     const { toggle, text } = this.state;
-    console.log(data);
     return (
       <div>
         <div className="todoboxBlock" style={{ backgroundColor: data.color }}>
@@ -63,7 +61,7 @@ class ToDoInfo extends Component {
           ) : (
             <div>
               <div className="card_box">{data.text}</div>
-              <div className="date">{data.updatedAt.substring(0,16)}</div>
+              <div className="date">{data.updatedAt.substring(0, 16)}</div>
             </div>
           )}
           <div className="remove" onClick={this.handleRemove}>
