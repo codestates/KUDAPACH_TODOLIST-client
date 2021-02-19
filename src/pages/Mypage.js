@@ -4,7 +4,7 @@ import '../css/Mypage.css';
 import { phoneNumValidation } from './ValidationFun';
 import swal from 'sweetalert';
 import axios from 'axios';
-/*eslint-disable*/
+
 class Mypage extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +93,6 @@ class Mypage extends React.Component {
               icon: 'success',
               button: 'confirm',
             }).then(() => {
-              console.log('11111111111111');
               this.props.handleUsernameEmail();
             });
           }
@@ -133,7 +132,6 @@ class Mypage extends React.Component {
               icon: 'success',
               button: 'confirm',
             }).then(() => {
-              console.log('11111111111111');
               this.props.handleUsernameEmail();
             });
           }

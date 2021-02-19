@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from 'react';
 import '../css/Signin.css';
 import { withRouter, Link } from 'react-router-dom';
@@ -65,7 +64,6 @@ class Signin extends React.Component {
     }
   };
   onSuccess = (res) => {
-    console.log(res);
     if (res.profileObj) {
       // ? GOOGLE_OAUTH
       axios

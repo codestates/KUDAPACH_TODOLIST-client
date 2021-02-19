@@ -8,7 +8,7 @@ import GroupSetting from './modals/GroupSetting';
 import ModalGroup from './modals/ModalGroup';
 import moment from 'moment';
 import axios from 'axios';
-/*eslint-disable*/
+
 function SingleUserNav({
   userinfo,
   groupinfo,
@@ -95,9 +95,8 @@ function SingleUserNav({
     }
   };
 
-  const [groupData, setgroupData] = useState({});
+  const [groupData, setgroupData] = useState('');
   const getGroupInfoHandler = () => {
-    console.log('변경 전', groupData);
     axios
       .post(
         'https://server.kudapach.com/groupsetting',
@@ -113,7 +112,6 @@ function SingleUserNav({
       .then((res) => {
         if (res.status === 200) {
           setgroupData(res.data);
-          console.log('변경 후', groupData);
         }
       });
   };
